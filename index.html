@@ -10,37 +10,49 @@
 
 <style>
 :root{
-  --ink:#1a1a1a;
-  --muted:#555;
-  --paper:#f6f1ee;
-  --card:#ffffff;
-  --border:#3a2f2f;
-  --accent:#e8b6d3;
-  --shadow:0 14px 40px rgba(0,0,0,.10);
+  --bg:#1e1b2e;
+  --card:#2a2540;
+  --border:#443c6b;
+  --accent:#7c3aed;
+  --text:#f3f4f6;
+  --muted:#cbd5e1;
+  --shadow:0 20px 50px rgba(0,0,0,.45);
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Inter, sans-serif;
-  background:linear-gradient(135deg,#f7d7e5,#ece6f9,#f6f1ee);
-  color:var(--ink);
+  background:
+    radial-gradient(900px 600px at 10% 0%, rgba(139,92,246,.55), transparent 65%),
+    radial-gradient(900px 600px at 95% 10%, rgba(168,85,247,.45), transparent 65%),
+    radial-gradient(900px 600px at 60% 110%, rgba(79,70,229,.35), transparent 60%),
+    var(--bg);
+  color:var(--text);
 }
-.wrap{max-width:1050px;margin:30px auto;padding:0 15px;}
+
+.wrap{max-width:1050px;margin:40px auto;padding:0 15px;}
+
 .board{
   border:2px solid var(--border);
-  background:rgba(255,255,255,.6);
+  background:rgba(30,27,46,.85);
   box-shadow:var(--shadow);
 }
+
 .grid{
   display:grid;
   grid-template-columns:1.4fr .9fr;
-  gap:15px;
-  padding:20px;
+  gap:18px;
+  padding:25px;
 }
+
 .block{
   background:var(--card);
   border:2px solid var(--border);
+  border-radius:10px;
 }
+
 .header{
   padding:10px 14px;
   border-bottom:2px solid var(--border);
@@ -48,39 +60,99 @@ body{
   text-transform:uppercase;
   font-size:12px;
   letter-spacing:.08em;
-  background:var(--accent);
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
+  color:white;
 }
-.body{padding:15px;}
+
+.body{padding:18px;}
+
 h1{margin:0;font-size:26px;font-weight:900;}
 .sub{color:var(--muted);font-weight:600;font-size:13px;margin-top:6px;}
-.role{margin-bottom:18px;}
+
+.role{margin-bottom:20px;}
 .roleTitle{font-weight:800;}
 .roleMeta{font-size:13px;color:var(--muted);font-weight:600;}
-ul{margin:8px 0 0 18px;color:var(--muted);font-size:13px;}
+
+ul{margin:10px 0 0 18px;color:var(--muted);font-size:13px;}
 li{margin:6px 0;}
-.tags{display:flex;flex-wrap:wrap;gap:8px;}
+
+.tags{display:flex;flex-wrap:wrap;gap:10px;}
 .tag{
   border:1px solid var(--border);
-  padding:6px 10px;
+  padding:7px 12px;
   border-radius:20px;
   font-size:12px;
   font-weight:700;
   color:var(--muted);
-  background:#fff;
+  background:#3b345f;
 }
+
 .photoWrap{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:15px;
+  padding:20px;
 }
+
 .photoWrap img{
   width:100%;
   max-width:260px;
-  border:2px solid var(--border);
+  border:3px solid var(--border);
+  border-radius:12px;
 }
+
 .contactLine{margin-bottom:8px;font-size:13px;color:var(--muted);font-weight:600;}
-.footer{padding:10px 20px;text-align:right;font-size:12px;color:#777;}
+
+.footer{
+  padding:15px 20px;
+  text-align:right;
+  font-size:12px;
+  color:#9ca3af;
+}
+
+/* AI Button */
+.ai-button{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
+  color:white;
+  padding:12px 16px;
+  border-radius:30px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.ai-popup{
+  position:fixed;
+  bottom:90px;
+  right:25px;
+  width:300px;
+  background:#2a2540;
+  border:2px solid var(--border);
+  padding:15px;
+  border-radius:12px;
+  display:none;
+}
+
+.ai-popup button{
+  width:100%;
+  margin-top:8px;
+  padding:8px;
+  background:#3b345f;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.ai-answer{
+  margin-top:10px;
+  font-size:13px;
+  color:var(--muted);
+}
+
 @media(max-width:900px){
   .grid{grid-template-columns:1fr;}
 }
@@ -88,6 +160,7 @@ li{margin:6px 0;}
 </head>
 
 <body>
+
 <div class="wrap">
 <div class="board">
 <div class="grid">
@@ -96,13 +169,12 @@ li{margin:6px 0;}
 <section class="block">
 <div class="header">Experience</div>
 <div class="body">
-
 <div class="role">
 <div class="roleTitle">Verisk Analytics — Product Manager</div>
 <div class="roleMeta">Jun 2023 – Present</div>
 <ul>
-<li>Led end-to-end product strategy and delivery for internal platforms, driving initiatives from early discovery and funding alignment through release and post-launch optimization.</li>
-<li>Partnered cross-functionally with UX, engineering, and stakeholders to translate complex concepts into scalable solutions while proactively resolving production issues through technical root-cause analysis and CMS-driven mitigations.</li>
+<li>Led end-to-end product strategy and delivery for internal platforms.</li>
+<li>Resolved production issues through root-cause analysis and CMS-driven fixes.</li>
 </ul>
 </div>
 
@@ -110,16 +182,14 @@ li{margin:6px 0;}
 <div class="roleTitle">LPL Financial — Product Analyst II</div>
 <div class="roleMeta">Mar 2022 – Apr 2023</div>
 <ul>
-<li>Drove Agile execution by leading backlog refinement, sprint planning, and PI preparation while ensuring clear estimation and acceptance criteria alignment across development and QA teams.</li>
-<li>Strengthened release quality through API testing, Product Owner reviews, executive sprint demos, and structured UAT coordination.</li>
+<li>Led backlog refinement, sprint planning, and PI preparation.</li>
+<li>Ensured release quality via API validation, demos, and UAT coordination.</li>
 </ul>
 </div>
 
 <div class="roleMeta">
-Other Experience:<br>
-Truist (2021–2022) • SunTrust (2019–2020) • Capital One (2017–2019)
+Other: Truist • SunTrust • Capital One
 </div>
-
 </div>
 </section>
 
@@ -136,8 +206,8 @@ Truist (2021–2022) • SunTrust (2019–2020) • Capital One (2017–2019)
 <div class="header">Awards</div>
 <div class="body">
 <ul>
-<li>Employee Appreciation Award (2× in one year) — Resolved production issues by identifying technical root cause and implementing backend CMS fixes.</li>
-<li>Recognized for initiating and coordinating with the admin/platform team to resolve critical website link issues before weekday user impact.</li>
+<li>Employee Appreciation Award (2×) for resolving production bugs via backend CMS fixes.</li>
+<li>Recognized for coordinating urgent website link fixes with admin team before weekday user impact.</li>
 </ul>
 </div>
 </section>
@@ -157,7 +227,7 @@ Truist (2021–2022) • SunTrust (2019–2020) • Capital One (2017–2019)
 <div class="header">Skills & Tools</div>
 <div class="body">
 <div class="tags">
-<span class="tag">Content Management System</span>
+<span class="tag">CMS</span>
 <span class="tag">Databases</span>
 <span class="tag">JIRA</span>
 <span class="tag">Postman</span>
@@ -180,7 +250,7 @@ Truist (2021–2022) • SunTrust (2019–2020) • Capital One (2017–2019)
 
 <!-- LOOKING FOR -->
 <section class="block" style="grid-column:1 / -1;">
-<div class="header">What I’m Looking For</div>
+<div class="header">Looking For</div>
 <div class="body">
 <ul>
 <li><strong>Roles:</strong> Product Manager, Product Owner, Analyst</li>
@@ -195,8 +265,38 @@ Truist (2021–2022) • SunTrust (2019–2020) • Capital One (2017–2019)
 </div>
 </div>
 
+<!-- AI Assistant -->
+<div class="ai-button" onclick="toggleAI()">Ask About Jessima</div>
+
+<div class="ai-popup" id="aiBox">
+<strong>Quick Questions</strong>
+<button onclick="showAnswer(1)">What industries?</button>
+<button onclick="showAnswer(2)">Key strengths?</button>
+<button onclick="showAnswer(3)">When can she start?</button>
+<div class="ai-answer" id="aiAnswer"></div>
+</div>
+
 <script>
 document.getElementById("y").textContent=new Date().getFullYear();
+
+function toggleAI(){
+  const box=document.getElementById("aiBox");
+  box.style.display=box.style.display==="block"?"none":"block";
+}
+
+function showAnswer(q){
+  const ans=document.getElementById("aiAnswer");
+  if(q===1){
+    ans.innerHTML="Jessima has worked across Insurance and Finance domains and is open to Medical.";
+  }
+  if(q===2){
+    ans.innerHTML="Strong in product delivery, cross-functional collaboration, and resolving production issues through technical analysis.";
+  }
+  if(q===3){
+    ans.innerHTML="Available to start in 2 weeks.";
+  }
+}
 </script>
+
 </body>
 </html>
