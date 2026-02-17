@@ -1,9 +1,587 @@
-// Enter key support
-document.addEventListener("keydown", function(e){
-  if(e.key === "Enter" && document.getElementById("aiBox").style.display === "block"){
-    sendAI();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jessima Lynton | Product Manager / Product Owner</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#1e1b2e;
+  --card:#2a2540;
+  --border:#443c6b;
+  --accent1:#7c3aed;
+  --accent2:#9333ea;
+  --text:#f3f4f6;
+  --muted:#cbd5e1;
+  --muted2:#aab6cf;
+  --shadow:0 18px 45px rgba(0,0,0,.45);
+  --radius:14px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:Inter, sans-serif;
+  background:
+    radial-gradient(900px 600px at 10% 0%, rgba(139,92,246,.50), transparent 65%),
+    radial-gradient(900px 600px at 95% 10%, rgba(168,85,247,.40), transparent 65%),
+    radial-gradient(900px 600px at 60% 110%, rgba(79,70,229,.30), transparent 60%),
+    var(--bg);
+  color:var(--text);
+}
+
+/* Single-view layout helpers */
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:14px 14px 0;
+  min-height:100vh;
+  display:flex;
+  align-items:stretch;
+}
+.board{
+  width:100%;
+  border:2px solid var(--border);
+  background:rgba(30,27,46,.88);
+  box-shadow:var(--shadow);
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Top strip */
+.topbar{
+  padding:10px 14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.brand .name{
+  font-weight:900;
+  letter-spacing:-0.02em;
+  font-size:16px;
+}
+.brand .headline{
+  color:var(--muted);
+  font-weight:650;
+  font-size:12px;
+  margin-top:2px;
+}
+.pref{
+  color:var(--muted);
+  font-weight:700;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+/* Grid (tight) */
+.grid{
+  display:grid;
+  grid-template-columns:1.35fr .95fr;
+  gap:12px;
+  padding:12px;
+  flex:1;
+}
+
+.block{
+  background:rgba(42,37,64,.95);
+  border:2px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+}
+.header{
+  padding:8px 12px;
+  border-bottom:2px solid var(--border);
+  font-weight:800;
+  text-transform:uppercase;
+  font-size:10.5px;
+  letter-spacing:.08em;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:white;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.body{padding:10px 12px;}
+
+/* Experience */
+.expItem{padding:6px 0 8px;border-bottom:1px solid rgba(255,255,255,.10);}
+.expItem:last-child{border-bottom:none;padding-bottom:0;}
+.expTitle{font-weight:800;font-size:13px;}
+.expMeta{color:var(--muted2);font-weight:600;font-size:11.5px;margin-top:2px;}
+.expList{
+  margin:6px 0 0 16px;
+  padding:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+.expList li{margin:4px 0;}
+
+/* Profile */
+.photoWrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px;
+}
+.photoWrap img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:16px;
+  border:2px solid var(--border);
+  box-shadow:0 10px 20px rgba(0,0,0,.4);
+}
+
+/* About */
+.aboutName{font-size:18px;font-weight:900;margin:0;}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.badge{
+  padding:5px 8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#3b345f;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:750;
+}
+.aboutLine{
+  margin-top:8px;
+  color:var(--muted);
+  font-weight:650;
+  font-size:12px;
+  line-height:1.35;
+}
+
+/* Skills */
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{
+  border:1px solid var(--border);
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+  background:#3b345f;
+}
+
+/* Contact */
+.contactList{display:grid;gap:8px;}
+.contactRow{
+  display:flex;gap:8px;align-items:center;
+  color:var(--muted);
+  font-weight:650;
+  font-size:12px;
+}
+.contactIcon{
+  width:24px;height:24px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:8px;
+  background:#3b345f;
+  border:1px solid rgba(255,255,255,.10);
+  font-size:12px;
+}
+
+/* Looking For */
+.lookGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+}
+.lookPill{
+  border:1px solid rgba(255,255,255,.12);
+  background:#3b345f;
+  border-radius:12px;
+  padding:10px;
+}
+.lookLabel{
+  font-size:11px;
+  color:#d5dbea;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.lookValue{
+  margin-top:6px;
+  color:var(--muted);
+  font-weight:600;
+  font-size:12px;
+  line-height:1.3;
+}
+
+/* Footer */
+.footer{
+  padding:10px 14px;
+  text-align:right;
+  font-size:11px;
+  color:#9ca3af;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* Ask button */
+.askBtn{
+  position:fixed;
+  bottom:16px;
+  right:16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  color:white;
+  border:none;
+  cursor:pointer;
+  font-weight:850;
+  box-shadow:0 14px 34px rgba(0,0,0,.45);
+  transition:.25s ease;
+}
+.askBtn:hover{transform:translateY(-2px);}
+.askIcon{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.20);
+  border:1px solid rgba(255,255,255,.20);
+  font-size:16px;
+}
+.askText{font-size:13px;}
+
+/* ======= AI POPUP (CHAT STYLE + INPUT) ======= */
+.ai-popup{
+  position:fixed;
+  bottom:70px;
+  right:16px;
+  width:360px;
+  background:#1f1a34;
+  border:2px solid #4c3f73;
+  border-radius:18px;
+  box-shadow:0 20px 45px rgba(0,0,0,.6);
+  display:none;
+  overflow:hidden;
+  animation:fadeIn .25s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.ai-header{
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
+  padding:12px 14px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+}
+.ai-close{
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+  opacity:.9;
+}
+.ai-chat{
+  padding:12px;
+  max-height:210px;
+  overflow-y:auto;
+  font-size:12px;
+  line-height:1.45;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.ai-msg{
+  background:#2d2750;
+  padding:10px 12px;
+  border-radius:14px;
+  color:var(--text);
+}
+.ai-user{
+  background:#7c3aed;
+  padding:10px 12px;
+  border-radius:14px;
+  color:white;
+  align-self:flex-end;
+}
+.ai-suggestions{
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.ai-suggestions button{
+  background:#352e5e;
+  border:none;
+  color:white;
+  padding:6px 10px;
+  border-radius:12px;
+  font-size:11px;
+  cursor:pointer;
+  transition:.2s;
+}
+.ai-suggestions button:hover{
+  background:#4b3f86;
+}
+
+/* Chat input */
+.ai-input{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  background:#1f1a34;
+}
+.ai-input input{
+  flex:1;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#2d2750;
+  color:white;
+  font-size:12px;
+  outline:none;
+}
+.ai-input input::placeholder{
+  color:rgba(255,255,255,.55);
+}
+.ai-input button{
+  padding:10px 12px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:800;
+  font-size:12px;
+  color:white;
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
+}
+
+/* Responsive fallback */
+@media(max-width:950px){
+  .wrap{padding:12px}
+  .grid{grid-template-columns:1fr;}
+  .lookGrid{grid-template-columns:1fr;}
+  .ai-popup{width:calc(100% - 32px);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+  <div class="board">
+
+    <div class="topbar">
+      <div class="brand">
+        <div class="name">Jessima Lynton</div>
+        <div class="headline">Product Manager / Product Owner • 6+ Years Experience • Currently Employed</div>
+      </div>
+      <div class="pref">Remote / Hybrid Preferred</div>
+    </div>
+
+    <div class="grid">
+
+      <!-- EXPERIENCE -->
+      <section class="block">
+        <div class="header">💼 Experience</div>
+        <div class="body">
+
+          <div class="expItem">
+            <div class="expTitle">Verisk Analytics — Product Manager</div>
+            <ul class="expList">
+              <li>Led end-to-end product strategy and delivery for internal platforms from discovery through release.</li>
+              <li>Partnered with UX, engineering, and stakeholders to translate complex concepts into scalable solutions.</li>
+              <li>Resolved production issues via root-cause analysis and CMS-driven mitigations; coordinated permanent fixes with engineering.</li>
+            </ul>
+          </div>
+
+          <div class="expItem">
+            <div class="expTitle">LPL Financial — Product Analyst II</div>
+            <ul class="expList">
+              <li>Drove Agile execution through backlog refinement, sprint planning, and PI preparation with clear acceptance criteria.</li>
+              <li>Conducted API testing and Product Owner reviews to validate readiness.</li>
+              <li>Delivered leadership sprint demos and coordinated UAT prior to releases.</li>
+            </ul>
+          </div>
+
+          <div class="expMeta">Other: Truist • SunTrust • Capital One</div>
+
+        </div>
+      </section>
+
+      <!-- PROFILE PHOTO -->
+      <section class="block">
+        <div class="header">🖼 Profile</div>
+        <div class="photoWrap">
+          <img src="profile.jpg" alt="Jessima Lynton">
+        </div>
+      </section>
+
+      <!-- AWARDS -->
+      <section class="block">
+        <div class="header">🏆 Awards</div>
+        <div class="body">
+          <div style="font-weight:850;font-size:12.5px;margin-bottom:6px;">
+            Performance Recognition & Monetary Award
+          </div>
+          <ul class="expList" style="margin-top:0;">
+            <li>Rewarded for identifying root causes and stabilizing production issues through backend CMS fixes.</li>
+            <li>Rewarded for proactively coordinating with admin/platform teams to resolve critical website link issues before weekday user impact.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="block">
+        <div class="header">👤 About Me</div>
+        <div class="body">
+          <h2 class="aboutName">Jessima Lynton</h2>
+          <div class="badges">
+            <span class="badge">Strategic Thinker</span>
+            <span class="badge">Problem Solver</span>
+            <span class="badge">Delivery-Focused</span>
+            <span class="badge">Execution-Driven</span>
+          </div>
+          <div class="aboutLine">
+            Product-focused professional with experience across discovery, delivery, and post-launch support, strong in stakeholder alignment, clear documentation, and execution in Agile/SAFe environments.
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="block">
+        <div class="header">🛠 Skills & Tools</div>
+        <div class="body">
+          <div class="tags">
+            <span class="tag">CMS</span>
+            <span class="tag">Databases</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Microsoft Suite</span>
+            <span class="tag">HTML</span>
+            <span class="tag">JSON</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="block">
+        <div class="header">📬 Contact</div>
+        <div class="body">
+          <div class="contactList">
+            <div class="contactRow"><span class="contactIcon">📞</span>240-618-6352</div>
+            <div class="contactRow"><span class="contactIcon">✉️</span>jessiyoung321@gmail.com</div>
+            <div class="contactRow"><span class="contactIcon">📍</span>Haymarket, VA</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOOKING FOR -->
+      <section class="block" style="grid-column:1 / -1;">
+        <div class="header">🎯 Looking For</div>
+        <div class="body">
+          <div class="lookGrid">
+            <div class="lookPill">
+              <div class="lookLabel">Roles</div>
+              <div class="lookValue">Product Manager • Product Owner • Analyst</div>
+            </div>
+            <div class="lookPill">
+              <div class="lookLabel">Domains</div>
+              <div class="lookValue">Insurance • Finance • Medical</div>
+            </div>
+            <div class="lookPill">
+              <div class="lookLabel">Start</div>
+              <div class="lookValue">Available in 2 weeks</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="footer">© <span id="y"></span> Jessima Lynton</div>
+  </div>
+</div>
+
+<!-- Ask Button -->
+<button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
+  <span class="askIcon">🤖</span>
+  <span class="askText">Ask About Jessima</span>
+</button>
+
+<!-- AI Popup -->
+<div class="ai-popup" id="aiBox">
+  <div class="ai-header">
+    🤖 Jessima AI
+    <span class="ai-close" onclick="toggleAI()">×</span>
+  </div>
+
+  <div class="ai-chat" id="chatArea">
+    <div class="ai-msg">
+      Hi 👋 I'm Jessima’s portfolio assistant.<br>
+      Ask me something about her experience.
+    </div>
+  </div>
+
+  <div class="ai-suggestions">
+    <button onclick="askAI(1)">Industries?</button>
+    <button onclick="askAI(2)">Key strengths?</button>
+    <button onclick="askAI(3)">What makes her different?</button>
+  </div>
+
+  <div class="ai-input">
+    <input id="aiText" type="text" placeholder="Type a question… (ex: UAT experience?)" />
+    <button onclick="sendAI()">Send</button>
+  </div>
+</div>
+
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+
+function toggleAI(){
+  const box = document.getElementById("aiBox");
+  box.style.display = (box.style.display === "block") ? "none" : "block";
+  if(box.style.display === "block"){
+    const input = document.getElementById("aiText");
+    if(input) input.focus();
   }
-});
+}
+
+function askAI(q){
+  const chat = document.getElementById("chatArea");
+  let question = "";
+  let answer = "";
+
+  if(q===1){
+    question = "What industries has she worked in?";
+    answer = "Jessima has worked extensively in Insurance and Financial Services and is open to Medical and other regulated industries.";
+  }
+  if(q===2){
+    question = "What are her key strengths?";
+    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
+  }
+  if(q===3){
+    question = "What makes her different from other PMs?";
+    answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
+  }
+
+  chat.innerHTML += `<div class="ai-user">${escapeHtml(question)}</div>`;
+  setTimeout(() => {
+    chat.innerHTML += `<div class="ai-msg">${escapeHtml(answer)}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 220);
+
+  chat.scrollTop = chat.scrollHeight;
+}
 
 function sendAI(){
   const input = document.getElementById("aiText");
@@ -15,10 +593,11 @@ function sendAI(){
   input.value = "";
 
   const reply = smartReply(text);
+
   setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${reply}</div>`;
+    chat.innerHTML += `<div class="ai-msg">${escapeHtml(reply)}</div>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 250);
+  }, 220);
 
   chat.scrollTop = chat.scrollHeight;
 }
@@ -29,28 +608,22 @@ function smartReply(text){
   if(t.includes("uat") || t.includes("testing") || t.includes("qa")){
     return "Jessima has hands-on experience coordinating UAT, validating acceptance criteria, and partnering closely with QA and engineering to ensure release readiness.";
   }
-
   if(t.includes("jira") || t.includes("confluence") || t.includes("documentation")){
     return "Jessima is strong in structured documentation and delivery execution—writing clear user stories/epics, managing JIRA workflows, and producing decision summaries and artifacts in Confluence.";
   }
-
   if(t.includes("cms") || t.includes("sitecore")){
     return "Jessima has strong CMS experience (including Sitecore) and has used it to implement mitigations, coordinate fixes, and support platform/admin teams during production issues.";
   }
-
   if(t.includes("api") || t.includes("postman")){
     return "Jessima has worked with APIs and tools like Postman for validation/testing and collaborates with engineering to ensure integrations and feature behavior meet requirements.";
   }
-
   if(t.includes("stakeholder") || t.includes("requirements") || t.includes("workshop")){
     return "Jessima regularly leads cross-functional workshops, aligns stakeholders, translates needs into stories, and drives clarity from discovery through delivery.";
   }
-
   if(t.includes("start") || t.includes("available")){
     return "Jessima is currently employed and can start in ~2 weeks.";
   }
 
-  // default response
   return "Good question. Jessima is a delivery-focused PM/PO who combines product execution with technical depth—especially around stakeholder alignment, documentation, UAT readiness, and platform stabilization.";
 }
 
@@ -59,3 +632,18 @@ function escapeHtml(str){
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
   }[m]));
 }
+
+// Enter key to send
+document.addEventListener("keydown", function(e){
+  const box = document.getElementById("aiBox");
+  if(e.key === "Enter" && box && box.style.display === "block"){
+    const active = document.activeElement;
+    if(active && active.id === "aiText"){
+      sendAI();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
