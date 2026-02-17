@@ -545,14 +545,14 @@ body{
 </div>
 
 <script>
+
 document.getElementById("y").textContent = new Date().getFullYear();
 
 function toggleAI(){
   const box = document.getElementById("aiBox");
   box.style.display = (box.style.display === "block") ? "none" : "block";
   if(box.style.display === "block"){
-    const input = document.getElementById("aiText");
-    if(input) input.focus();
+    document.getElementById("aiText").focus();
   }
 }
 
@@ -567,39 +567,35 @@ function askAI(q){
   }
   if(q===2){
     question = "What are her key strengths?";
-    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
+    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories, epic creation, stakeholder requirements, documentation, CMS, and API integrations.";
   }
   if(q===3){
     question = "What makes her different from other PMs?";
     answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
   }
 
-  chat.innerHTML += `<div class="ai-user">${escapeHtml(question)}</div>`;
+  chat.innerHTML += `<div class="ai-user">${question}</div>`;
   setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${escapeHtml(answer)}</div>`;
+    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 220);
-
-  chat.scrollTop = chat.scrollHeight;
+  }, 200);
 }
 
 function sendAI(){
   const input = document.getElementById("aiText");
-  const text = (input.value || "").trim();
+  const text = input.value.trim();
   if(!text) return;
 
   const chat = document.getElementById("chatArea");
-  chat.innerHTML += `<div class="ai-user">${escapeHtml(text)}</div>`;
+  chat.innerHTML += `<div class="ai-user">${text}</div>`;
   input.value = "";
 
   const reply = smartReply(text);
 
   setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${escapeHtml(reply)}</div>`;
+    chat.innerHTML += `<div class="ai-msg">${reply}</div>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 220);
-
-  chat.scrollTop = chat.scrollHeight;
+  }, 200);
 }
 
 function smartReply(text){
@@ -608,42 +604,43 @@ function smartReply(text){
   if(t.includes("uat") || t.includes("testing") || t.includes("qa")){
     return "Jessima has hands-on experience coordinating UAT, validating acceptance criteria, and partnering closely with QA and engineering to ensure release readiness.";
   }
+
   if(t.includes("jira") || t.includes("confluence") || t.includes("documentation")){
-    return "Jessima is strong in structured documentation and delivery execution—writing clear user stories/epics, managing JIRA workflows, and producing decision summaries and artifacts in Confluence.";
+    return "Jessima is strong in structured documentation and delivery execution — writing clear user stories and managing JIRA workflows.";
   }
+
   if(t.includes("cms") || t.includes("sitecore")){
-    return "Jessima has strong CMS experience (including Sitecore) and has used it to implement mitigations, coordinate fixes, and support platform/admin teams during production issues.";
+    return "Jessima has strong CMS experience and has used it to implement mitigations and coordinate fixes during production incidents.";
   }
+
   if(t.includes("api") || t.includes("postman")){
-    return "Jessima has worked with APIs and tools like Postman for validation/testing and collaborates with engineering to ensure integrations and feature behavior meet requirements.";
+    return "Jessima has worked with APIs and Postman for validation and collaborates closely with engineering on integrations.";
   }
-  if(t.includes("stakeholder") || t.includes("requirements") || t.includes("workshop")){
-    return "Jessima regularly leads cross-functional workshops, aligns stakeholders, translates needs into stories, and drives clarity from discovery through delivery.";
+
+  if(t.includes("stakeholder") || t.includes("requirements")){
+    return "Jessima regularly leads cross-functional workshops, gathers stakeholder requirements, and drives clarity from discovery to delivery.";
   }
+
   if(t.includes("start") || t.includes("available")){
-    return "Jessima is currently employed and can start in ~2 weeks.";
+    return "Jessima is currently employed and can start in approximately 2 weeks.";
   }
 
-  return "Good question. Jessima is a delivery-focused PM/PO who combines product execution with technical depth—especially around stakeholder alignment, documentation, UAT readiness, and platform stabilization.";
+  return "Great question. Jessima is a delivery-focused PM/PO who combines product execution with technical depth and strong stakeholder alignment.";
 }
 
-function escapeHtml(str){
-  return str.replace(/[&<>"']/g, m => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
-}
-
-// Enter key to send
+// Enter key support
 document.addEventListener("keydown", function(e){
   const box = document.getElementById("aiBox");
   if(e.key === "Enter" && box && box.style.display === "block"){
-    const active = document.activeElement;
-    if(active && active.id === "aiText"){
+    if(document.activeElement.id === "aiText"){
       sendAI();
     }
   }
 });
+
 </script>
+
 
 </body>
 </html>
+
