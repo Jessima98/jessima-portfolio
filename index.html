@@ -128,20 +128,24 @@ body{
 .expList li{margin:4px 0;}
 
 /* Profile */
+/* PROFILE FIX */
 .photoWrap{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:10px;
+  padding:14px 0;
+  height:180px;              /* smaller fixed height */
 }
+
 .photoWrap img{
-  width:140px;
-  height:140px;
-  object-fit:cover;
-  border-radius:16px;
+  width:160px;               /* slightly bigger */
+  height:160px;
+  object-fit:cover;          /* fills properly */
+  border-radius:20px;
   border:2px solid var(--border);
-  box-shadow:0 10px 20px rgba(0,0,0,.4);
+  box-shadow:0 12px 25px rgba(0,0,0,.45);
 }
+
 
 /* About */
 .aboutName{font-size:18px;font-weight:900;margin:0;}
@@ -516,49 +520,31 @@ function toggleAI(){
 
 function askAI(q){
   const chat = document.getElementById("chatArea");
-
   let question = "";
   let answer = "";
 
-  if (q === 1) {
+  if(q===1){
     question = "What industries has she worked in?";
     answer = "Jessima has worked extensively in Insurance and Financial Services and is open to Medical and other regulated industries.";
-  } else if (q === 2) {
+  }
+  if(q===2){
     question = "What are her key strengths?";
-    answer =
-      "• Product delivery from discovery through release<br>" +
-      "• Cross-functional collaboration across product, UX, engineering, and QA<br>" +
-      "• UAT/testing oversight and acceptance validation<br>" +
-      "• Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations";
-  } else if (q === 3) {
+    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
+  }
+  if(q===3){
     question = "What makes her different from other PMs?";
     answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
-  } else {
-    question = "Question";
-    answer = "Answer";
   }
 
-  // Add the user question bubble (safe text)
-  const userDiv = document.createElement("div");
-  userDiv.className = "ai-user";
-  userDiv.textContent = question;
-  chat.appendChild(userDiv);
-
-  // Add the AI answer bubble (allows <br> formatting)
+  chat.innerHTML += `<div class="ai-user">${question}</div>`;
   setTimeout(() => {
-    const aiDiv = document.createElement("div");
-    aiDiv.className = "ai-msg";
-    aiDiv.innerHTML = answer;
-    chat.appendChild(aiDiv);
-
+    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 200);
+  }, 250);
 
   chat.scrollTop = chat.scrollHeight;
 }
 </script>
 
-
 </body>
 </html>
-
