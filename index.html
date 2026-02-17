@@ -3,617 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jessima Lynton | Product Manager</title>
+  <title>Jessima Lynton | Product Manager / Product Owner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #0b1020;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.08);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --line: rgba(255,255,255,.12);
-      --accent: #7c3aed;   /* purple */
-      --accent2:#22c55e;   /* green */
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 14px;
-      --max: 1100px;
+      --bg:#0b1020;
+      --card:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --accent:#7c3aed;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:920px;
     }
-
-    /* Light mode variables */
-    [data-theme="light"]{
-      --bg:#f6f7fb;
-      --panel: rgba(17,24,39,.05);
-      --panel2: rgba(17,24,39,.07);
-      --text: rgba(17,24,39,.92);
-      --muted: rgba(17,24,39,.70);
-      --line: rgba(17,24,39,.12);
-      --shadow: 0 18px 50px rgba(17,24,39,.10);
-    }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 700px at 20% 0%, rgba(124,58,237,.30), transparent 55%),
-                  radial-gradient(1100px 600px at 90% 15%, rgba(34,197,94,.20), transparent 55%),
-                  radial-gradient(900px 600px at 50% 110%, rgba(56,189,248,.12), transparent 60%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.55;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 20% 0%, rgba(124,58,237,.28), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(34,197,94,.18), transparent 60%),
+        var(--bg);
+      line-height:1.55;
     }
-
-    a{color: inherit}
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 20px 60px;
-    }
-
-    /* Top bar */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom: 18px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      letter-spacing:.2px;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), #60a5fa);
-      box-shadow: 0 0 0 6px rgba(124,58,237,.15);
-    }
-    .actions{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center;
-    }
-    .chip{
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 9px 12px;
-      border-radius: 999px;
-      text-decoration:none;
-      color: var(--muted);
-      font-size: 13px;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .chip:hover{ transform: translateY(-1px); background: var(--panel2); border-color: rgba(124,58,237,.35); color: var(--text); }
-
-    .btn{
-      border: 1px solid rgba(124,58,237,.45);
-      background: linear-gradient(135deg, rgba(124,58,237,.85), rgba(59,130,246,.65));
-      padding: 10px 14px;
-      border-radius: 999px;
-      text-decoration:none;
-      color: white;
-      font-weight: 600;
-      font-size: 13px;
-      box-shadow: 0 12px 30px rgba(124,58,237,.25);
-      transition: transform .12s ease, filter .12s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-
-    .toggle{
-      cursor:pointer;
-      user-select:none;
-    }
-
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns: 340px 1fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-top: 12px;
-    }
-
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px;}
     .card{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px;
     }
-
-    .profile{
-      padding: 18px;
-      position: relative;
+    .top{
+      display:flex; gap:18px; align-items:center; flex-wrap:wrap;
     }
-    .profile::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(450px 200px at 20% 0%, rgba(124,58,237,.35), transparent 60%),
-                  radial-gradient(350px 220px at 90% 10%, rgba(34,197,94,.22), transparent 60%);
-      pointer-events:none;
-      opacity:.9;
+    .photo{
+      width:110px; height:110px; border-radius:999px; overflow:hidden;
+      border:2px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+      flex:0 0 auto;
     }
-    .profile > *{ position:relative; }
-
-    .headshot{
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      overflow:hidden;
-      border: 2px solid rgba(255,255,255,.22);
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
-      margin-bottom: 14px;
-      background: rgba(255,255,255,.06);
+    .photo img{width:100%; height:100%; object-fit:cover; object-position:center; display:block;}
+    .name{font-size:28px; font-weight:800; margin:0;}
+    .role{margin:4px 0 0; color:var(--muted); font-weight:600;}
+    .meta{margin-top:10px; color:var(--muted); font-size:14px;}
+    .meta b{color:var(--text); font-weight:700;}
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
     }
-    .headshot img{
-      width:100%; height:100%;
-      object-fit: cover;
-      object-position: center;
-      display:block;
-    }
-
-    .name{
-      font-size: 26px;
-      font-weight: 800;
-      margin: 6px 0 2px;
-      letter-spacing: .2px;
-    }
-    .title{
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 13.5px;
-    }
-
-    .meta{
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-      display:grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .meta b{ color: var(--text); font-weight: 600; }
-
-    .content{
-      padding: 18px;
-      display:grid;
-      gap: 14px;
-    }
-
-    .heroTitle{
-      font-size: 34px;
-      line-height: 1.12;
-      margin: 0;
-      letter-spacing: -.4px;
-    }
-    .subtitle{
-      margin: 6px 0 0;
-      color: var(--muted);
-      max-width: 62ch;
-    }
-
-    .badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 6px;
-    }
-    .badge{
-      border: 1px solid var(--line);
-      background: var(--panel2);
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-    .badge .k{
-      width:10px;height:10px;border-radius:999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(124,58,237,.13);
-    }
-    .badge.green .k{ background: var(--accent2); box-shadow: 0 0 0 6px rgba(34,197,94,.13); }
-    .badge.blue .k{ background: #60a5fa; box-shadow: 0 0 0 6px rgba(96,165,250,.12); }
-
-    /* Sections */
     .grid{
       display:grid;
-      grid-template-columns: 340px 1fr;
-      gap: 18px;
-      margin-top: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
     }
-
-    .section{
-      padding: 18px;
+    .sectionTitle{
+      margin:0 0 8px;
+      font-size:13px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
     }
-
-    .h{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom: 10px;
+    ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:14px;}
+    li{margin:6px 0;}
+    .small{color:var(--muted); font-size:14px;}
+    .btnRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+    .btn{
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+      border:1px solid rgba(124,58,237,.45);
+      background:linear-gradient(135deg, rgba(124,58,237,.85), rgba(59,130,246,.65));
+      color:white;
+      box-shadow:0 12px 30px rgba(124,58,237,.22);
     }
-    .h h2{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .rule{
-      height:1px;
-      background: var(--line);
-      flex:1;
-      opacity:.9;
-    }
-
-    .list{
-      display:grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .item{
-      padding: 12px 12px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    [data-theme="light"] .item{ background: rgba(17,24,39,.03); }
-
-    .item h3{
-      margin: 0 0 6px;
-      font-size: 14.5px;
-      letter-spacing:.1px;
-    }
-    .item p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 13.5px;
-    }
-
-    .pillrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .pill{
-      font-size: 12px;
-      color: var(--muted);
+    .btn.secondary{
+      background:rgba(255,255,255,.06);
       border:1px solid var(--line);
-      background: var(--panel);
-      padding: 6px 10px;
-      border-radius: 999px;
+      color:var(--text);
+      box-shadow:none;
     }
-
-    .timeline{
-      display:grid;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .role{
-      padding: 14px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    [data-theme="light"] .role{ background: rgba(17,24,39,.03); }
-
-    .roleTop{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .roleTop b{ font-size: 15px; }
-    .when{
-      font-size: 12.5px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .where{
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 2px;
-    }
-    ul{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 13.5px;
-    }
-    li{ margin: 6px 0; }
-
-    .footer{
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 13px;
-      text-align:center;
-      opacity:.85;
-    }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero, .grid{ grid-template-columns: 1fr; }
-      .heroTitle{ font-size: 30px; }
-      .wrap{ padding-top: 18px; }
-      .headshot{ width: 108px; height: 108px; }
-    }
+    .footer{margin-top:18px; text-align:center; color:var(--muted); font-size:13px; opacity:.85;}
+    @media (max-width:760px){ .grid{grid-template-columns:1fr;} }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <!-- topbar -->
-    <div class="topbar">
-      <div class="brand"><span class="dot"></span> Jessima Portfolio</div>
-      <div class="actions">
-        <a class="chip" href="#experience">Experience</a>
-        <a class="chip" href="#projects">Projects</a>
-        <a class="chip" href="#contact">Contact</a>
-
-        <!-- OPTIONAL: update links -->
-        <a class="btn" href="mailto:jessiyoung321@gmail.com">Email</a>
-        <span class="chip toggle" id="themeToggle" title="Toggle light/dark">Toggle theme</span>
-      </div>
-    </div>
-
-    <!-- hero -->
-    <div class="hero">
-      <div class="card profile">
-        <div class="headshot">
-          <!-- Upload your image to the repo root as: pro.jpg -->
-          <img src="pro.jpg" alt="Jessima headshot">
+    <div class="card">
+      <div class="top">
+        <div class="photo">
+          <!-- Put your photo in the repo root as: pro.jpg -->
+          <img src="pro.jpg" alt="Jessima Lynton">
         </div>
 
-        <div class="name">Jessima Lynton</div>
-        <div class="title">Product Manager ♦ Product Analyst ♦ Business Analyst ♦ QA Engineer</div>
+        <div style="flex:1 1 360px;">
+          <h1 class="name">Jessima Lynton</h1>
+          <div class="role">Product Manager / Product Owner • 6+ years experience • Currently employed</div>
 
-        <div class="meta">
-          <div><b>Location:</b> Haymarket, VA</div>
-          <div><b>Phone:</b> 240-618-6352</div>
-          <div><b>Email:</b> jessiyoung321@gmail.com</div>
-          <!-- OPTIONAL: add these -->
-          <div><b>LinkedIn:</b> <span style="opacity:.9;">(add your URL)</span></div>
-          <div><b>GitHub:</b> <span style="opacity:.9;">Jessima98</span></div>
+          <div class="meta">
+            <div><b>Location:</b> Haymarket, VA</div>
+            <div><b>Work preference:</b> Remote / Hybrid</div>
+            <div><b>Email:</b> <a href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a> • <b>Phone:</b> 240-618-6352</div>
+          </div>
+
+          <div class="chips">
+            <div class="chip">Insurance</div>
+            <div class="chip">Finance</div>
+            <div class="chip">Medical (open)</div>
+            <div class="chip">Available to start in 2 weeks</div>
+          </div>
+
+          <div class="btnRow">
+            <a class="btn" href="mailto:jessiyoung321@gmail.com">Email</a>
+            <!-- Optional: replace # with your LinkedIn URL -->
+            <a class="btn secondary" href="#" onclick="return false;">LinkedIn (add link)</a>
+          </div>
         </div>
       </div>
 
-      <div class="card content">
+      <div class="grid">
         <div>
-          <h1 class="heroTitle">Product-focused analyst building clear, shippable solutions.</h1>
-          <p class="subtitle">
-            6+ years in financial + insurance domains, partnering across discovery → delivery → post-launch.
-            Known for translating complex business + technical needs into crisp requirements, flows, and visuals.
-          </p>
+          <div class="sectionTitle">Tools & Tech</div>
+          <ul>
+            <li>Content Management System (CMS)</li>
+            <li>Databases</li>
+            <li>JIRA</li>
+            <li>Postman</li>
+            <li>Microsoft Suite</li>
+            <li>HTML, JSON</li>
+          </ul>
         </div>
 
-        <div class="badges">
-          <div class="badge"><span class="k"></span> Discovery & Workshops</div>
-          <div class="badge green"><span class="k"></span> Agile / SAFe Delivery</div>
-          <div class="badge blue"><span class="k"></span> UAT + Quality Ownership</div>
-        </div>
-
-        <div class="list">
-          <div class="item">
-            <h3>Highlights</h3>
-            <p>
-              • Led end-to-end delivery of two internal products at Verisk<br/>
-              • Early-stage discovery & definition for initiatives before funding approval<br/>
-              • Recognized with 2 employee awards for production issue identification + mitigation
-            </p>
+        <div>
+          <div class="sectionTitle">Recent Experience</div>
+          <ul>
+            <li><b>Verisk Analytics</b> — Product Manager</li>
+            <li><b>LPL Financial</b> — Product Analyst II</li>
+          </ul>
+          <div class="small" style="margin-top:10px;">
+            Also worked at: Truist • SunTrust • Capital One
           </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <div class="sectionTitle">What I do (high level)</div>
+        <ul>
+          <li>Lead discovery, clarify requirements, and drive delivery with cross-functional teams (product/UX/engineering/QA).</li>
+          <li>Own quality through UAT coordination, issue triage, and release support to ensure features ship cleanly.</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:14px;">
+        <div class="sectionTitle">Awards</div>
+        <ul>
+          <li><b>Verisk Employee Appreciation Award</b> — received 2 times in 1 year for resolving production bugs by identifying technical root cause and implementing fixes via backend CMS.</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:14px;">
+        <div class="sectionTitle">Looking for</div>
+        <div class="small">
+          Challenging roles (any department). Preferably in insurance, finance, or medical domains. Able to start in 2 weeks.
         </div>
       </div>
     </div>
 
-    <!-- main grid -->
-    <div class="grid">
+    <div class="footer">© <span id="y"></span> Jessima Lynton</div>
+  </div>
 
-      <!-- left column -->
-      <div class="card section">
-        <div class="h">
-          <h2>Skills</h2><div class="rule"></div>
-        </div>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
-        <div class="list">
-          <div class="item">
-            <h3>Product & Delivery</h3>
-            <div class="pillrow">
-              <span class="pill">Workshops</span>
-              <span class="pill">Backlog grooming</span>
-              <span class="pill">User stories</span>
-              <span class="pill">Acceptance criteria</span>
-              <span class="pill">UAT</span>
-              <span class="pill">Stakeholder alignment</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>Tools</h3>
-            <div class="pillrow">
-              <span class="pill">JIRA</span>
-              <span class="pill">Confluence</span>
-              <span class="pill">VersionOne</span>
-              <span class="pill">Postman</span>
-              <span class="pill">Excel</span>
-              <span class="pill">Sitecore</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>Technical</h3>
-            <div class="pillrow">
-              <span class="pill">SQL</span>
-              <span class="pill">JSON</span>
-              <span class="pill">HTML</span>
-              <span class="pill">XML</span>
-              <span class="pill">Oracle</span>
-              <span class="pill">MongoDB</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>Education</h3>
-            <p>B.E. Electronics & Communication Engineering<br/>PSNA College Of Engineering and Technology</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- right column -->
-      <div class="card section" id="experience">
-        <div class="h">
-          <h2>Experience</h2><div class="rule"></div>
-        </div>
-
-        <div class="timeline">
-          <div class="role">
-            <div class="roleTop">
-              <div>
-                <b>Verisk Analytics — Product Manager</b>
-                <div class="where">Jersey City, NJ</div>
-              </div>
-              <div class="when">Jun 2023 – Present</div>
-            </div>
-            <ul>
-              <li>Led end-to-end delivery of two internal-facing products from concept → release.</li>
-              <li>Owned early-stage discovery and definition for new initiatives prior to funding approval.</li>
-              <li>Partnered with UX + engineering to translate abstract concepts into visual product designs.</li>
-              <li>Identified production issues post-launch and implemented temporary mitigations in Sitecore.</li>
-            </ul>
-          </div>
-
-          <div class="role">
-            <div class="roleTop">
-              <div>
-                <b>LPL Financial — Product Analyst II</b>
-                <div class="where">San Diego, CA</div>
-              </div>
-              <div class="when">Mar 2022 – Apr 2023</div>
-            </div>
-            <ul>
-              <li>Planned future epics and refined backlog for PI Planning; led sprint planning + refinement.</li>
-              <li>Conducted API testing with Postman and performed PO reviews after QA.</li>
-              <li>Delivered sprint demos to leadership and facilitated UAT kick-offs prior to releases.</li>
-            </ul>
-          </div>
-
-          <div class="role">
-            <div class="roleTop">
-              <div>
-                <b>Truist — Product Analyst II</b>
-                <div class="where">Charlotte, NC</div>
-              </div>
-              <div class="when">Jan 2021 – Mar 2022</div>
-            </div>
-            <ul>
-              <li>Led working sessions to gather requirements; documented flows and requirements in Confluence.</li>
-              <li>Collaborated in SAFe: PI Planning, System Demos, backlog grooming.</li>
-              <li>Analyzed data to create user stories and propose feature enhancements.</li>
-            </ul>
-          </div>
-
-          <div class="role">
-            <div class="roleTop">
-              <div>
-                <b>SunTrust — Business Analyst I</b>
-                <div class="where">Richmond, VA</div>
-              </div>
-              <div class="when">Apr 2019 – Dec 2020</div>
-            </div>
-            <ul>
-              <li>Gathered and documented business requirements in JIRA; supported design reviews and intake.</li>
-              <li>Led UAT and coordinated final signoffs; tracked defects and status in Confluence.</li>
-              <li>Validated backend data using SQL queries.</li>
-            </ul>
-          </div>
-
-          <div class="role">
-            <div class="roleTop">
-              <div>
-                <b>Capital One — Junior QA Engineer</b>
-                <div class="where">McLean, VA</div>
-              </div>
-              <div class="when">Aug 2017 – Apr 2019</div>
-            </div>
-            <ul>
-              <li>Designed and executed test cases; performed functional, regression, integration, and UAT testing.</li>
-              <li>Triage defects with dev + business teams; maintained test plans and defect tracking.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Projects -->
-    <div class="card section" id="projects" style="margin-top:18px;">
-      <div class="h">
-        <h2>Selected Projects</h2><div class="rule"></div>
-      </div>
-
-      <div class="list">
-        <div class="item">
-          <h3>ISO Navigator — Relationship-driven product views</h3>
-          <p>
-            Worked across discovery and documentation to define entity relationships, priority logic, and
-            visual product view requirements for cross-functional alignment.
-          </p>
-          <div class="pillrow">
-            <span class="pill">Discovery</span><span class="pill">Workflows</span><span class="pill">Diagrams</span><span class="pill">Stakeholders</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <h3>Hub/Landing Pages — Content strategy + gating rules</h3>
-          <p>
-            Partnered with UX, engineering, and authors to ship gated content experiences in Sitecore,
-            ensuring correct entitlements and clear user flows.
-          </p>
-          <div class="pillrow">
-            <span class="pill">Sitecore</span><span class="pill">Personalization</span><span class="pill">UAT</span><span class="pill">Release support</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <h3>API & QA Ownership — Release confidence</h3>
-          <p>
-            Supported delivery by validating APIs in Postman, performing PO reviews, and leading UAT kickoffs
-            to ensure stories met acceptance criteria.
-          </p>
-          <div class="pillrow">
-            <span class="pill">Postman</span><span class="pill">Acceptance criteria</span><span class="pill">UAT</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact -->
-    <div class="card section" id="contact" style="margin-top:18px;">
-      <div class="h">
-        <h2>Contact</h2><div class="rule"></div>
-      </div>
-      <div class="list">
-        <div class="item">
-          <h3>Let’s connect</h3>
-          <p>
-            Email: <a href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a><br/>
-            Phone: 240-618-6352<br/>
-            Location: Haymarket, VA
-          </p>
-          <div class="pillrow" style="margin-top:12px;">
-            <!-- Update these links when ready -->
-            <a class="btn" href="mailto:jessiyoung321@gmail.com">Email Me</a>
-            <a class="chip" href="#" onclick="alert('Add your LinkedIn URL here!'); return false;">LinkedIn</a>
-            <a class="chip" href="#" onclick="alert('Add your resume PDF link here!');
