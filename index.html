@@ -1,149 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jessima Lynton | Product Manager</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    background-color: #f9fafb;
-    color: #1f2937;
-}
-.container {
-    width: 85%;
-    max-width: 1000px;
-    margin: auto;
-    padding: 60px 0;
-}
-h1, h2 {
-    margin-bottom: 10px;
-}
-.hero {
-    background: #111827;
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-}
-.hero h1 {
-    font-size: 42px;
-}
-.hero p {
-    font-size: 18px;
-    opacity: 0.8;
-}
-.button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 24px;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-}
-.section {
-    margin-bottom: 60px;
-}
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-ul {
-    padding-left: 20px;
-}
-footer {
-    text-align: center;
-    padding: 30px 0;
-    background: #111827;
-    color: white;
-}
-</style>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jessima Lynton | Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<body>
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.12);
+      --accent: #7c3aed;   /* purple */
+      --accent2:#22c55e;   /* green */
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 1100px;
+    }
 
-<div class="hero">
-    <h1>Jessima Lynton</h1>
-    <p>Product Manager ♦ Product Analyst ♦ Business Analyst ♦ QA Engineer</p>
-    <p>Haymarket, VA | 240-618-6352 | jessiyoung321@gmail.com</p>
-    <a class="button" href="#contact">Contact Me</a>
-</div>
+    /* Light mode variables */
+    [data-theme="light"]{
+      --bg:#f6f7fb;
+      --panel: rgba(17,24,39,.05);
+      --panel2: rgba(17,24,39,.07);
+      --text: rgba(17,24,39,.92);
+      --muted: rgba(17,24,39,.70);
+      --line: rgba(17,24,39,.12);
+      --shadow: 0 18px 50px rgba(17,24,39,.10);
+    }
 
-<div class="container">
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(124,58,237,.30), transparent 55%),
+                  radial-gradient(1100px 600px at 90% 15%, rgba(34,197,94,.20), transparent 55%),
+                  radial-gradient(900px 600px at 50% 110%, rgba(56,189,248,.12), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
 
-<div class="section">
-    <h2>About Me</h2>
-    <p>
-    Product-focused professional with 6+ years of experience across financial and insurance industries.
-    Experienced in discovery, backlog refinement, stakeholder alignment, UX collaboration, and post-launch support.
-    Strong at translating complex business needs into structured product solutions.
-    </p>
-</div>
+    a{color: inherit}
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
 
-<div class="section">
-    <h2>Core Skills</h2>
-    <div class="card">
-        <strong>Product & Agile:</strong>
-        <ul>
-            <li>Backlog Grooming & PI Planning</li>
-            <li>UAT Leadership</li>
-            <li>Cross-functional Workshops</li>
-            <li>SDLC in Agile & SAFe</li>
-        </ul>
-    </div>
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom: 18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), #60a5fa);
+      box-shadow: 0 0 0 6px rgba(124,58,237,.15);
+    }
+    .actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .chip{
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 9px 12px;
+      border-radius: 999px;
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 13px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); background: var(--panel2); border-color: rgba(124,58,237,.35); color: var(--text); }
 
-    <div class="card">
-        <strong>Technical:</strong>
-        <ul>
-            <li>HTML, XML, SQL, JSON</li>
-            <li>Oracle, SQL Server, MySQL, MongoDB</li>
-            <li>Postman API Testing</li>
-            <li>Sitecore CMS</li>
-        </ul>
-    </div>
-</div>
+    .btn{
+      border: 1px solid rgba(124,58,237,.45);
+      background: linear-gradient(135deg, rgba(124,58,237,.85), rgba(59,130,246,.65));
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      color: white;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 12px 30px rgba(124,58,237,.25);
+      transition: transform .12s ease, filter .12s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
 
-<div class="section">
-    <h2>Selected Experience</h2>
+    .toggle{
+      cursor:pointer;
+      user-select:none;
+    }
 
-    <div class="card">
-        <h3>Verisk Analytics | Product Manager (2023 – Present)</h3>
-        <ul>
-            <li>Led end-to-end delivery of two internal-facing products.</li>
-            <li>Drove early-stage product discovery prior to funding approval.</li>
-            <li>Partnered with UX and engineering to define relationship-driven designs.</li>
-            <li>Mitigated production issues and implemented temporary CMS fixes.</li>
-        </ul>
-    </div>
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 12px;
+    }
 
-    <div class="card">
-        <h3>LPL Financial | Product Analyst II</h3>
-        <ul>
-            <li>Led backlog refinement and sprint planning sessions.</li>
-            <li>Conducted API testing and Product Owner story reviews.</li>
-            <li>Facilitated sprint demos and UAT sessions.</li>
-        </ul>
-    </div>
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
 
-</div>
+    .profile{
+      padding: 18px;
+      position: relative;
+    }
+    .profile::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(450px 200px at 20% 0%, rgba(124,58,237,.35), transparent 60%),
+                  radial-gradient(350px 220px at 90% 10%, rgba(34,197,94,.22), transparent 60%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .profile > *{ position:relative; }
 
-<div class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Email: jessiyoung321@gmail.com</p>
-    <p>Phone: 240-618-6352</p>
-    <p>Location: Haymarket, VA</p>
-</div>
+    .headshot{
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      overflow:hidden;
+      border: 2px solid rgba(255,255,255,.22);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      margin-bottom: 14px;
+      background: rgba(255,255,255,.06);
+    }
+    .headshot img{
+      width:100%; height:100%;
+      object-fit: cover;
+      object-position: center;
+      display:block;
+    }
 
-</div>
+    .name{
+      font-size: 26px;
+      font-weight: 800;
+      margin: 6px 0 2px;
+      letter-spacing: .2px;
+    }
+    .title{
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13.5px;
+    }
 
-<footer>
-    © 2026 Jessima Lynton
-</footer>
+    .meta{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display:grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .meta b{ color: var(--text); font-weight: 600; }
 
-</body>
-</html>
+    .content{
+      padding: 18px;
+      display:grid;
+      gap: 14px;
+    }
+
+    .heroTitle{
+      font-size: 34px;
+
