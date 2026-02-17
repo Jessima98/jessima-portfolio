@@ -141,13 +141,23 @@ body{
 
 /* Profile */
 .photoWrap{display:flex;justify-content:center;align-items:center;padding:10px;}
+.photoWrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:12px;
+}
+
 .photoWrap img{
   width:100%;
-  max-width:200px;            /* smaller to fit single view */
+  height:260px;              /* fixed height */
+  max-width:220px;
+  object-fit:cover;          /* THIS is the key */
+  border-radius:14px;
   border:2px solid var(--border);
-  border-radius:12px;
-  box-shadow:0 12px 24px rgba(0,0,0,.35);
+  box-shadow:0 14px 30px rgba(0,0,0,.4);
 }
+
 
 /* About */
 .aboutName{font-size:18px;font-weight:900;margin:0;}
@@ -518,6 +528,7 @@ function showAnswer(q){
 
 </body>
 </html>
+
 
 
 
