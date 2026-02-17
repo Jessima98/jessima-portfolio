@@ -518,33 +518,38 @@ function toggleAI(){
   box.style.display = (box.style.display === "block") ? "none" : "block";
 }
 
-function askAI(q){
+function askAI(type){
   const chat = document.getElementById("chatArea");
-  let question = "";
+
   let answer = "";
 
-  if(q===1){
-    question = "What industries has she worked in?";
-    answer = "Jessima has worked extensively in Insurance and Financial Services and is open to Medical and other regulated industries.";
-  }
-  if(q===2){
-    question = "What are her key strengths?";
-    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
-  }
-  if(q===3){
-    question = "What makes her different from other PMs?";
-    answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
+  switch(type){
+
+    case "industries":
+      answer = "Jessima has worked extensively in Insurance and Financial Services, with exposure to regulated platforms. She is open to Medical and other compliance-heavy industries.";
+      break;
+
+    case "strengths":
+      answer = "Her strengths include end-to-end product delivery, cross-functional leadership, UAT coordination, stakeholder alignment, strong documentation, CMS expertise, and API-level understanding.";
+      break;
+
+    case "difference":
+      answer = "She blends strategic product thinking with hands-on technical depth — investigating production issues, identifying root causes, and collaborating directly with engineering teams to stabilize systems.";
+      break;
+
+    case "technical":
+      answer = "She is comfortable working with CMS platforms, APIs, Postman testing, JSON, backlog refinement, and collaborating closely with engineering during production incidents.";
+      break;
+
+    default:
+      answer = "Click one of the suggested questions below 👇";
   }
 
-  chat.innerHTML += `<div class="ai-user">${question}</div>`;
-  setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 250);
-
-  chat.scrollTop = chat.scrollHeight;
+  chat.innerHTML = `<div class="ai-msg">${answer}</div>`;
 }
 </script>
 
+
 </body>
 </html>
+
