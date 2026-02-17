@@ -103,7 +103,7 @@ body{
   border-bottom:2px solid var(--border);
   font-weight:800;
   text-transform:uppercase;
-  font-size:10.5px;     /* smaller */
+  font-size:10.5px;
   letter-spacing:.08em;
   background:linear-gradient(90deg,var(--accent1),var(--accent2));
   color:white;
@@ -116,48 +116,32 @@ body{
 /* Experience */
 .expItem{padding:6px 0 8px;border-bottom:1px solid rgba(255,255,255,.10);}
 .expItem:last-child{border-bottom:none;padding-bottom:0;}
-.expTitle{
-  font-weight:800;
-  font-size:13px;
-}
-.expMeta{
-  color:var(--muted2);
-  font-weight:600;
-  font-size:11.5px;
-  margin-top:2px;
-}
-
+.expTitle{font-weight:800;font-size:13px;}
+.expMeta{color:var(--muted2);font-weight:600;font-size:11.5px;margin-top:2px;}
 .expList{
   margin:6px 0 0 16px;
   padding:0;
   color:var(--muted);
-  font-size:12px;        /* MATCHES About text scale */
+  font-size:12px;
   line-height:1.4;
 }
-.expList li{
-  margin:4px 0;
-}
-
+.expList li{margin:4px 0;}
 
 /* Profile */
-.photoWrap{display:flex;justify-content:center;align-items:center;padding:10px;}
 .photoWrap{
   display:flex;
   justify-content:center;
   align-items:center;
   padding:10px;
 }
-
 .photoWrap img{
-  width:140px;          /* small, intentional */
+  width:140px;
   height:140px;
   object-fit:cover;
-  border-radius:16px;   /* soft rounded square */
+  border-radius:16px;
   border:2px solid var(--border);
   box-shadow:0 10px 20px rgba(0,0,0,.4);
 }
-
-
 
 /* About */
 .aboutName{font-size:18px;font-weight:900;margin:0;}
@@ -231,11 +215,11 @@ body{
   margin-top:6px;
   color:var(--muted);
   font-weight:600;
-  font-size:12px;  /* match experience */
+  font-size:12px;
   line-height:1.3;
 }
 
-/* Footer (tight) */
+/* Footer */
 .footer{
   padding:10px 14px;
   text-align:right;
@@ -244,7 +228,7 @@ body{
   border-top:1px solid rgba(255,255,255,.08);
 }
 
-/* Ask button (icon + text) */
+/* Ask button (ONE button only) */
 .askBtn{
   position:fixed;
   bottom:16px;
@@ -272,59 +256,81 @@ body{
 }
 .askText{font-size:13px;}
 
-/* AI popup */
+/* ======= AI POPUP (CHAT STYLE) ======= */
 .ai-popup{
   position:fixed;
-  bottom:64px;
+  bottom:70px;
   right:16px;
-  width:330px;
-  background:#2a2540;
-  border:2px solid var(--border);
-  padding:12px;
-  border-radius:14px;
+  width:340px;
+  background:#1f1a34;
+  border:2px solid #4c3f73;
+  border-radius:18px;
+  box-shadow:0 20px 45px rgba(0,0,0,.6);
   display:none;
-  box-shadow:0 16px 40px rgba(0,0,0,.55);
+  overflow:hidden;
+  animation:fadeIn .25s ease;
 }
-.ai-title{
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+.ai-header{
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
+  padding:12px 14px;
+  font-weight:900;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
-  font-weight:900;
-  margin-bottom:8px;
   font-size:13px;
 }
 .ai-close{
   cursor:pointer;
-  padding:5px 10px;
-  border-radius:10px;
-  background:#3b345f;
-  color:var(--muted);
-  font-weight:850;
-  font-size:11px;
-  border:1px solid rgba(255,255,255,.12);
+  font-size:18px;
+  line-height:1;
+  opacity:.9;
 }
-.ai-popup button{
-  width:100%;
-  margin-top:7px;
-  padding:9px 10px;
-  background:#3b345f;
+.ai-chat{
+  padding:12px;
+  max-height:210px;
+  overflow-y:auto;
+  font-size:12px;
+  line-height:1.45;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.ai-msg{
+  background:#2d2750;
+  padding:10px 12px;
+  border-radius:14px;
   color:var(--text);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:750;
-  text-align:left;
-  font-size:12px;
 }
-.ai-answer{
-  margin-top:10px;
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.35;
-  border-top:1px solid rgba(255,255,255,.10);
-  padding-top:8px;
-  min-height:46px;
+.ai-user{
+  background:#7c3aed;
+  padding:10px 12px;
+  border-radius:14px;
+  color:white;
+  align-self:flex-end;
+}
+.ai-suggestions{
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.ai-suggestions button{
+  background:#352e5e;
+  border:none;
+  color:white;
+  padding:6px 10px;
+  border-radius:12px;
+  font-size:11px;
+  cursor:pointer;
+  transition:.2s;
+}
+.ai-suggestions button:hover{
+  background:#4b3f86;
 }
 
 /* Responsive fallback */
@@ -332,7 +338,6 @@ body{
   .wrap{padding:12px}
   .grid{grid-template-columns:1fr;}
   .lookGrid{grid-template-columns:1fr;}
-  .photoWrap img{max-width:220px;}
 }
 </style>
 </head>
@@ -359,7 +364,6 @@ body{
 
           <div class="expItem">
             <div class="expTitle">Verisk Analytics — Product Manager</div>
-       
             <ul class="expList">
               <li>Led end-to-end product strategy and delivery for internal platforms from discovery through release.</li>
               <li>Partnered with UX, engineering, and stakeholders to translate complex concepts into scalable solutions.</li>
@@ -369,7 +373,6 @@ body{
 
           <div class="expItem">
             <div class="expTitle">LPL Financial — Product Analyst II</div>
-     
             <ul class="expList">
               <li>Drove Agile execution through backlog refinement, sprint planning, and PI preparation with clear acceptance criteria.</li>
               <li>Conducted API testing and Product Owner reviews to validate readiness.</li>
@@ -390,12 +393,12 @@ body{
         </div>
       </section>
 
-      <!-- AWARDS (no nested box) -->
+      <!-- AWARDS -->
       <section class="block">
         <div class="header">🏆 Awards</div>
         <div class="body">
           <div style="font-weight:850;font-size:12.5px;margin-bottom:6px;">
-            Performance Recognition & Monetary Award — Verisk
+            Performance Recognition & Monetary Award
           </div>
           <ul class="expList" style="margin-top:0;">
             <li>Rewarded for identifying root causes and stabilizing production issues through backend CMS fixes.</li>
@@ -476,7 +479,7 @@ body{
   </div>
 </div>
 
-<!-- Ask About Jessima Button -->
+<!-- ONE Ask Button -->
 <button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
   <span class="askIcon">🤖</span>
   <span class="askText">Ask About Jessima</span>
@@ -484,16 +487,23 @@ body{
 
 <!-- AI Popup -->
 <div class="ai-popup" id="aiBox">
-  <div class="ai-title">
-    <span>Ask About Jessima</span>
-    <span class="ai-close" onclick="toggleAI()">Close</span>
+  <div class="ai-header">
+    🤖 Jessima AI
+    <span class="ai-close" onclick="toggleAI()">×</span>
   </div>
 
-  <button onclick="showAnswer(1)">What industries has she worked in?</button>
-  <button onclick="showAnswer(2)">What are her key strengths?</button>
-  <button onclick="showAnswer(3)">What makes her different from other PMs?</button>
+  <div class="ai-chat" id="chatArea">
+    <div class="ai-msg">
+      Hi 👋 I'm Jessima’s portfolio assistant.<br>
+      Ask me something about her experience.
+    </div>
+  </div>
 
-  <div class="ai-answer" id="aiAnswer">Click a question to see an answer.</div>
+  <div class="ai-suggestions">
+    <button onclick="askAI(1)">Industries?</button>
+    <button onclick="askAI(2)">Key strengths?</button>
+    <button onclick="askAI(3)">What makes her different?</button>
+  </div>
 </div>
 
 <script>
@@ -504,33 +514,33 @@ function toggleAI(){
   box.style.display = (box.style.display === "block") ? "none" : "block";
 }
 
-function showAnswer(q){
-  const ans = document.getElementById("aiAnswer");
+function askAI(q){
+  const chat = document.getElementById("chatArea");
+  let question = "";
+  let answer = "";
 
   if(q===1){
-    ans.innerHTML = "Jessima has worked extensively in Insurance and Financial Services domains and is open to Medical and other regulated industries.";
+    question = "What industries has she worked in?";
+    answer = "Jessima has worked extensively in Insurance and Financial Services and is open to Medical and other regulated industries.";
   }
-
   if(q===2){
-    ans.innerHTML =
-      "• Product delivery from discovery through release<br><br>" +
-      "• Cross-functional collaboration across product, UX, engineering, and QA<br><br>" +
-      "• Testing oversight, UAT coordination, and acceptance validation<br><br>" +
-      "• Strong in user story & epic creation, stakeholder requirements, documentation, CMS platforms, and API integrations";
+    question = "What are her key strengths?";
+    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
+  }
+  if(q===3){
+    question = "What makes her different from other PMs?";
+    answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
   }
 
-  if(q===3){
-    ans.innerHTML =
-      "Jessima combines product strategy with hands-on technical understanding. She drives delivery while also diving into production issues, analyzing root causes, and partnering with platform teams to stabilize systems — bridging business and engineering seamlessly.";
-  }
+  chat.innerHTML += `<div class="ai-user">${question}</div>`;
+  setTimeout(() => {
+    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 250);
+
+  chat.scrollTop = chat.scrollHeight;
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
