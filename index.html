@@ -518,38 +518,64 @@ function toggleAI(){
   box.style.display = (box.style.display === "block") ? "none" : "block";
 }
 
-function askAI(type){
+function sendQuestion(){
+  const input = document.getElementById("aiInput");
   const chat = document.getElementById("chatArea");
+  const question = input.value.trim().toLowerCase();
+
+  if(question === "") return;
+
+  chat.innerHTML += `<div class="ai-user">${question}</div>`;
 
   let answer = "";
 
-  switch(type){
-
-    case "industries":
-      answer = "Jessima has worked extensively in Insurance and Financial Services, with exposure to regulated platforms. She is open to Medical and other compliance-heavy industries.";
-      break;
-
-    case "strengths":
-      answer = "Her strengths include end-to-end product delivery, cross-functional leadership, UAT coordination, stakeholder alignment, strong documentation, CMS expertise, and API-level understanding.";
-      break;
-
-    case "difference":
-      answer = "She blends strategic product thinking with hands-on technical depth — investigating production issues, identifying root causes, and collaborating directly with engineering teams to stabilize systems.";
-      break;
-
-    case "technical":
-      answer = "She is comfortable working with CMS platforms, APIs, Postman testing, JSON, backlog refinement, and collaborating closely with engineering during production incidents.";
-      break;
-
-    default:
-      answer = "Click one of the suggested questions below 👇";
+  if(question.includes("product")){
+    answer = "Jessima drives end-to-end product delivery — from discovery and requirement gathering to execution, release, and post-launch stabilization.";
+  }
+  else if(question.includes("agile")){
+    answer = "She works extensively in Agile/SAFe environments — leading backlog refinement, sprint planning, PI preparation, and facilitating cross-functional collaboration.";
+  }
+  else if(question.includes("skill")){
+    answer = "Key strengths: Product delivery, cross-functional collaboration, UAT/testing oversight, stakeholder requirement gathering, documentation, CMS platforms, and API integrations.";
+  }
+  else if(question.includes("year") || question.includes("work")){
+    answer = "Jessima has 6+ years of experience across Insurance and Financial Services organizations.";
+  }
+  else if(question.includes("award")){
+    answer = "She received Performance Recognition & Monetary Awards for resolving production issues through backend CMS fixes and proactively stabilizing critical website links.";
+  }
+  else if(question.includes("domain")){
+    answer = "Her primary domains are Insurance and Financial Services, with openness to Medical and other regulated industries.";
+  }
+  else if(question.includes("cms")){
+    answer = "Strong in CMS platforms — implementing mitigations, resolving production issues, managing content ownership, and collaborating with backend teams.";
+  }
+  else if(question.includes("uat")){
+    answer = "She coordinates UAT sessions, validates acceptance criteria, conducts Product Owner reviews, and ensures release readiness.";
+  }
+  else if(question.includes("requirement")){
+    answer = "Experienced in stakeholder requirement gathering, translating business needs into structured user stories and well-defined epics.";
+  }
+  else{
+    answer = "Please ask about: Product, Agile, Skills, Work Years, Awards, Domains, CMS, UAT, Requirement Gathering.";
   }
 
-  chat.innerHTML = `<div class="ai-msg">${answer}</div>`;
+  setTimeout(() => {
+    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 200);
+
+  input.value = "";
+}
+
+function askSuggestion(keyword){
+  document.getElementById("aiInput").value = keyword;
+  sendQuestion();
 }
 </script>
 
 
 </body>
 </html>
+
 
