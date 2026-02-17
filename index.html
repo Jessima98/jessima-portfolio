@@ -127,25 +127,31 @@ body{
 }
 .expList li{margin:4px 0;}
 
-/* Profile */
-/* PROFILE FIX */
-.photoWrap{
+/* ✅ PROFILE CARD FIX (smaller, no huge empty space) */
+.profileCard .body{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:14px 0;
-  height:180px;              /* smaller fixed height */
+  padding:12px;
 }
-
-.photoWrap img{
-  width:160px;               /* slightly bigger */
-  height:160px;
-  object-fit:cover;          /* fills properly */
-  border-radius:20px;
+.photoFrame{
+  width:170px;
+  height:170px;
+  border-radius:18px;
   border:2px solid var(--border);
-  box-shadow:0 12px 25px rgba(0,0,0,.45);
+  background:#241f3a;
+  box-shadow:0 10px 20px rgba(0,0,0,.4);
+  overflow:hidden;               /* IMPORTANT */
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-
+.photoFrame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;              /* IMPORTANT */
+  display:block;
+}
 
 /* About */
 .aboutName{font-size:18px;font-weight:900;margin:0;}
@@ -232,7 +238,7 @@ body{
   border-top:1px solid rgba(255,255,255,.08);
 }
 
-/* Ask button (ONE button only) */
+/* Ask button */
 .askBtn{
   position:fixed;
   bottom:16px;
@@ -249,6 +255,7 @@ body{
   font-weight:850;
   box-shadow:0 14px 34px rgba(0,0,0,.45);
   transition:.25s ease;
+  z-index:99;
 }
 .askBtn:hover{transform:translateY(-2px);}
 .askIcon{
@@ -260,12 +267,12 @@ body{
 }
 .askText{font-size:13px;}
 
-/* ======= AI POPUP (CHAT STYLE) ======= */
+/* ======= AI POPUP (CHAT + INPUT) ======= */
 .ai-popup{
   position:fixed;
   bottom:70px;
   right:16px;
-  width:340px;
+  width:360px;
   background:#1f1a34;
   border:2px solid #4c3f73;
   border-radius:18px;
@@ -273,6 +280,7 @@ body{
   display:none;
   overflow:hidden;
   animation:fadeIn .25s ease;
+  z-index:100;
 }
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(10px);}
@@ -291,11 +299,12 @@ body{
   cursor:pointer;
   font-size:18px;
   line-height:1;
-  opacity:.9;
+  opacity:.95;
 }
+
 .ai-chat{
   padding:12px;
-  max-height:210px;
+  max-height:240px;
   overflow-y:auto;
   font-size:12px;
   line-height:1.45;
@@ -308,6 +317,7 @@ body{
   padding:10px 12px;
   border-radius:14px;
   color:var(--text);
+  max-width:92%;
 }
 .ai-user{
   background:#7c3aed;
@@ -315,7 +325,9 @@ body{
   border-radius:14px;
   color:white;
   align-self:flex-end;
+  max-width:92%;
 }
+
 .ai-suggestions{
   padding:10px;
   border-top:1px solid rgba(255,255,255,.08);
@@ -325,10 +337,10 @@ body{
 }
 .ai-suggestions button{
   background:#352e5e;
-  border:none;
+  border:1px solid rgba(255,255,255,.10);
   color:white;
   padding:6px 10px;
-  border-radius:12px;
+  border-radius:999px;
   font-size:11px;
   cursor:pointer;
   transition:.2s;
@@ -337,11 +349,40 @@ body{
   background:#4b3f86;
 }
 
-/* Responsive fallback */
+/* Input row */
+.ai-inputRow{
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;
+  gap:8px;
+}
+.ai-input{
+  flex:1;
+  background:#231f3b;
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text);
+  border-radius:12px;
+  padding:10px 10px;
+  font-size:12px;
+  outline:none;
+}
+.ai-send{
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  border:none;
+  color:white;
+  font-weight:900;
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+/* Responsive */
 @media(max-width:950px){
   .wrap{padding:12px}
   .grid{grid-template-columns:1fr;}
   .lookGrid{grid-template-columns:1fr;}
+  .ai-popup{width:min(360px, calc(100vw - 32px));}
 }
 </style>
 </head>
@@ -365,7 +406,6 @@ body{
       <section class="block">
         <div class="header">💼 Experience</div>
         <div class="body">
-
           <div class="expItem">
             <div class="expTitle">Verisk Analytics — Product Manager</div>
             <ul class="expList">
@@ -385,15 +425,17 @@ body{
           </div>
 
           <div class="expMeta">Other: Truist • SunTrust • Capital One</div>
-
         </div>
       </section>
 
-      <!-- PROFILE PHOTO -->
-      <section class="block">
+      <!-- PROFILE PHOTO (fixed) -->
+      <section class="block profileCard">
         <div class="header">🖼 Profile</div>
-        <div class="photoWrap">
-          <img src="profile.jpg" alt="Jessima Lynton">
+        <div class="body">
+          <div class="photoFrame">
+            <!-- Rename your uploaded photo to profile.jpg -->
+            <img src="profile.jpg" alt="Jessima Lynton">
+          </div>
         </div>
       </section>
 
@@ -483,7 +525,7 @@ body{
   </div>
 </div>
 
-<!-- ONE Ask Button -->
+<!-- Ask Button -->
 <button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
   <span class="askIcon">🤖</span>
   <span class="askText">Ask About Jessima</span>
@@ -498,33 +540,29 @@ body{
 
   <div class="ai-chat" id="chatArea">
     <div class="ai-msg">
-      Hi 👋 I'm Jessima’s portfolio assistant.<br>
-      Ask me something about her experience.
+      Hi 👋 I’m Jessima’s portfolio assistant.<br>
+      Type a keyword (like “UAT” or “CMS”) or tap a pill below.
     </div>
   </div>
 
- <div class="ai-suggestions">
-  <button onclick="askSuggestion('product')">Product</button>
-  <button onclick="askSuggestion('agile')">Agile</button>
-  <button onclick="askSuggestion('skills')">Skills</button>
-  <button onclick="askSuggestion('years')">Work Years</button>
-  <button onclick="askSuggestion('awards')">Awards</button>
-  <button onclick="askSuggestion('domains')">Domains</button>
-  <button onclick="askSuggestion('CMS')">CMS</button>
-  <button onclick="askSuggestion('UAT')">UAT</button>
-  <button onclick="askSuggestion('requirement')">Requirement</button>
-</div>
+  <!-- pills -->
+  <div class="ai-suggestions">
+    <button onclick="askAI('product')">Product</button>
+    <button onclick="askAI('agile')">Agile</button>
+    <button onclick="askAI('skills')">Skills</button>
+    <button onclick="askAI('years')">Work years</button>
+    <button onclick="askAI('awards')">Awards</button>
+    <button onclick="askAI('domains')">Domains</button>
+    <button onclick="askAI('cms')">CMS</button>
+    <button onclick="askAI('uat')">UAT</button>
+    <button onclick="askAI('requirements')">Requirements</button>
+  </div>
 
-<div style="padding:10px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;">
-  <input id="aiInput" 
-         placeholder="Type a keyword..." 
-         style="flex:1;padding:8px;border-radius:8px;border:none;background:#352e5e;color:white;font-size:12px;">
-  <button onclick="sendQuestion()" 
-          style="padding:8px 12px;border:none;border-radius:8px;background:linear-gradient(90deg,#7c3aed,#9333ea);color:white;font-weight:700;">
-    Send
-  </button>
-</div>
-
+  <!-- input -->
+  <div class="ai-inputRow">
+    <input id="aiInput" class="ai-input" placeholder="Type a keyword… (ex: UAT, CMS, Agile)" />
+    <button class="ai-send" onclick="sendTyped()">Send</button>
+  </div>
 </div>
 
 <script>
@@ -533,67 +571,82 @@ document.getElementById("y").textContent = new Date().getFullYear();
 function toggleAI(){
   const box = document.getElementById("aiBox");
   box.style.display = (box.style.display === "block") ? "none" : "block";
+  if (box.style.display === "block") {
+    setTimeout(() => document.getElementById("aiInput")?.focus(), 100);
+  }
 }
 
-function sendQuestion(){
-  const input = document.getElementById("aiInput");
+function appendMsg(type, text){
   const chat = document.getElementById("chatArea");
-  const question = input.value.trim().toLowerCase();
+  const div = document.createElement("div");
+  div.className = type;   // "ai-user" or "ai-msg"
+  div.innerHTML = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
 
-  if(question === "") return;
+function normalize(s){
+  return (s || "").toLowerCase().trim();
+}
 
-  chat.innerHTML += `<div class="ai-user">${question}</div>`;
+function getAnswer(raw){
+  const q = normalize(raw);
 
-  let answer = "";
+  // keyword matching
+  const has = (word) => q.includes(word);
 
-  if(question.includes("product")){
-    answer = "Jessima drives end-to-end product delivery — from discovery and requirement gathering to execution, release, and post-launch stabilization.";
-  }
-  else if(question.includes("agile")){
-    answer = "She works extensively in Agile/SAFe environments — leading backlog refinement, sprint planning, PI preparation, and facilitating cross-functional collaboration.";
-  }
-  else if(question.includes("skill")){
-    answer = "Key strengths: Product delivery, cross-functional collaboration, UAT/testing oversight, stakeholder requirement gathering, documentation, CMS platforms, and API integrations.";
-  }
-  else if(question.includes("year") || question.includes("work")){
-    answer = "Jessima has 6+ years of experience across Insurance and Financial Services organizations.";
-  }
-  else if(question.includes("award")){
-    answer = "She received Performance Recognition & Monetary Awards for resolving production issues through backend CMS fixes and proactively stabilizing critical website links.";
-  }
-  else if(question.includes("domain")){
-    answer = "Her primary domains are Insurance and Financial Services, with openness to Medical and other regulated industries.";
-  }
-  else if(question.includes("cms")){
-    answer = "Strong in CMS platforms — implementing mitigations, resolving production issues, managing content ownership, and collaborating with backend teams.";
-  }
-  else if(question.includes("uat")){
-    answer = "She coordinates UAT sessions, validates acceptance criteria, conducts Product Owner reviews, and ensures release readiness.";
-  }
-  else if(question.includes("requirement")){
-    answer = "Experienced in stakeholder requirement gathering, translating business needs into structured user stories and well-defined epics.";
-  }
-  else{
-    answer = "Please ask about: Product, Agile, Skills, Work Years, Awards, Domains, CMS, UAT, Requirement Gathering.";
+  if (has("product")) {
+    return "Jessima delivers products end-to-end — aligning stakeholders, translating needs into clear scope, and driving execution through release and stabilization.";
+  } else if (has("agile") || has("safe") || has("scrum")) {
+    return "Strong in Agile/SAFe: backlog grooming, sprint planning, PI prep, story clarity, demos, and UAT coordination with cross-functional teams.";
+  } else if (has("skills") || has("tools")) {
+    return "Core strengths: product delivery, stakeholder alignment, story/epic writing, documentation, UAT/testing oversight, and technical collaboration (APIs, CMS, data).";
+  } else if (has("year") || has("years") || has("experience") || has("work")) {
+    return "6+ years of experience across insurance and financial services, currently employed, open to remote/hybrid roles.";
+  } else if (has("award") || has("awards")) {
+    return "Received performance recognition with a monetary award for (1) stabilizing production via root-cause analysis and CMS fixes, and (2) coordinating urgent link issue resolution with platform/admin teams before user impact.";
+  } else if (has("domain") || has("domains") || has("industry") || has("industries")) {
+    return "Primary domain experience: Insurance + Financial Services. Open to Medical and other regulated industries.";
+  } else if (has("cms")) {
+    return "Hands-on CMS experience (Sitecore): content enablement, post-launch ownership workflows, and rapid mitigations during production issues.";
+  } else if (has("uat") || has("testing") || has("test")) {
+    return "Strong in UAT/testing: defining acceptance criteria, coordinating UAT, validating readiness, and ensuring releases meet expectations.";
+  } else if (has("requirement") || has("requirements") || has("gathering")) {
+    return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
   }
 
-  setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 200);
+  return "Ask about: Product, Agile, Skills, Work years, Awards, Domains, CMS, UAT, Requirement gathering.";
+}
 
+function askAI(raw){
+  // user message
+  appendMsg("ai-user", raw);
+
+  // bot answer
+  const answer = getAnswer(raw);
+  setTimeout(() => appendMsg("ai-msg", answer), 200);
+}
+
+function sendTyped(){
+  const input = document.getElementById("aiInput");
+  const val = input.value;
+  if (!val.trim()) return;
   input.value = "";
+  askAI(val);
 }
 
-function askSuggestion(keyword){
-  document.getElementById("aiInput").value = keyword;
-  sendQuestion();
-}
+// Enter key to send
+document.addEventListener("keydown", function(e){
+  const box = document.getElementById("aiBox");
+  if (box.style.display === "block" && e.key === "Enter") {
+    const active = document.activeElement;
+    if (active && active.id === "aiInput") {
+      e.preventDefault();
+      sendTyped();
+    }
+  }
+});
 </script>
-
 
 </body>
 </html>
-
-
-
