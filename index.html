@@ -556,29 +556,6 @@ body{
 </div>
 
 <script>
-document.getElementById("y").textContent = new Date().getFullYear();
-
-function toggleAI(){
-  const box = document.getElementById("aiBox");
-  box.style.display = (box.style.display === "block") ? "none" : "block";
-  if (box.style.display === "block") {
-    setTimeout(() => document.getElementById("aiInput")?.focus(), 100);
-  }
-}
-
-function appendMsg(type, text){
-  const chat = document.getElementById("chatArea");
-  const div = document.createElement("div");
-  div.className = type;   // "ai-user" or "ai-msg"
-  div.innerHTML = text;
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function normalize(s){
-  return (s || "").toLowerCase().trim();
-}
-
 function getAnswer(raw){
   const q = normalize(raw);
 
@@ -593,63 +570,36 @@ function getAnswer(raw){
     return "Core strengths: product delivery, stakeholder alignment, story/epic writing, documentation, UAT/testing oversight, and technical collaboration (APIs, CMS, data).";
   } else if (has("year") || has("years") || has("experience") || has("work")) {
     return "6+ years of experience across insurance and financial services, currently employed, open to remote/hybrid roles.";
-  } else if (has("award") || has("awards")) {
+  } else if (has("award")) {
     return "Received performance recognition with a monetary award for (1) stabilizing production via root-cause analysis and CMS fixes, and (2) coordinating urgent link issue resolution with platform/admin teams before user impact.";
-  } else if (has("domain") || has("domains") || has("industry") || has("industries")) {
+  } else if (has("domain") || has("industry")) {
     return "Primary domain experience: Insurance + Financial Services. Open to Medical and other regulated industries.";
   } else if (has("cms")) {
     return "Hands-on CMS experience (Sitecore): content enablement, post-launch ownership workflows, and rapid mitigations during production issues.";
   } else if (has("uat") || has("testing") || has("test")) {
     return "Strong in UAT/testing: defining acceptance criteria, coordinating UAT, validating readiness, and ensuring releases meet expectations.";
-  } else if (has("requirement") || has("requirements") || has("gathering")) {
+  } else if (has("requirement") || has("requirements") || has("gathering") || has("stakeholder")) {
     return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
   }
 
-  return "Curious about Jessima? Try asking about:
-  {
-• Product work
-• Agile leadership
-• Key strengths
-• Experience timeline
+  // ✅ fallback (MUST be a template string)
+  return `Try asking about one of these keywords:
+• Product
+• Agile / SAFe
+• Skills
+• Work years / Experience
 • Awards
-• Domains worked in
-• CMS experience
-• UAT coordination
-• Stakeholder & requirement skills";
+• Domains / Industries
+• CMS
+• UAT / Testing
+• Requirement gathering`;
 }
-
-function askAI(raw){
-  // user message
-  appendMsg("ai-user", raw);
-
-  // bot answer
-  const answer = getAnswer(raw);
-  setTimeout(() => appendMsg("ai-msg", answer), 200);
-}
-
-function sendTyped(){
-  const input = document.getElementById("aiInput");
-  const val = input.value;
-  if (!val.trim()) return;
-  input.value = "";
-  askAI(val);
-}
-
-// Enter key to send
-document.addEventListener("keydown", function(e){
-  const box = document.getElementById("aiBox");
-  if (box.style.display === "block" && e.key === "Enter") {
-    const active = document.activeElement;
-    if (active && active.id === "aiInput") {
-      e.preventDefault();
-      sendTyped();
-    }
-  }
-});
 </script>
+
 
 </body>
 </html>
+
 
 
 
