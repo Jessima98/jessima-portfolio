@@ -38,6 +38,7 @@ body{
   border:2px solid var(--border);
   background:rgba(30,27,46,.85);
   box-shadow:var(--shadow);
+  border-radius:14px;
 }
 
 .grid{
@@ -50,7 +51,8 @@ body{
 .block{
   background:var(--card);
   border:2px solid var(--border);
-  border-radius:10px;
+  border-radius:12px;
+  overflow:hidden;
 }
 
 .header{
@@ -110,51 +112,92 @@ li{margin:6px 0;}
   color:#9ca3af;
 }
 
-/* AI Button */
+/* AI Button: visible icon bubble */
 .ai-button{
   position:fixed;
   bottom:25px;
   right:25px;
-  background:linear-gradient(90deg,#7c3aed,#9333ea);
-  color:white;
-  padding:12px 16px;
-  border-radius:30px;
-  font-weight:700;
+  width:60px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#7c3aed,#9333ea);
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
+  transition:.3s ease;
+  user-select:none;
 }
+.ai-button:hover{ transform:scale(1.1); }
 
+/* AI Popup */
 .ai-popup{
   position:fixed;
-  bottom:90px;
+  bottom:95px;
   right:25px;
-  width:300px;
+  width:320px;
   background:#2a2540;
   border:2px solid var(--border);
-  padding:15px;
-  border-radius:12px;
+  padding:14px;
+  border-radius:14px;
   display:none;
+  box-shadow:0 14px 35px rgba(0,0,0,.45);
 }
+
+.ai-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:10px;
+}
+
+.ai-close{
+  cursor:pointer;
+  padding:4px 10px;
+  border-radius:10px;
+  background:#3b345f;
+  color:var(--muted);
+  font-weight:800;
+  font-size:12px;
+  border:1px solid var(--border);
+}
+.ai-close:hover{ color:var(--text); }
 
 .ai-popup button{
   width:100%;
   margin-top:8px;
-  padding:8px;
+  padding:10px 10px;
   background:#3b345f;
-  color:white;
-  border:none;
-  border-radius:6px;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
   cursor:pointer;
+  font-weight:700;
+  text-align:left;
+}
+.ai-popup button:hover{
+  background:#4a3f74;
 }
 
 .ai-answer{
-  margin-top:10px;
+  margin-top:12px;
   font-size:13px;
   color:var(--muted);
+  line-height:1.45;
+  border-top:1px solid rgba(255,255,255,.10);
+  padding-top:10px;
+  min-height: 48px;
 }
 
+/* Mobile */
 @media(max-width:900px){
   .grid{grid-template-columns:1fr;}
+  .ai-popup{ width: calc(100% - 50px); right:25px; }
 }
 </style>
 </head>
@@ -162,138 +205,155 @@ li{margin:6px 0;}
 <body>
 
 <div class="wrap">
-<div class="board">
-<div class="grid">
+  <div class="board">
+    <div class="grid">
 
-<!-- EXPERIENCE -->
-<section class="block">
-<div class="header">Experience</div>
-<div class="body">
-<div class="role">
-<div class="roleTitle">Verisk Analytics — Product Manager</div>
-<div class="roleMeta">Jun 2023 – Present</div>
-<ul>
-<li>Led end-to-end product strategy and delivery for internal platforms.</li>
-<li>Resolved production issues through root-cause analysis and CMS-driven fixes.</li>
-</ul>
+      <!-- EXPERIENCE -->
+      <section class="block">
+        <div class="header">💼 Experience</div>
+        <div class="body">
+
+          <div class="role">
+            <div class="roleTitle">Verisk Analytics — Product Manager</div>
+            <div class="roleMeta">Jun 2023 – Present</div>
+            <ul>
+              <li>Led end-to-end product strategy and delivery for internal platforms, driving initiatives from early discovery and funding alignment through release and post-launch optimization.</li>
+              <li>Partnered cross-functionally with UX, engineering, and stakeholders to translate complex concepts into scalable solutions while proactively resolving production issues through technical root-cause analysis and CMS-driven mitigations.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="roleTitle">LPL Financial — Product Analyst II</div>
+            <div class="roleMeta">Mar 2022 – Apr 2023</div>
+            <ul>
+              <li>Drove Agile execution by leading backlog refinement, sprint planning, and PI preparation while ensuring clear estimation and acceptance criteria alignment across development and QA teams.</li>
+              <li>Strengthened release quality through API testing, Product Owner reviews, executive sprint demos, and structured UAT coordination.</li>
+            </ul>
+          </div>
+
+          <div class="roleMeta">
+            Other: Truist • SunTrust • Capital One
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE PHOTO -->
+      <section class="block">
+        <div class="header">🖼 Profile</div>
+        <div class="photoWrap">
+          <!-- Put your photo in the repo root as: pro.jpg -->
+          <img src="pro.jpg" alt="Jessima Lynton">
+        </div>
+      </section>
+
+      <!-- AWARDS -->
+      <section class="block">
+        <div class="header">🏆 Awards</div>
+        <div class="body">
+          <ul>
+            <li>Employee Appreciation Award (2× in one year) — Resolved production issues by identifying technical root cause and implementing backend CMS fixes.</li>
+            <li>Recognized for initiating and coordinating with the admin/platform team to resolve critical website link issues before weekday user impact.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="block">
+        <div class="header">👤 About Me</div>
+        <div class="body">
+          <h1>Jessima Lynton</h1>
+          <div class="sub">Product Manager / Product Owner • 6+ Years Experience • Currently Employed</div>
+          <div class="sub">Remote / Hybrid Preferred</div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="block">
+        <div class="header">🛠 Skills & Tools</div>
+        <div class="body">
+          <div class="tags">
+            <span class="tag">CMS</span>
+            <span class="tag">Databases</span>
+            <span class="tag">JIRA</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Microsoft Suite</span>
+            <span class="tag">HTML</span>
+            <span class="tag">JSON</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="block">
+        <div class="header">📬 Contact</div>
+        <div class="body">
+          <div class="contactLine">240-618-6352</div>
+          <div class="contactLine">jessiyoung321@gmail.com</div>
+          <div class="contactLine">Haymarket, VA</div>
+        </div>
+      </section>
+
+      <!-- LOOKING FOR -->
+      <section class="block" style="grid-column:1 / -1;">
+        <div class="header">🎯 Looking For</div>
+        <div class="body">
+          <ul>
+            <li><strong>Roles:</strong> Product Manager, Product Owner, Analyst</li>
+            <li><strong>Domains:</strong> Insurance, Finance, Medical</li>
+            <li><strong>Start:</strong> Available in 2 weeks</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="footer">© <span id="y"></span> Jessima Lynton</div>
+  </div>
 </div>
 
-<div class="role">
-<div class="roleTitle">LPL Financial — Product Analyst II</div>
-<div class="roleMeta">Mar 2022 – Apr 2023</div>
-<ul>
-<li>Led backlog refinement, sprint planning, and PI preparation.</li>
-<li>Ensured release quality via API validation, demos, and UAT coordination.</li>
-</ul>
-</div>
+<!-- AI Assistant Icon Bubble -->
+<div class="ai-button" onclick="toggleAI()" title="Ask About Jessima">🤖</div>
 
-<div class="roleMeta">
-Other: Truist • SunTrust • Capital One
-</div>
-</div>
-</section>
-
-<!-- PHOTO -->
-<section class="block">
-<div class="header">Profile</div>
-<div class="photoWrap">
-<img src="pro.jpg" alt="Jessima Lynton">
-</div>
-</section>
-
-<!-- AWARDS -->
-<section class="block">
-<div class="header">Awards</div>
-<div class="body">
-<ul>
-<li>Employee Appreciation Award (2×) for resolving production bugs via backend CMS fixes.</li>
-<li>Recognized for coordinating urgent website link fixes with admin team before weekday user impact.</li>
-</ul>
-</div>
-</section>
-
-<!-- ABOUT -->
-<section class="block">
-<div class="header">About Me</div>
-<div class="body">
-<h1>Jessima Lynton</h1>
-<div class="sub">Product Manager / Product Owner • 6+ Years Experience • Currently Employed</div>
-<div class="sub">Remote / Hybrid Preferred</div>
-</div>
-</section>
-
-<!-- SKILLS -->
-<section class="block">
-<div class="header">Skills & Tools</div>
-<div class="body">
-<div class="tags">
-<span class="tag">CMS</span>
-<span class="tag">Databases</span>
-<span class="tag">JIRA</span>
-<span class="tag">Postman</span>
-<span class="tag">Microsoft Suite</span>
-<span class="tag">HTML</span>
-<span class="tag">JSON</span>
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section class="block">
-<div class="header">Contact</div>
-<div class="body">
-<div class="contactLine">240-618-6352</div>
-<div class="contactLine">jessiyoung321@gmail.com</div>
-<div class="contactLine">Haymarket, VA</div>
-</div>
-</section>
-
-<!-- LOOKING FOR -->
-<section class="block" style="grid-column:1 / -1;">
-<div class="header">Looking For</div>
-<div class="body">
-<ul>
-<li><strong>Roles:</strong> Product Manager, Product Owner, Analyst</li>
-<li><strong>Domains:</strong> Insurance, Finance, Medical</li>
-<li><strong>Start:</strong> Available in 2 weeks</li>
-</ul>
-</div>
-</section>
-
-</div>
-<div class="footer">© <span id="y"></span> Jessima Lynton</div>
-</div>
-</div>
-
-<!-- AI Assistant -->
-<div class="ai-button" onclick="toggleAI()">Ask About Jessima</div>
-
+<!-- AI Popup -->
 <div class="ai-popup" id="aiBox">
-<strong>Quick Questions</strong>
-<button onclick="showAnswer(1)">What industries?</button>
-<button onclick="showAnswer(2)">Key strengths?</button>
-<button onclick="showAnswer(3)">When can she start?</button>
-<div class="ai-answer" id="aiAnswer"></div>
+  <div class="ai-title">
+    <span>Ask About Jessima</span>
+    <span class="ai-close" onclick="toggleAI()">Close</span>
+  </div>
+
+  <button onclick="showAnswer(1)">What industries has she worked in?</button>
+  <button onclick="showAnswer(2)">What are her key strengths?</button>
+  <button onclick="showAnswer(3)">What makes her different from other PMs?</button>
+
+  <div class="ai-answer" id="aiAnswer">Click a question to see an answer.</div>
 </div>
 
 <script>
-document.getElementById("y").textContent=new Date().getFullYear();
+document.getElementById("y").textContent = new Date().getFullYear();
 
 function toggleAI(){
-  const box=document.getElementById("aiBox");
-  box.style.display=box.style.display==="block"?"none":"block";
+  const box = document.getElementById("aiBox");
+  box.style.display = (box.style.display === "block") ? "none" : "block";
 }
 
 function showAnswer(q){
-  const ans=document.getElementById("aiAnswer");
+  const ans = document.getElementById("aiAnswer");
+
   if(q===1){
-    ans.innerHTML="Jessima has worked across Insurance and Finance domains and is open to Medical.";
+    ans.innerHTML = "Jessima has worked extensively in Insurance and Financial Services domains and is open to Medical and other regulated industries.";
   }
+
   if(q===2){
-    ans.innerHTML="Strong in product delivery, cross-functional collaboration, and resolving production issues through technical analysis.";
+    ans.innerHTML =
+      "• Product delivery from discovery through release<br><br>" +
+      "• Cross-functional collaboration across product, UX, engineering, and QA<br><br>" +
+      "• UAT coordination, testing oversight, and acceptance validation<br><br>" +
+      "• Strong in user story creation, epic definition, stakeholder requirement gathering, documentation, CMS platforms, and API integrations";
   }
+
   if(q===3){
-    ans.innerHTML="Available to start in 2 weeks.";
+    ans.innerHTML =
+      "Jessima combines product strategy with hands-on technical understanding. She defines scope and drives delivery, while also diving into production issues, analyzing root causes, and collaborating directly with platform teams to stabilize systems — bridging business and engineering seamlessly.";
   }
 }
 </script>
