@@ -18,7 +18,7 @@
   --text:#f3f4f6;
   --muted:#cbd5e1;
   --muted2:#aab6cf;
-  --shadow:0 20px 50px rgba(0,0,0,.45);
+  --shadow:0 18px 45px rgba(0,0,0,.45);
   --radius:14px;
 }
 
@@ -29,51 +29,67 @@ body{
   margin:0;
   font-family:Inter, sans-serif;
   background:
-    radial-gradient(900px 600px at 10% 0%, rgba(139,92,246,.55), transparent 65%),
-    radial-gradient(900px 600px at 95% 10%, rgba(168,85,247,.45), transparent 65%),
-    radial-gradient(900px 600px at 60% 110%, rgba(79,70,229,.35), transparent 60%),
+    radial-gradient(900px 600px at 10% 0%, rgba(139,92,246,.50), transparent 65%),
+    radial-gradient(900px 600px at 95% 10%, rgba(168,85,247,.40), transparent 65%),
+    radial-gradient(900px 600px at 60% 110%, rgba(79,70,229,.30), transparent 60%),
     var(--bg);
   color:var(--text);
 }
 
-.wrap{max-width:1100px;margin:40px auto;padding:0 16px;}
-
+/* Single-view layout helpers */
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:14px 14px 0;
+  min-height:100vh;
+  display:flex;
+  align-items:stretch;
+}
 .board{
+  width:100%;
   border:2px solid var(--border);
   background:rgba(30,27,46,.88);
   box-shadow:var(--shadow);
   border-radius:var(--radius);
   overflow:hidden;
+  display:flex;
+  flex-direction:column;
 }
 
 /* Top strip */
 .topbar{
-  padding:16px 20px;
+  padding:10px 14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:12px;
   border-bottom:1px solid rgba(255,255,255,.08);
-}
-.brand{
-  display:flex;flex-direction:column;gap:4px;
 }
 .brand .name{
   font-weight:900;
   letter-spacing:-0.02em;
-  font-size:18px;
+  font-size:16px;
 }
 .brand .headline{
   color:var(--muted);
   font-weight:650;
-  font-size:13px;
+  font-size:12px;
+  margin-top:2px;
+}
+.pref{
+  color:var(--muted);
+  font-weight:700;
+  font-size:12px;
+  white-space:nowrap;
 }
 
-/* Grid */
+/* Grid (tight) */
 .grid{
   display:grid;
   grid-template-columns:1.35fr .95fr;
-  gap:18px;
-  padding:20px;
+  gap:12px;
+  padding:12px;
+  flex:1;
 }
 
 .block{
@@ -82,13 +98,12 @@ body{
   border-radius:12px;
   overflow:hidden;
 }
-
 .header{
-  padding:10px 14px;
+  padding:8px 12px;
   border-bottom:2px solid var(--border);
   font-weight:900;
   text-transform:uppercase;
-  font-size:12px;
+  font-size:11px;
   letter-spacing:.08em;
   background:linear-gradient(90deg,var(--accent1),var(--accent2));
   color:white;
@@ -96,159 +111,114 @@ body{
   align-items:center;
   gap:8px;
 }
+.body{padding:10px 12px;}
 
-.body{padding:16px 16px 18px;}
+/* Experience */
+.expItem{padding:6px 0 8px;border-bottom:1px solid rgba(255,255,255,.10);}
+.expItem:last-child{border-bottom:none;padding-bottom:0;}
+.expTitle{font-weight:850;font-size:13px;}
+.expMeta{color:var(--muted2);font-weight:650;font-size:11.5px;margin-top:2px;}
 
-.photoWrap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:16px;
+.expList{
+  margin:6px 0 0 16px;
+  padding:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
 }
+.expList li{margin:4px 0;}
+
+/* Profile */
+.photoWrap{display:flex;justify-content:center;align-items:center;padding:10px;}
 .photoWrap img{
   width:100%;
-  max-width:260px;
-  border:3px solid var(--border);
+  max-width:200px;            /* smaller to fit single view */
+  border:2px solid var(--border);
   border-radius:12px;
-  box-shadow:0 14px 30px rgba(0,0,0,.35);
+  box-shadow:0 12px 24px rgba(0,0,0,.35);
 }
 
-/* Experience: paragraph style */
-.expItem{padding:10px 0 14px;border-bottom:1px solid rgba(255,255,255,.10);}
-.expItem:last-child{border-bottom:none;padding-bottom:0;}
-.expTitle{
-  font-weight:850;
-  font-size:15px;
-}
-.expMeta{
-  color:var(--muted2);
-  font-weight:650;
-  font-size:12.5px;
-  margin-top:2px;
-}
-.expPara{
-  margin:10px 0 0;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.45;
-}
-
-/* About: less crowded, badge row */
-.aboutName{
-  font-size:22px;
-  font-weight:900;
-  margin:0;
-}
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px;
-}
+/* About */
+.aboutName{font-size:18px;font-weight:900;margin:0;}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
 .badge{
-  padding:7px 10px;
+  padding:5px 8px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.12);
   background:#3b345f;
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
   font-weight:750;
 }
 .aboutLine{
-  margin-top:12px;
+  margin-top:8px;
   color:var(--muted);
   font-weight:650;
-  font-size:13px;
-  line-height:1.45;
+  font-size:12px;
+  line-height:1.35;
 }
 
-/* Skills tags */
-.tags{display:flex;flex-wrap:wrap;gap:10px;}
+/* Skills */
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
 .tag{
   border:1px solid var(--border);
-  padding:7px 12px;
+  padding:6px 10px;
   border-radius:999px;
-  font-size:12px;
+  font-size:11.5px;
   font-weight:750;
   color:var(--muted);
   background:#3b345f;
 }
 
 /* Contact */
-.contactList{
-  display:grid;
-  gap:10px;
-}
+.contactList{display:grid;gap:8px;}
 .contactRow{
-  display:flex;
-  gap:10px;
-  align-items:center;
+  display:flex;gap:8px;align-items:center;
   color:var(--muted);
   font-weight:650;
-  font-size:13px;
+  font-size:12px;
 }
 .contactIcon{
-  width:26px;height:26px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  width:24px;height:24px;
+  display:inline-flex;align-items:center;justify-content:center;
   border-radius:8px;
   background:#3b345f;
   border:1px solid rgba(255,255,255,.10);
+  font-size:12px;
 }
 
-/* Awards: paragraph + highlight chips */
-.awardCard{
-  border:1px solid rgba(255,255,255,.12);
-  background:linear-gradient(90deg, rgba(124,58,237,.18), rgba(42,37,64,0));
-  border-radius:12px;
-  padding:12px 12px;
-}
-.awardTitle{
-  margin:0;
-  font-weight:850;
-  font-size:13.5px;
-}
-.awardPara{
-  margin:8px 0 0;
-  color:var(--muted);
-  font-weight:650;
-  font-size:13px;
-  line-height:1.45;
-}
-
-/* Looking for: no bullets, pill layout */
+/* Looking For */
 .lookGrid{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
-  gap:12px;
+  gap:10px;
 }
 .lookPill{
   border:1px solid rgba(255,255,255,.12);
   background:#3b345f;
   border-radius:12px;
-  padding:12px;
+  padding:10px;
 }
 .lookLabel{
-  font-size:12px;
+  font-size:11px;
   color:#d5dbea;
   font-weight:900;
   text-transform:uppercase;
   letter-spacing:.08em;
 }
 .lookValue{
-  margin-top:8px;
+  margin-top:6px;
   color:var(--muted);
   font-weight:700;
-  font-size:13px;
-  line-height:1.35;
+  font-size:12px;
+  line-height:1.25;
 }
 
-/* Footer */
+/* Footer (tight) */
 .footer{
-  padding:14px 20px;
+  padding:10px 14px;
   text-align:right;
-  font-size:12px;
+  font-size:11px;
   color:#9ca3af;
   border-top:1px solid rgba(255,255,255,.08);
 }
@@ -256,12 +226,12 @@ body{
 /* Ask button (icon + text) */
 .askBtn{
   position:fixed;
-  bottom:22px;
-  right:22px;
+  bottom:16px;
+  right:16px;
   display:flex;
   align-items:center;
   gap:10px;
-  padding:12px 16px;
+  padding:10px 14px;
   border-radius:999px;
   background:linear-gradient(135deg,var(--accent1),var(--accent2));
   color:white;
@@ -270,42 +240,38 @@ body{
   font-weight:850;
   box-shadow:0 14px 34px rgba(0,0,0,.45);
   transition:.25s ease;
-  user-select:none;
 }
-.askBtn:hover{transform:translateY(-2px) scale(1.02);}
+.askBtn:hover{transform:translateY(-2px);}
 .askIcon{
-  width:34px;height:34px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,.20);
   border:1px solid rgba(255,255,255,.20);
-  font-size:18px;
+  font-size:16px;
 }
-.askText{font-size:14px;}
+.askText{font-size:13px;}
 
 /* AI popup */
 .ai-popup{
   position:fixed;
-  bottom:82px;
-  right:22px;
-  width:340px;
+  bottom:64px;
+  right:16px;
+  width:330px;
   background:#2a2540;
   border:2px solid var(--border);
-  padding:14px;
+  padding:12px;
   border-radius:14px;
   display:none;
   box-shadow:0 16px 40px rgba(0,0,0,.55);
 }
 .ai-title{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:10px;
   font-weight:900;
-  color:var(--text);
-  margin-bottom:10px;
+  margin-bottom:8px;
+  font-size:13px;
 }
 .ai-close{
   cursor:pointer;
@@ -314,15 +280,13 @@ body{
   background:#3b345f;
   color:var(--muted);
   font-weight:850;
-  font-size:12px;
+  font-size:11px;
   border:1px solid rgba(255,255,255,.12);
 }
-.ai-close:hover{color:var(--text);}
-
 .ai-popup button{
   width:100%;
-  margin-top:8px;
-  padding:10px 10px;
+  margin-top:7px;
+  padding:9px 10px;
   background:#3b345f;
   color:var(--text);
   border:1px solid rgba(255,255,255,.12);
@@ -330,24 +294,24 @@ body{
   cursor:pointer;
   font-weight:750;
   text-align:left;
+  font-size:12px;
 }
-.ai-popup button:hover{background:#4a3f74;}
-
 .ai-answer{
-  margin-top:12px;
-  font-size:13px;
+  margin-top:10px;
+  font-size:12px;
   color:var(--muted);
-  line-height:1.5;
+  line-height:1.35;
   border-top:1px solid rgba(255,255,255,.10);
-  padding-top:10px;
-  min-height:52px;
+  padding-top:8px;
+  min-height:46px;
 }
 
-/* Responsive */
+/* Responsive fallback */
 @media(max-width:950px){
+  .wrap{padding:12px}
   .grid{grid-template-columns:1fr;}
   .lookGrid{grid-template-columns:1fr;}
-  .ai-popup{width:calc(100% - 44px);}
+  .photoWrap img{max-width:220px;}
 }
 </style>
 </head>
@@ -362,84 +326,76 @@ body{
         <div class="name">Jessima Lynton</div>
         <div class="headline">Product Manager / Product Owner • 6+ Years Experience • Currently Employed</div>
       </div>
-      <div style="color:var(--muted);font-weight:700;font-size:13px;">Remote / Hybrid Preferred</div>
+      <div class="pref">Remote / Hybrid Preferred</div>
     </div>
 
     <div class="grid">
 
-    <!-- EXPERIENCE -->
-<section class="block">
-  <div class="header">💼 Experience</div>
-  <div class="body">
+      <!-- EXPERIENCE -->
+      <section class="block">
+        <div class="header">💼 Experience</div>
+        <div class="body">
 
-    <div class="expItem">
-      <div class="expTitle">Verisk Analytics — Product Manager</div>
-      <div class="expMeta">Jun 2023 – Present</div>
-      <ul class="expList">
-        <li>Led end-to-end product strategy and delivery for internal platforms, driving initiatives from early discovery and funding alignment through release and post-launch optimization.</li>
-        <li>Partnered cross-functionally with UX, engineering, and stakeholders to translate complex concepts into scalable solutions.</li>
-        <li>Resolved production issues through technical root-cause analysis and implemented CMS-driven mitigations while coordinating permanent engineering fixes.</li>
-      </ul>
-    </div>
+          <div class="expItem">
+            <div class="expTitle">Verisk Analytics — Product Manager</div>
+            <div class="expMeta">Jun 2023 – Present</div>
+            <ul class="expList">
+              <li>Led end-to-end product strategy and delivery for internal platforms from discovery through release.</li>
+              <li>Partnered with UX, engineering, and stakeholders to translate complex concepts into scalable solutions.</li>
+              <li>Resolved production issues via root-cause analysis and CMS-driven mitigations; coordinated permanent fixes with engineering.</li>
+            </ul>
+          </div>
 
-    <div class="expItem">
-      <div class="expTitle">LPL Financial — Product Analyst II</div>
-      <div class="expMeta">Mar 2022 – Apr 2023</div>
-      <ul class="expList">
-        <li>Led backlog refinement, sprint planning, and PI preparation ensuring clear estimation and acceptance criteria alignment.</li>
-        <li>Conducted API testing and Product Owner reviews to validate feature readiness.</li>
-        <li>Delivered executive sprint demos and facilitated structured UAT coordination prior to releases.</li>
-      </ul>
-    </div>
+          <div class="expItem">
+            <div class="expTitle">LPL Financial — Product Analyst II</div>
+            <div class="expMeta">Mar 2022 – Apr 2023</div>
+            <ul class="expList">
+              <li>Drove Agile execution through backlog refinement, sprint planning, and PI preparation with clear acceptance criteria.</li>
+              <li>Conducted API testing and Product Owner reviews to validate readiness.</li>
+              <li>Delivered leadership sprint demos and coordinated UAT prior to releases.</li>
+            </ul>
+          </div>
 
-    <div class="expMeta">Other: Truist • SunTrust • Capital One</div>
+          <div class="expMeta">Other: Truist • SunTrust • Capital One</div>
 
-  </div>
-</section>
-
+        </div>
+      </section>
 
       <!-- PROFILE PHOTO -->
       <section class="block">
         <div class="header">🖼 Profile</div>
         <div class="photoWrap">
-          <!-- Upload your photo into the repo (same folder as index.html) and name it: pro.jpg -->
           <img src="pro.jpg" alt="Jessima Lynton">
         </div>
       </section>
 
-     <!-- AWARDS -->
-<section class="block">
-  <div class="header">🏆 Awards</div>
-  <div class="body">
-
-    <div class="awardTitle">
-      Performance Recognition & Monetary Award — Verisk
-    </div>
-
-    <ul class="expList">
-      <li>Recognized for identifying technical root causes and resolving production issues through backend CMS stabilization.</li>
-      <li>Proactively partnered with admin/platform teams to resolve critical website link issues before weekday user impact.</li>
-    </ul>
-
-  </div>
-</section>
-
+      <!-- AWARDS (no nested box) -->
+      <section class="block">
+        <div class="header">🏆 Awards</div>
+        <div class="body">
+          <div style="font-weight:850;font-size:12.5px;margin-bottom:6px;">
+            Performance Recognition & Monetary Award — Verisk
+          </div>
+          <ul class="expList" style="margin-top:0;">
+            <li>Rewarded for identifying root causes and stabilizing production issues through backend CMS fixes.</li>
+            <li>Rewarded for proactively coordinating with admin/platform teams to resolve critical website link issues before weekday user impact.</li>
+          </ul>
+        </div>
+      </section>
 
       <!-- ABOUT -->
       <section class="block">
         <div class="header">👤 About Me</div>
         <div class="body">
           <h2 class="aboutName">Jessima Lynton</h2>
-
           <div class="badges">
             <span class="badge">Product Manager</span>
             <span class="badge">Product Owner</span>
             <span class="badge">6+ Years</span>
             <span class="badge">Currently Employed</span>
           </div>
-
           <div class="aboutLine">
-            Product-focused professional with experience across discovery, delivery, and post-launch support — strong in stakeholder alignment, clear documentation, and execution in Agile/SAFe environments.
+            Product-focused professional with experience across discovery, delivery, and post-launch support—strong in stakeholder alignment, clear documentation, and execution in Agile/SAFe environments.
           </div>
         </div>
       </section>
@@ -449,7 +405,7 @@ body{
         <div class="header">🛠 Skills & Tools</div>
         <div class="body">
           <div class="tags">
-            <span class="tag">Content Management System (CMS)</span>
+            <span class="tag">CMS</span>
             <span class="tag">Databases</span>
             <span class="tag">JIRA</span>
             <span class="tag">Postman</span>
@@ -551,5 +507,3 @@ function showAnswer(q){
 
 </body>
 </html>
-
-
