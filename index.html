@@ -228,7 +228,7 @@ body{
   border-top:1px solid rgba(255,255,255,.08);
 }
 
-/* Ask button */
+/* Ask button (ONE button only) */
 .askBtn{
   position:fixed;
   bottom:16px;
@@ -256,12 +256,12 @@ body{
 }
 .askText{font-size:13px;}
 
-/* ======= AI POPUP (CHAT STYLE + INPUT) ======= */
+/* ======= AI POPUP (CHAT STYLE) ======= */
 .ai-popup{
   position:fixed;
   bottom:70px;
   right:16px;
-  width:360px;
+  width:340px;
   background:#1f1a34;
   border:2px solid #4c3f73;
   border-radius:18px;
@@ -333,44 +333,11 @@ body{
   background:#4b3f86;
 }
 
-/* Chat input */
-.ai-input{
-  display:flex;
-  gap:8px;
-  padding:10px;
-  border-top:1px solid rgba(255,255,255,.08);
-  background:#1f1a34;
-}
-.ai-input input{
-  flex:1;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:#2d2750;
-  color:white;
-  font-size:12px;
-  outline:none;
-}
-.ai-input input::placeholder{
-  color:rgba(255,255,255,.55);
-}
-.ai-input button{
-  padding:10px 12px;
-  border-radius:12px;
-  border:none;
-  cursor:pointer;
-  font-weight:800;
-  font-size:12px;
-  color:white;
-  background:linear-gradient(90deg,#7c3aed,#9333ea);
-}
-
 /* Responsive fallback */
 @media(max-width:950px){
   .wrap{padding:12px}
   .grid{grid-template-columns:1fr;}
   .lookGrid{grid-template-columns:1fr;}
-  .ai-popup{width:calc(100% - 32px);}
 }
 </style>
 </head>
@@ -512,7 +479,7 @@ body{
   </div>
 </div>
 
-<!-- Ask Button -->
+<!-- ONE Ask Button -->
 <button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
   <span class="askIcon">🤖</span>
   <span class="askText">Ask About Jessima</span>
@@ -537,23 +504,14 @@ body{
     <button onclick="askAI(2)">Key strengths?</button>
     <button onclick="askAI(3)">What makes her different?</button>
   </div>
-
-  <div class="ai-input">
-    <input id="aiText" type="text" placeholder="Type a question… (ex: UAT experience?)" />
-    <button onclick="sendAI()">Send</button>
-  </div>
 </div>
 
 <script>
-
 document.getElementById("y").textContent = new Date().getFullYear();
 
 function toggleAI(){
   const box = document.getElementById("aiBox");
   box.style.display = (box.style.display === "block") ? "none" : "block";
-  if(box.style.display === "block"){
-    document.getElementById("aiText").focus();
-  }
 }
 
 function askAI(q){
@@ -567,7 +525,7 @@ function askAI(q){
   }
   if(q===2){
     question = "What are her key strengths?";
-    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories, epic creation, stakeholder requirements, documentation, CMS, and API integrations.";
+    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
   }
   if(q===3){
     question = "What makes her different from other PMs?";
@@ -578,69 +536,11 @@ function askAI(q){
   setTimeout(() => {
     chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
     chat.scrollTop = chat.scrollHeight;
-  }, 200);
+  }, 250);
+
+  chat.scrollTop = chat.scrollHeight;
 }
-
-function sendAI(){
-  const input = document.getElementById("aiText");
-  const text = input.value.trim();
-  if(!text) return;
-
-  const chat = document.getElementById("chatArea");
-  chat.innerHTML += `<div class="ai-user">${text}</div>`;
-  input.value = "";
-
-  const reply = smartReply(text);
-
-  setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${reply}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 200);
-}
-
-function smartReply(text){
-  const t = text.toLowerCase();
-
-  if(t.includes("uat") || t.includes("testing") || t.includes("qa")){
-    return "Jessima has hands-on experience coordinating UAT, validating acceptance criteria, and partnering closely with QA and engineering to ensure release readiness.";
-  }
-
-  if(t.includes("jira") || t.includes("confluence") || t.includes("documentation")){
-    return "Jessima is strong in structured documentation and delivery execution — writing clear user stories and managing JIRA workflows.";
-  }
-
-  if(t.includes("cms") || t.includes("sitecore")){
-    return "Jessima has strong CMS experience and has used it to implement mitigations and coordinate fixes during production incidents.";
-  }
-
-  if(t.includes("api") || t.includes("postman")){
-    return "Jessima has worked with APIs and Postman for validation and collaborates closely with engineering on integrations.";
-  }
-
-  if(t.includes("stakeholder") || t.includes("requirements")){
-    return "Jessima regularly leads cross-functional workshops, gathers stakeholder requirements, and drives clarity from discovery to delivery.";
-  }
-
-  if(t.includes("start") || t.includes("available")){
-    return "Jessima is currently employed and can start in approximately 2 weeks.";
-  }
-
-  return "Great question. Jessima is a delivery-focused PM/PO who combines product execution with technical depth and strong stakeholder alignment.";
-}
-
-// Enter key support
-document.addEventListener("keydown", function(e){
-  const box = document.getElementById("aiBox");
-  if(e.key === "Enter" && box && box.style.display === "block"){
-    if(document.activeElement.id === "aiText"){
-      sendAI();
-    }
-  }
-});
-
 </script>
-
 
 </body>
 </html>
-
