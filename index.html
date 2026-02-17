@@ -503,11 +503,28 @@ body{
     </div>
   </div>
 
-  <div class="ai-suggestions">
-    <button onclick="askAI(1)">Industries?</button>
-    <button onclick="askAI(2)">Key strengths?</button>
-    <button onclick="askAI(3)">What makes her different?</button>
-  </div>
+ <div class="ai-suggestions">
+  <button onclick="askSuggestion('product')">Product</button>
+  <button onclick="askSuggestion('agile')">Agile</button>
+  <button onclick="askSuggestion('skills')">Skills</button>
+  <button onclick="askSuggestion('years')">Work Years</button>
+  <button onclick="askSuggestion('awards')">Awards</button>
+  <button onclick="askSuggestion('domains')">Domains</button>
+  <button onclick="askSuggestion('CMS')">CMS</button>
+  <button onclick="askSuggestion('UAT')">UAT</button>
+  <button onclick="askSuggestion('requirement')">Requirement</button>
+</div>
+
+<div style="padding:10px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;">
+  <input id="aiInput" 
+         placeholder="Type a keyword..." 
+         style="flex:1;padding:8px;border-radius:8px;border:none;background:#352e5e;color:white;font-size:12px;">
+  <button onclick="sendQuestion()" 
+          style="padding:8px 12px;border:none;border-radius:8px;background:linear-gradient(90deg,#7c3aed,#9333ea);color:white;font-weight:700;">
+    Send
+  </button>
+</div>
+
 </div>
 
 <script>
@@ -577,5 +594,6 @@ function askSuggestion(keyword){
 
 </body>
 </html>
+
 
 
