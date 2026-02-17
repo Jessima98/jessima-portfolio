@@ -516,31 +516,49 @@ function toggleAI(){
 
 function askAI(q){
   const chat = document.getElementById("chatArea");
+
   let question = "";
   let answer = "";
 
-  if(q===1){
+  if (q === 1) {
     question = "What industries has she worked in?";
     answer = "Jessima has worked extensively in Insurance and Financial Services and is open to Medical and other regulated industries.";
-  }
-  if(q===2){
+  } else if (q === 2) {
     question = "What are her key strengths?";
-    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
-  }
-  if(q===3){
+    answer =
+      "• Product delivery from discovery through release<br>" +
+      "• Cross-functional collaboration across product, UX, engineering, and QA<br>" +
+      "• UAT/testing oversight and acceptance validation<br>" +
+      "• Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations";
+  } else if (q === 3) {
     question = "What makes her different from other PMs?";
     answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
+  } else {
+    question = "Question";
+    answer = "Answer";
   }
 
-  chat.innerHTML += `<div class="ai-user">${question}</div>`;
+  // Add the user question bubble (safe text)
+  const userDiv = document.createElement("div");
+  userDiv.className = "ai-user";
+  userDiv.textContent = question;
+  chat.appendChild(userDiv);
+
+  // Add the AI answer bubble (allows <br> formatting)
   setTimeout(() => {
-    chat.innerHTML += `<div class="ai-msg">${answer}</div>`;
+    const aiDiv = document.createElement("div");
+    aiDiv.className = "ai-msg";
+    aiDiv.innerHTML = answer;
+    chat.appendChild(aiDiv);
+
     chat.scrollTop = chat.scrollHeight;
-  }, 250);
+  }, 200);
 
   chat.scrollTop = chat.scrollHeight;
 }
 </script>
 
+
 </body>
 </html>
+
