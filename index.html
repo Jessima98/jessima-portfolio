@@ -127,30 +127,20 @@ body{
 }
 .expList li{margin:4px 0;}
 
-/* ✅ PROFILE CARD FIX (smaller, no huge empty space) */
-.profileCard .body{
+/* Profile */
+.photoWrap{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:12px;
+  padding:10px;
 }
-.photoFrame{
-  width:170px;
-  height:170px;
-  border-radius:18px;
+.photoWrap img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:16px;
   border:2px solid var(--border);
-  background:#241f3a;
   box-shadow:0 10px 20px rgba(0,0,0,.4);
-  overflow:hidden;               /* IMPORTANT */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.photoFrame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;              /* IMPORTANT */
-  display:block;
 }
 
 /* About */
@@ -255,7 +245,6 @@ body{
   font-weight:850;
   box-shadow:0 14px 34px rgba(0,0,0,.45);
   transition:.25s ease;
-  z-index:99;
 }
 .askBtn:hover{transform:translateY(-2px);}
 .askIcon{
@@ -267,7 +256,7 @@ body{
 }
 .askText{font-size:13px;}
 
-/* ======= AI POPUP (CHAT + INPUT) ======= */
+/* ======= AI POPUP (CHAT STYLE + INPUT) ======= */
 .ai-popup{
   position:fixed;
   bottom:70px;
@@ -280,7 +269,6 @@ body{
   display:none;
   overflow:hidden;
   animation:fadeIn .25s ease;
-  z-index:100;
 }
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(10px);}
@@ -299,12 +287,11 @@ body{
   cursor:pointer;
   font-size:18px;
   line-height:1;
-  opacity:.95;
+  opacity:.9;
 }
-
 .ai-chat{
   padding:12px;
-  max-height:240px;
+  max-height:210px;
   overflow-y:auto;
   font-size:12px;
   line-height:1.45;
@@ -317,7 +304,6 @@ body{
   padding:10px 12px;
   border-radius:14px;
   color:var(--text);
-  max-width:92%;
 }
 .ai-user{
   background:#7c3aed;
@@ -325,9 +311,7 @@ body{
   border-radius:14px;
   color:white;
   align-self:flex-end;
-  max-width:92%;
 }
-
 .ai-suggestions{
   padding:10px;
   border-top:1px solid rgba(255,255,255,.08);
@@ -337,10 +321,10 @@ body{
 }
 .ai-suggestions button{
   background:#352e5e;
-  border:1px solid rgba(255,255,255,.10);
+  border:none;
   color:white;
   padding:6px 10px;
-  border-radius:999px;
+  border-radius:12px;
   font-size:11px;
   cursor:pointer;
   transition:.2s;
@@ -349,40 +333,44 @@ body{
   background:#4b3f86;
 }
 
-/* Input row */
-.ai-inputRow{
-  padding:10px;
-  border-top:1px solid rgba(255,255,255,.08);
+/* Chat input */
+.ai-input{
   display:flex;
   gap:8px;
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  background:#1f1a34;
 }
-.ai-input{
+.ai-input input{
   flex:1;
-  background:#231f3b;
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--text);
+  padding:10px 12px;
   border-radius:12px;
-  padding:10px 10px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#2d2750;
+  color:white;
   font-size:12px;
   outline:none;
 }
-.ai-send{
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-  border:none;
-  color:white;
-  font-weight:900;
-  border-radius:12px;
+.ai-input input::placeholder{
+  color:rgba(255,255,255,.55);
+}
+.ai-input button{
   padding:10px 12px;
+  border-radius:12px;
+  border:none;
   cursor:pointer;
+  font-weight:800;
   font-size:12px;
+  color:white;
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
 }
 
-/* Responsive */
+/* Responsive fallback */
 @media(max-width:950px){
   .wrap{padding:12px}
   .grid{grid-template-columns:1fr;}
   .lookGrid{grid-template-columns:1fr;}
-  .ai-popup{width:min(360px, calc(100vw - 32px));}
+  .ai-popup{width:calc(100% - 32px);}
 }
 </style>
 </head>
@@ -394,7 +382,7 @@ body{
 
     <div class="topbar">
       <div class="brand">
-        <div class="name"> Lynton</div>
+        <div class="name">Jessima Lynton</div>
         <div class="headline">Product Manager / Product Owner • 6+ Years Experience • Currently Employed</div>
       </div>
       <div class="pref">Remote / Hybrid Preferred</div>
@@ -406,6 +394,7 @@ body{
       <section class="block">
         <div class="header">💼 Experience</div>
         <div class="body">
+
           <div class="expItem">
             <div class="expTitle">Verisk Analytics — Product Manager</div>
             <ul class="expList">
@@ -425,17 +414,15 @@ body{
           </div>
 
           <div class="expMeta">Other: Truist • SunTrust • Capital One</div>
+
         </div>
       </section>
 
-      <!-- PROFILE PHOTO (fixed) -->
-      <section class="block profileCard">
+      <!-- PROFILE PHOTO -->
+      <section class="block">
         <div class="header">🖼 Profile</div>
-        <div class="body">
-          <div class="photoFrame">
-            <!-- Rename your uploaded photo to profile.jpg -->
-            <img src="profile.jpg" alt="Jessima Lynton">
-          </div>
+        <div class="photoWrap">
+          <img src="profile.jpg" alt="Jessima Lynton">
         </div>
       </section>
 
@@ -540,67 +527,123 @@ body{
 
   <div class="ai-chat" id="chatArea">
     <div class="ai-msg">
-      Hi 👋 I’m Jessima’s portfolio assistant.<br>
-      Type a keyword (like “UAT” or “CMS”)
+      Hi 👋 I'm Jessima’s portfolio assistant.<br>
+      Ask me something about her experience.
     </div>
   </div>
 
-  <!-- pills -->
-  
+  <div class="ai-suggestions">
+    <button onclick="askAI(1)">Industries?</button>
+    <button onclick="askAI(2)">Key strengths?</button>
+    <button onclick="askAI(3)">What makes her different?</button>
+  </div>
 
-  <!-- input -->
-  <div class="ai-inputRow">
-    <input id="aiInput" class="ai-input" placeholder="Type a keyword… (ex: UAT, CMS, Agile)" />
-    <button class="ai-send" onclick="sendTyped()">Send</button>
+  <div class="ai-input">
+    <input id="aiText" type="text" placeholder="Type a question… (ex: UAT experience?)" />
+    <button onclick="sendAI()">Send</button>
   </div>
 </div>
 
 <script>
-function getAnswer(raw){
-  const q = normalize(raw);
+document.getElementById("y").textContent = new Date().getFullYear();
 
-  // keyword matching
-  const has = (word) => q.includes(word);
+function toggleAI(){
+  const box = document.getElementById("aiBox");
+  box.style.display = (box.style.display === "block") ? "none" : "block";
+  if(box.style.display === "block"){
+    const input = document.getElementById("aiText");
+    if(input) input.focus();
+  }
+}
 
-  if (has("product")) {
-    return "Jessima delivers products end-to-end — aligning stakeholders, translating needs into clear scope, and driving execution through release and stabilization.";
-  } else if (has("agile") || has("safe") || has("scrum")) {
-    return "Strong in Agile/SAFe: backlog grooming, sprint planning, PI prep, story clarity, demos, and UAT coordination with cross-functional teams.";
-  } else if (has("skills") || has("tools")) {
-    return "Core strengths: product delivery, stakeholder alignment, story/epic writing, documentation, UAT/testing oversight, and technical collaboration (APIs, CMS, data).";
-  } else if (has("year") || has("years") || has("experience") || has("work")) {
-    return "6+ years of experience across insurance and financial services, currently employed, open to remote/hybrid roles.";
-  } else if (has("award")) {
-    return "Received performance recognition with a monetary award for (1) stabilizing production via root-cause analysis and CMS fixes, and (2) coordinating urgent link issue resolution with platform/admin teams before user impact.";
-  } else if (has("domain") || has("industry")) {
-    return "Primary domain experience: Insurance + Financial Services. Open to Medical and other regulated industries.";
-  } else if (has("cms")) {
-    return "Hands-on CMS experience (Sitecore): content enablement, post-launch ownership workflows, and rapid mitigations during production issues.";
-  } else if (has("uat") || has("testing") || has("test")) {
-    return "Strong in UAT/testing: defining acceptance criteria, coordinating UAT, validating readiness, and ensuring releases meet expectations.";
-  } else if (has("requirement") || has("requirements") || has("gathering") || has("stakeholder")) {
-    return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
+function askAI(q){
+  const chat = document.getElementById("chatArea");
+  let question = "";
+  let answer = "";
+
+  if(q===1){
+    question = "What industries has she worked in?";
+    answer = "Jessima has worked extensively in Insurance and Financial Services and is open to Medical and other regulated industries.";
+  }
+  if(q===2){
+    question = "What are her key strengths?";
+    answer = "Product delivery from discovery through release. Cross-functional collaboration across product, UX, engineering, and QA. UAT/testing oversight. Strong in user stories/epics, stakeholder requirements, documentation, CMS, and API integrations.";
+  }
+  if(q===3){
+    question = "What makes her different from other PMs?";
+    answer = "She blends strategy with hands-on technical depth — driving delivery while also investigating production issues, identifying root causes, and partnering with platform teams to stabilize systems.";
   }
 
-  // ✅ fallback (MUST be a template string)
-  return `Try asking about one of these keywords:
-• Product
-• Agile / SAFe
-• Skills
-• Work years / Experience
-• Awards
-• Domains / Industries
-• CMS
-• UAT / Testing
-• Requirement gathering`;
-}
-</script>
+  chat.innerHTML += `<div class="ai-user">${escapeHtml(question)}</div>`;
+  setTimeout(() => {
+    chat.innerHTML += `<div class="ai-msg">${escapeHtml(answer)}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 220);
 
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function sendAI(){
+  const input = document.getElementById("aiText");
+  const text = (input.value || "").trim();
+  if(!text) return;
+
+  const chat = document.getElementById("chatArea");
+  chat.innerHTML += `<div class="ai-user">${escapeHtml(text)}</div>`;
+  input.value = "";
+
+  const reply = smartReply(text);
+
+  setTimeout(() => {
+    chat.innerHTML += `<div class="ai-msg">${escapeHtml(reply)}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  }, 220);
+
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function smartReply(text){
+  const t = text.toLowerCase();
+
+  if(t.includes("uat") || t.includes("testing") || t.includes("qa")){
+    return "Jessima has hands-on experience coordinating UAT, validating acceptance criteria, and partnering closely with QA and engineering to ensure release readiness.";
+  }
+  if(t.includes("jira") || t.includes("confluence") || t.includes("documentation")){
+    return "Jessima is strong in structured documentation and delivery execution—writing clear user stories/epics, managing JIRA workflows, and producing decision summaries and artifacts in Confluence.";
+  }
+  if(t.includes("cms") || t.includes("sitecore")){
+    return "Jessima has strong CMS experience (including Sitecore) and has used it to implement mitigations, coordinate fixes, and support platform/admin teams during production issues.";
+  }
+  if(t.includes("api") || t.includes("postman")){
+    return "Jessima has worked with APIs and tools like Postman for validation/testing and collaborates with engineering to ensure integrations and feature behavior meet requirements.";
+  }
+  if(t.includes("stakeholder") || t.includes("requirements") || t.includes("workshop")){
+    return "Jessima regularly leads cross-functional workshops, aligns stakeholders, translates needs into stories, and drives clarity from discovery through delivery.";
+  }
+  if(t.includes("start") || t.includes("available")){
+    return "Jessima is currently employed and can start in ~2 weeks.";
+  }
+
+  return "Good question. Jessima is a delivery-focused PM/PO who combines product execution with technical depth—especially around stakeholder alignment, documentation, UAT readiness, and platform stabilization.";
+}
+
+function escapeHtml(str){
+  return str.replace(/[&<>"']/g, m => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
+}
+
+// Enter key to send
+document.addEventListener("keydown", function(e){
+  const box = document.getElementById("aiBox");
+  if(e.key === "Enter" && box && box.style.display === "block"){
+    const active = document.activeElement;
+    if(active && active.id === "aiText"){
+      sendAI();
+    }
+  }
+});
+</script>
 
 </body>
 </html>
-
-
-
-
-
