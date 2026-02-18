@@ -547,15 +547,9 @@ body{
 
   <!-- pills -->
   <div class="ai-suggestions">
-    <button onclick="askAI('product')">Product</button>
-    <button onclick="askAI('agile')">Agile</button>
-    <button onclick="askAI('skills')">Skills</button>
-    <button onclick="askAI('years')">Work years</button>
-    <button onclick="askAI('awards')">Awards</button>
-    <button onclick="askAI('domains')">Domains</button>
-    <button onclick="askAI('cms')">CMS</button>
-    <button onclick="askAI('uat')">UAT</button>
-    <button onclick="askAI('requirements')">Requirements</button>
+    <button onclick="askAI('contact')">Contact Method</button>
+    <button onclick="askAI('availability')">Availability</button>
+    <button onclick="askAI('status')">US work Status?</button>
   </div>
 
   <!-- input -->
@@ -614,8 +608,20 @@ function getAnswer(raw){
   } else if (has("requirement") || has("requirements") || has("gathering")) {
     return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
   }
+  else if (has("US work status")) {
+    return "U.S Citizen";
+  }
 
-  return "Ask about: Product, Agile, Skills, Work years, Awards, Domains, CMS, UAT, Requirement gathering.";
+else if (has("availability")) {
+    return "Available for interviews on weekdays with a minimum of 3 days’ notice.";
+  }
+
+  else if (has("contact")) {
+    return "Prefer email/phone";
+  }
+
+
+  return "Curious about Jessima?Try asking about: Product, Agile, Skills, Work years, Awards, Domains, CMS, UAT, Requirement gathering.";
 }
 
 function askAI(raw){
@@ -650,3 +656,4 @@ document.addEventListener("keydown", function(e){
 
 </body>
 </html>
+
