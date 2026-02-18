@@ -550,9 +550,9 @@ body{
 
   <!-- pills -->
   <div class="ai-suggestions">
-    <button onclick="askAI('contact')">Contact Method</button>
-    <button onclick="askAI('availability')">Availability</button>
-    <button onclick="askAI('status')">US work Status?</button>
+    <button onclick="askAI('Contact')">Contact Method</button>
+    <button onclick="askAI('Availability')">Availability</button>
+    <button onclick="askAI('Status')">US work Status?</button>
   </div>
 
   <!-- input -->
@@ -611,16 +611,16 @@ function getAnswer(raw){
   } else if (has("requirement") || has("requirements") || has("gathering")) {
     return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
   }
-  else if (has("US work status")) {
-    return "U.S Citizen";
+  else if (has("Status")) {
+    return "U.S Citizen with full work authorization";
   }
 
-else if (has("availability")) {
+else if (has("Availability")) {
     return "Available for interviews on weekdays with a minimum of 3 days’ notice.";
   }
 
-  else if (has("contact")) {
-    return "Prefer email/phone";
+  else if (has("Contact")) {
+    return "Available via email or phone. Open to connecting for role discussions.";
   }
 
 
@@ -659,5 +659,6 @@ document.addEventListener("keydown", function(e){
 
 </body>
 </html>
+
 
 
