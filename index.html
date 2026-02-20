@@ -543,24 +543,25 @@
 
     <div class="ai-chat" id="chatArea">
       <div class="ai-msg">
-        Hi 👋 Ask a quick question using keywords like <b>Product</b>, <b>Agile</b>, <b>Skills</b>, <b>Work years</b>, <b>Awards</b>, <b>Domains</b>, <b>CMS</b>, <b>UAT</b>, <b>Requirement gathering</b>, <b>Status</b>, or <b>Availability</b>.
-      </div>
+  Hi 👋 Ask a quick question about Jessima — experience, Agile delivery, UX coordination, requirements, CMS, QA/UAT, skills, availability, or work status.
+</div>
     </div>
 
     <div class="ai-suggestions">
-      <button type="button" onclick="askAI('Product')">Product</button>
-      <button type="button" onclick="askAI('Agile')">Agile</button>
-      <button type="button" onclick="askAI('Skills')">Skills</button>
-      <button type="button" onclick="askAI('UAT')">UAT</button>
-      <button type="button" onclick="askAI('CMS')">CMS</button>
-      <button type="button" onclick="askAI('Awards')">Awards</button>
-      <button type="button" onclick="askAI('Domains')">Domains</button>
-      <button type="button" onclick="askAI('Work years')">Work years</button>
-      <button type="button" onclick="askAI('Requirement gathering')">Requirement gathering</button>
-      <button type="button" onclick="askAI('Status')">US work status?</button>
-      <button type="button" onclick="askAI('Availability')">Availability</button>
-      <button type="button" onclick="askAI('Contact')">Contact</button>
-    </div>
+  <button onclick="askAI('Experience')">Experience</button>
+  <button onclick="askAI('Agile')">Agile</button>
+  <button onclick="askAI('Requirement gathering')">Requirement gathering</button>
+  <button onclick="askAI('UX coordination')">UX coordination</button>
+  <button onclick="askAI('Delivery')">Delivery</button>
+  <button onclick="askAI('Product')">Product</button>
+  <button onclick="askAI('Years experience')">Years exp</button>
+  <button onclick="askAI('CMS')">CMS</button>
+  <button onclick="askAI('Other skills')">Other skills</button>
+  <button onclick="askAI('UAT QA')">UAT / QA</button>
+  <button onclick="askAI('Contact')">Contact</button>
+  <button onclick="askAI('Availability')">Availability</button>
+  <button onclick="askAI('US work status')">US work status</button>
+</div>
 
     <div class="ai-inputRow">
       <input id="aiInput" class="ai-input" placeholder="Type a keyword… (ex: UAT, CMS, Agile)" />
@@ -589,50 +590,64 @@
 
   function normalize(s){ return (s || "").toLowerCase().trim(); }
 
-  function getAnswer(raw){
-    const q = normalize(raw);
-    const has = (w) => q.includes(w);
+function getAnswer(raw){
+  const q = normalize(raw);
+  const has = (w) => q.includes(w);
 
-    // Keyword routes
-    if (has("product")) {
-      return "Jessima delivers products end-to-end — aligning stakeholders, translating needs into clear scope, and driving execution through release and stabilization.";
-    }
-    if (has("agile") || has("safe") || has("scrum")) {
-      return "Strong in Agile/SAFe: backlog grooming, sprint planning, PI prep, story clarity, demos, and UAT coordination with cross-functional teams.";
-    }
-    if (has("skills") || has("tools")) {
-      return "Strengths include stakeholder alignment, requirements clarity, Agile delivery, UAT/testing oversight, and technical collaboration. Tools: JIRA, Confluence, Postman, Sitecore, Microsoft Suite.";
-    }
-    if (has("year") || has("years") || has("experience") || (has("work") && !has("work status"))) {
-      return "6+ years of experience across insurance and financial services, currently employed, open to remote/hybrid roles.";
-    }
-    if (has("award")) {
-      return "Received performance recognition with a monetary award for stabilizing production issues via root-cause analysis and practical fixes, plus recognition for proactive coordination before customer impact.";
-    }
-    if (has("domain") || has("domains") || has("industry") || has("industries")) {
-      return "Primary domain experience: Insurance + Financial Services. Open to Medical and other regulated industries.";
-    }
-    if (has("cms") || has("sitecore")) {
-      return "Hands-on CMS experience (Sitecore): supporting content workflows, enabling updates, and coordinating quick mitigations during production issues.";
-    }
-    if (has("uat") || has("testing") || has("test") || has("qa")) {
-      return "Strong in UAT/testing: defining acceptance criteria, coordinating test cycles, validating readiness, and ensuring releases meet expectations.";
-    }
-    if (has("requirement") || has("requirements") || has("gathering") || has("stakeholder")) {
-      return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
-    }
-    if (has("status") || has("work status") || has("authorization") || has("immigration")) {
-      return "U.S. Citizen (no sponsorship required).";
-    }
-    if (has("availability") || has("interview")) {
-      return "Available for weekday interviews with at least 3 business days’ notice.";
-    }
-    if (has("contact") || has("email") || has("phone")) {
-      return "Preferred contact: email first, then phone if needed.";
-    }
-
-    return "Try one of these keywords: Product, Agile, Skills, Work years, Awards, Domains, CMS, UAT, Requirement gathering, Status, Availability, Contact.";
+  if (has("experience")) {
+    return "Jessima brings 6+ years of experience across insurance and financial services, leading cross-functional delivery from requirement definition through release and post-production stabilization.";
   }
+
+  if (has("fit") || has("good fit") || has("right fit") || has("is she fit")) {
+    return "Jessima is a strong fit for product or product analyst roles requiring stakeholder alignment, structured requirement gathering, Agile execution, and hands-on coordination with UX, engineering, and QA teams.";
+  }
+
+  if (has("agile")) {
+    return "Strong in Agile/SAFe environments — backlog refinement, sprint planning, PI prep, story clarity, demos, and cross-team coordination.";
+  }
+
+  if (has("requirement")) {
+    return "Experienced in running requirement workshops, clarifying scope and dependencies, documenting acceptance criteria, and translating business needs into clear epics and stories.";
+  }
+
+  if (has("ux")) {
+    return "Partners closely with UX teams to align on flows, edge cases, acceptance criteria, and user-centered delivery outcomes.";
+  }
+
+  if (has("delivery")) {
+    return "Owns delivery end-to-end — from discovery and requirement clarity through sprint execution, UAT validation, and release readiness.";
+  }
+
+  if (has("product")) {
+    return "Product-focused mindset with strong stakeholder communication, prioritization skills, and execution discipline.";
+  }
+
+  if (has("year")) {
+    return "6+ years of experience across regulated industries including insurance and financial services.";
+  }
+
+  if (has("cms")) {
+    return "Hands-on experience with Sitecore CMS — supporting content workflows, updates, and production mitigation coordination.";
+  }
+
+  if (has("uat") || has("qa")) {
+    return "Strong in UAT/QA coordination — defining acceptance criteria, supporting test cycles, validating release readiness, and mitigating production risks.";
+  }
+
+  if (has("contact")) {
+    return "Preferred contact: Email first. Phone available upon request.";
+  }
+
+  if (has("availability")) {
+    return "Available for weekday interviews with at least 3 business days’ notice.";
+  }
+
+  if (has("work status") || has("status") || has("us work")) {
+    return "U.S. Citizen — no sponsorship required.";
+  }
+
+  return "Try asking about Experience, Agile, Delivery, Requirements, CMS, QA/UAT, Availability, or Work status.";
+}
 
   function askAI(raw){
     appendMsg("ai-user", raw);
@@ -664,6 +679,7 @@
 </script>
 </body>
 </html>
+
 
 
 
