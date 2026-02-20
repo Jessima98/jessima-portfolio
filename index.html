@@ -28,13 +28,11 @@
     color: var(--text);
   }
 
-  /* Page shell */
   .wrap{
     max-width: 980px;
     margin: 0 auto;
     padding: 22px 16px 90px;
   }
-
   .board{
     border:1px solid var(--line);
     border-radius: var(--radius);
@@ -43,13 +41,14 @@
     overflow:hidden;
   }
 
-  /* Header row */
+  /* ===== TOP HEADER (fixed layout) ===== */
   .top{
-    display:flex;
+    display:grid;
+    grid-template-columns: 80px 1fr 220px;
     gap:18px;
     padding:18px;
     border-bottom:1px solid var(--line);
-    align-items:center;
+    align-items:start;
   }
 
   .photo{
@@ -59,7 +58,6 @@
     overflow:hidden;
     border:1px solid var(--line);
     background:#f2f2f2;
-    flex:0 0 auto;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -71,28 +69,44 @@
     display:block;
   }
 
-  .who{
+  .center{
     min-width:0;
-    flex:1 1 auto;
+  }
+
+  .summary{
+    margin:0;
+    color:#111;
+    font-size:13px;
+    line-height:1.45;
+    max-width: 620px;
+  }
+
+  .right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
   }
   .name{
+    margin:0;
     font-size:22px;
     font-weight:900;
     letter-spacing:-.02em;
-    margin:0;
+    text-align:right;
   }
   .title{
-    margin:6px 0 0;
+    margin:0;
     color:var(--muted);
-    font-weight:650;
+    font-weight:700;
     font-size:13px;
+    text-align:right;
   }
 
   .metaPills{
     display:flex;
     flex-wrap:wrap;
     gap:8px;
-    margin-top:10px;
+    justify-content:flex-end;
   }
   .pill{
     font-size:11px;
@@ -105,10 +119,10 @@
     white-space:nowrap;
   }
 
-  /* Two-column content */
+  /* ===== 4 BOX GRID ===== */
   .grid{
     display:grid;
-    grid-template-columns: 1.3fr .9fr;
+    grid-template-columns: 1fr 1fr;
     gap:14px;
     padding:16px;
   }
@@ -126,7 +140,7 @@
     font-size:12px;
     letter-spacing:.08em;
     text-transform:uppercase;
-    background: #fff;
+    background:#fff;
   }
   .cardBody{ padding:12px 14px; }
 
@@ -154,17 +168,22 @@
     line-height:1.35;
   }
 
-  .viewAll{
-    display:inline-flex;
-    align-items:center;
+  /* Skills */
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
     gap:8px;
-    margin-top:10px;
-    font-size:12px;
-    font-weight:800;
-    color:#111;
-    text-decoration:none;
   }
-  .viewAll:hover{ text-decoration:underline; }
+  .skill{
+    font-size:11px;
+    font-weight:800;
+    padding:7px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:#111;
+    white-space:nowrap;
+  }
 
   /* Awards */
   .award{
@@ -215,17 +234,6 @@
   }
   .contactText a:hover{ border-bottom-color:#000; }
 
-  /* Footer */
-  .footer{
-    padding:14px 16px;
-    border-top:1px solid var(--line);
-    color:#777;
-    font-size:11px;
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-  }
-
   /* Ask button */
   .askBtn{
     position:fixed;
@@ -243,7 +251,7 @@
     gap:10px;
     box-shadow: 0 18px 40px rgba(0,0,0,.18);
     transition:.2s ease;
-    z-index:99;
+    z-index:9999;
   }
   .askBtn:hover{ transform: translateY(-2px); }
   .askIcon{
@@ -269,7 +277,7 @@
     box-shadow: 0 26px 70px rgba(0,0,0,.18);
     display:none;
     overflow:hidden;
-    z-index:100;
+    z-index:10000;
   }
   .ai-header{
     padding:12px 14px;
@@ -336,9 +344,7 @@
     cursor:pointer;
     transition:.15s ease;
   }
-  .ai-suggestions button:hover{
-    background:#f0f0f0;
-  }
+  .ai-suggestions button:hover{ background:#f0f0f0; }
 
   .ai-inputRow{
     display:flex;
@@ -368,6 +374,10 @@
   }
 
   @media (max-width: 880px){
+    .top{ grid-template-columns: 72px 1fr; }
+    .right{ grid-column: 1 / -1; align-items:flex-start; }
+    .name,.title{ text-align:left; }
+    .metaPills{ justify-content:flex-start; }
     .grid{ grid-template-columns:1fr; }
   }
 </style>
@@ -380,16 +390,18 @@
       <!-- Top header -->
       <div class="top">
         <div class="photo">
-          <!-- Put your photo as profile.jpg in the same folder -->
           <img src="profile.jpg" alt="Jessima Lynton" />
         </div>
- <p class="summary">
-    Product Owner with experience leading cross-functional delivery from requirements through release. Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving execution in Agile environments while partnering closely with UX and engineering to deliver clean, user-friendly solutions.
-  </p>
-        <div class="who">
+
+        <div class="center">
+          <p class="summary">
+            Product Owner with experience leading cross-functional delivery from requirements through release. Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving execution in Agile environments while partnering closely with UX and engineering to deliver clean, user-friendly solutions.
+          </p>
+        </div>
+
+        <div class="right">
           <h1 class="name">Jessima Lynton</h1>
           <div class="title">Product Manager / Analyst</div>
-
           <div class="metaPills">
             <span class="pill">Currently employed</span>
             <span class="pill">Remote / Hybrid preferred</span>
@@ -397,12 +409,12 @@
         </div>
       </div>
 
-      <!-- Content -->
+      <!-- 4 boxes -->
       <div class="grid">
         <!-- Experience -->
         <section class="card">
           <div class="cardHead">Experience</div>
-          <div class="cardBody" id="experience">
+          <div class="cardBody">
             <div class="expItem">
               <p class="expRole">Product Manager</p>
               <p class="expCompany">Verisk</p>
@@ -420,10 +432,24 @@
               <p class="expCompany">Truist • SunTrust • Capital One</p>
               <p class="expOneLiner">Product and business analysis experience across regulated, customer-facing platforms.</p>
             </div>
+          </div>
+        </section>
 
-            <a class="viewAll" href="#experience" onclick="alert('Replace this with your resume/LinkedIn link if you want.')">
-              View all →
-            </a>
+        <!-- Skills -->
+        <section class="card">
+          <div class="cardHead">Skills</div>
+          <div class="cardBody">
+            <div class="skills">
+              <span class="skill">Agile / SAFe</span>
+              <span class="skill">Requirements</span>
+              <span class="skill">Stakeholders</span>
+              <span class="skill">UX/Eng partnership</span>
+              <span class="skill">Jira</span>
+              <span class="skill">Confluence</span>
+              <span class="skill">UAT</span>
+              <span class="skill">CMS</span>
+              <span class="skill">APIs</span>
+            </div>
           </div>
         </section>
 
@@ -443,7 +469,7 @@
         </section>
 
         <!-- Contact -->
-        <section class="card" style="grid-column: 1 / -1;">
+        <section class="card">
           <div class="cardHead">Contact</div>
           <div class="cardBody">
             <div class="contactRow">
@@ -473,18 +499,20 @@
         </section>
       </div>
 
+    </div>
+  </div>
 
   <!-- Ask Button -->
-  <button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
+  <button class="askBtn" id="askBtn" type="button" title="Ask About Jessima">
     <span class="askIcon">?</span>
     <span class="askText">Ask about Jessima</span>
   </button>
 
   <!-- AI Popup -->
-  <div class="ai-popup" id="aiBox">
+  <div class="ai-popup" id="aiBox" aria-hidden="true">
     <div class="ai-header">
       Ask about Jessima
-      <span class="ai-close" onclick="toggleAI()">×</span>
+      <span class="ai-close" id="aiClose">×</span>
     </div>
 
     <div class="ai-chat" id="chatArea">
@@ -494,35 +522,43 @@
     </div>
 
     <div class="ai-suggestions">
-      <button onclick="askAI('Experience')">Experience</button>
-      <button onclick="askAI('Skills')">Skills</button>
-      <button onclick="askAI('UAT')">UAT / Testing</button>
-      <button onclick="askAI('Contact')">Contact</button>
-      <button onclick="askAI('Availability')">Availability</button>
+      <button type="button" onclick="askAI('Experience')">Experience</button>
+      <button type="button" onclick="askAI('Skills')">Skills</button>
+      <button type="button" onclick="askAI('UAT')">UAT / Testing</button>
+      <button type="button" onclick="askAI('CMS')">CMS</button>
+      <button type="button" onclick="askAI('Contact')">Contact</button>
+      <button type="button" onclick="askAI('Availability')">Availability</button>
     </div>
 
     <div class="ai-inputRow">
       <input id="aiInput" class="ai-input" placeholder="Type a question…" />
-      <button class="ai-send" onclick="sendTyped()">Send</button>
+      <button class="ai-send" id="aiSend" type="button">Send</button>
     </div>
   </div>
 
 <script>
-  document.getElementById("y").textContent = new Date().getFullYear();
+  // Toggle chat safely (no inline onclick dependency)
+  const aiBox = document.getElementById("aiBox");
+  const askBtn = document.getElementById("askBtn");
+  const aiClose = document.getElementById("aiClose");
+  const aiInput = document.getElementById("aiInput");
+  const aiSend = document.getElementById("aiSend");
 
   function toggleAI(){
-    const box = document.getElementById("aiBox");
-    box.style.display = (box.style.display === "block") ? "none" : "block";
-    if (box.style.display === "block") {
-      setTimeout(() => document.getElementById("aiInput")?.focus(), 80);
-    }
+    const isOpen = aiBox.style.display === "block";
+    aiBox.style.display = isOpen ? "none" : "block";
+    aiBox.setAttribute("aria-hidden", isOpen ? "true" : "false");
+    if (!isOpen) setTimeout(() => aiInput && aiInput.focus(), 80);
   }
+
+  askBtn.addEventListener("click", toggleAI);
+  aiClose.addEventListener("click", toggleAI);
 
   function appendMsg(type, text){
     const chat = document.getElementById("chatArea");
     const div = document.createElement("div");
     div.className = type; // ai-user or ai-msg
-    div.innerHTML = text;
+    div.textContent = text;
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
   }
@@ -537,7 +573,7 @@
       return "Jessima has experience as a Product Manager at Verisk and as a Product Analyst II at LPL Financial, with additional experience across Truist, SunTrust, and Capital One.";
     }
     if (has(q,"skills") || has(q,"tools")) {
-      return "Core strengths: stakeholder alignment, requirements clarity, Agile delivery, UAT/testing coordination, and working with UX/engineering. Tools often used: Jira, Confluence, APIs, and CMS workflows.";
+      return "Core strengths: stakeholder alignment, requirements clarity, Agile delivery, UAT/testing coordination, and partnering with UX/engineering. Tools: Jira, Confluence, APIs, and CMS workflows.";
     }
     if (has(q,"uat") || has(q,"testing") || has(q,"qa")) {
       return "Jessima supports UAT/testing by defining acceptance criteria, coordinating validation, and ensuring releases are ready and stable.";
@@ -545,8 +581,8 @@
     if (has(q,"cms")) {
       return "Hands-on CMS experience supporting content workflows and helping drive fixes/mitigations when issues occur.";
     }
-    if (has(q,"availability") || has(q,"available")) {
-      return "Currently employed and open to the right opportunity. Remote/hybrid preferred.";
+    if (has(q,"availability") || has(q,"available") || has(q,"interview")) {
+      return "Currently employed and open to the right opportunity. Remote/hybrid preferred. Available for interviews on weekdays with at least 3 business days’ notice.";
     }
     if (has(q,"contact") || has(q,"email") || has(q,"phone")) {
       return "Email: jessiyoung321@gmail.com • Mobile: 240-618-6352";
@@ -558,28 +594,23 @@
   function askAI(raw){
     appendMsg("ai-user", raw);
     const answer = getAnswer(raw);
-    setTimeout(() => appendMsg("ai-msg", answer), 150);
+    setTimeout(() => appendMsg("ai-msg", answer), 120);
   }
 
   function sendTyped(){
-    const input = document.getElementById("aiInput");
-    const val = input.value;
-    if (!val.trim()) return;
-    input.value = "";
+    const val = (aiInput.value || "").trim();
+    if (!val) return;
+    aiInput.value = "";
     askAI(val);
   }
 
-  document.addEventListener("keydown", function(e){
-    const box = document.getElementById("aiBox");
-    if (box.style.display === "block" && e.key === "Enter") {
-      const active = document.activeElement;
-      if (active && active.id === "aiInput") {
-        e.preventDefault();
-        sendTyped();
-      }
+  aiSend.addEventListener("click", sendTyped);
+  aiInput.addEventListener("keydown", function(e){
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendTyped();
     }
   });
 </script>
 </body>
 </html>
-
