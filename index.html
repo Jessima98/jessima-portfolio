@@ -368,20 +368,7 @@
     .metaPills{ justify-content:flex-start; }
     .grid{ grid-template-columns:1fr; }
   }
-  /* ✅ NEW compact top layout */
-.topCompact{
-  display:grid;
-  grid-template-columns: 330px 1fr;
-  gap:18px;
-  padding:18px;
-  border-bottom:1px solid var(--line);
-  align-items:start;
-}
 
-/* left stack (photo + text) */
-.profileMini{
-  display:flex;
-  gap
 </style>
 </head>
 
@@ -390,7 +377,26 @@
     <div class="board">
 
       <!-- Top header -->
-     
+     <div class="top">
+        <div class="photo">
+          <img src="profile.jpg" alt="Jessima Lynton" />
+        </div>
+
+        <p class="summary">
+          Product Owner with experience leading cross-functional delivery from requirements through release. Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving execution in Agile environments while partnering closely with UX and engineering to deliver clean, user-friendly solutions.
+        </p>
+
+        <div class="who">
+          <h1 class="name">Jessima Lynton</h1>
+          <div class="title">Product Manager / Analyst</div>
+
+          <div class="metaPills">
+            <span class="pill">Currently employed</span>
+            <span class="pill">Remote / Hybrid preferred</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Content (4 boxes) -->
       <div class="grid">
 <!-- Top header (compact left profile + 3-line summary) -->
@@ -705,6 +711,7 @@
 </script>
 </body>
 </html>
+
 
 
 
