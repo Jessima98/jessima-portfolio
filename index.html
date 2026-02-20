@@ -28,11 +28,13 @@
     color: var(--text);
   }
 
+  /* Page shell */
   .wrap{
-    max-width: 980px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 22px 16px 90px;
   }
+
   .board{
     border:1px solid var(--line);
     border-radius: var(--radius);
@@ -41,204 +43,180 @@
     overflow:hidden;
   }
 
-  /* ===== TOP HEADER (fixed layout) ===== */
-.top{
-  display:grid;
-  grid-template-columns: 72px 1fr 260px;
-  gap:22px;
-  padding:22px;
-  border-bottom:1px solid var(--line);
-  align-items:center;   /* ← key fix */
-}
-
-.summary{
-  margin:0;
-  font-size:14px;
-  line-height:1.55;
-  color:#111;
-  max-width:600px;
-}
-
-.who{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;  /* ← change from right */
-  justify-content:center;  /* ← vertically centered */
-}
-
-.name{
-  margin:0;
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:-.02em;
-}
-
-.title{
-  margin:6px 0 0;
-  font-weight:650;
-  font-size:13px;
-  color:var(--muted);
-}
-
-.metaPills{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-  flex-wrap:wrap;
-}
-
-/* Mobile: stack nicely */
-@media (max-width: 820px){
+  /* ===== TOP (photo + summary + name block) ===== */
   .top{
-    grid-template-columns: 72px 1fr;
-    grid-template-areas:
-      "photo who"
-      "summary summary";
+    display:grid;
+    grid-template-columns: 84px 1fr 260px;
+    gap:18px;
+    padding:18px;
+    border-bottom:1px solid var(--line);
+    align-items:center;
   }
-  .photo{ grid-area:photo; }
-  .who{ grid-area:who; text-align:left; }
-  .summaryWrap{ grid-area:summary; }
-  .metaPills{ justify-content:flex-start; }
-}
-/* 2x2 card grid like screenshot */
-.grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:14px;
-  padding:16px;
-}
 
-.card{
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#fff;
-  overflow:hidden;
-}
+  .photo{
+    width:72px;
+    height:72px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#f2f2f2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
 
-.cardHead{
-  padding:12px 14px;
-  border-bottom:1px solid var(--line);
-  font-weight:900;
-  font-size:12px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+  .summary{
+    margin:0;
+    color:#111;
+    font-size:13px;
+    line-height:1.45;
+  }
 
-.cardIcon{
-  width:26px;
-  height:26px;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:var(--card);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-}
+  .who{
+    text-align:right;
+    min-width:0;
+  }
+  .name{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:-.02em;
+    margin:0;
+  }
+  .title{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-weight:650;
+    font-size:13px;
+  }
+  .metaPills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+    justify-content:flex-end;
+  }
+  .pill{
+    font-size:11px;
+    font-weight:750;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background: var(--card);
+    color:#111;
+    white-space:nowrap;
+  }
 
-.cardBody{ padding:12px 14px; }
+  /* ===== GRID ===== */
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:14px;
+    padding:16px;
+    align-items:start; /* prevent stretching */
+  }
 
-/* Experience mini rows */
-.miniRow, .awardRow{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  padding:10px 0;
-  border-bottom:1px solid var(--line);
-}
-.miniRow:last-child, .awardRow:last-child{ border-bottom:none; padding-bottom:2px; }
+  .card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#fff;
+    overflow:hidden;
+  }
 
-.miniIcon{
-  width:28px;
-  height:28px;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:var(--card);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 auto;
-  font-size:14px;
-}
+  .cardHead{
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+  }
+  .headIcon{
+    width:22px;height:22px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--card);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+  }
 
-.miniText{ min-width:0; }
-.miniTitle{
-  font-weight:900;
-  font-size:13px;
-  margin:0;
-}
-.miniMeta{
-  color:var(--muted);
-  font-weight:650;
-  font-size:11.5px;
-  margin-top:3px;
-}
-.miniOne{
-  margin-top:6px;
-  color:#111;
-  font-size:12px;
-  line-height:1.35;
-}
+  .cardBody{ padding:12px 14px; }
+  .cardBody.tight{ padding:10px 14px; }
 
-/* Other companies line */
-.miniFooter{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px solid var(--line);
-  font-size:12px;
-  color:#111;
-}
+  /* ===== ITEM ROWS (icon + content) ===== */
+  .itemRow{
+    display:grid;
+    grid-template-columns: 34px 1fr;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .itemRow:last-child{ border-bottom:none; padding-bottom:2px; }
 
-/* Skills blocks */
-.skillGroup{
-  padding:10px 0;
-  border-bottom:1px solid var(--line);
-}
-.skillGroup:last-child{ border-bottom:none; padding-bottom:2px; }
+  .iIcon{
+    width:30px;height:30px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--card);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;
+    line-height:1;
+  }
 
-.skillHead{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-weight:900;
-  font-size:12.5px;
-}
-.sIcon{
-  width:22px;
-  height:22px;
-  border-radius:9px;
-  border:1px solid var(--line);
-  background:var(--card);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-}
-.skillLine{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.35;
-}
+  .itemTitle{
+    margin:0;
+    font-weight:900;
+    font-size:13px;
+  }
+  .itemMeta{
+    margin:4px 0 0;
+    color:var(--muted);
+    font-weight:650;
+    font-size:12px;
+  }
+  .itemDesc{
+    margin:6px 0 0;
+    color:#222;
+    font-size:12px;
+    line-height:1.35;
+  }
 
-/* Links in contact */
-.link{
-  color:#111;
-  text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,.18);
-}
-.link:hover{ border-bottom-color:#000; }
+  /* ===== TAG PILLS ===== */
+  .pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:8px;
+  }
+  .pillTag{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:999px;
+    padding:6px 10px;
+    font-size:11px;
+    font-weight:800;
+    color:#111;
+    white-space:nowrap;
+  }
 
-/* Responsive */
-@media (max-width: 880px){
-  .grid{ grid-template-columns:1fr; }
-}
+  /* Contact links */
+  .contactLink{
+    color:#111;
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,.15);
+  }
+  .contactLink:hover{ border-bottom-color:#000; }
 
-
-  /* Ask button */
+  /* ===== ASK BUTTON ===== */
   .askBtn{
     position:fixed;
     right:16px;
@@ -268,25 +246,25 @@
   }
   .askText{ font-size:13px; letter-spacing:.01em; }
 
-  /* AI popup */
+  /* ===== AI POPUP (black/white theme, differentiated from page) ===== */
   .ai-popup{
     position:fixed;
     right:16px;
     bottom:74px;
-    width: 380px;
+    width: 390px;
     max-width: calc(100vw - 32px);
-    background:#fff;
-    border:1px solid var(--line);
+    background:#0f0f0f;
+    border:1px solid rgba(255,255,255,.14);
     border-radius:18px;
-    box-shadow: 0 26px 70px rgba(0,0,0,.18);
+    box-shadow: 0 26px 70px rgba(0,0,0,.30);
     display:none;
     overflow:hidden;
     z-index:10000;
   }
   .ai-header{
     padding:12px 14px;
-    border-bottom:1px solid var(--line);
-    background:#111;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    background:#161616;
     color:#fff;
     display:flex;
     align-items:center;
@@ -299,12 +277,14 @@
     font-size:18px;
     line-height:1;
     opacity:.9;
+    user-select:none;
   }
+
   .ai-chat{
     padding:12px;
-    max-height: 250px;
+    max-height: 260px;
     overflow:auto;
-    background:#fff;
+    background:#0f0f0f;
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -313,34 +293,34 @@
   .ai-msg, .ai-user{
     padding:10px 12px;
     border-radius:14px;
-    border:1px solid var(--line);
-    max-width: 88%;
+    max-width: 90%;
     line-height:1.35;
   }
   .ai-msg{
-    background: var(--card);
-    color:#111;
+    background:#1a1a1a;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.10);
     align-self:flex-start;
   }
   .ai-user{
-    background:#111;
-    color:#fff;
-    border-color:#111;
+    background:#ffffff;
+    color:#111;
+    border:1px solid rgba(255,255,255,.10);
     align-self:flex-end;
   }
 
   .ai-suggestions{
     padding:10px 12px;
-    border-top:1px solid var(--line);
+    border-top:1px solid rgba(255,255,255,.12);
     display:flex;
     flex-wrap:wrap;
     gap:8px;
-    background:#fff;
+    background:#0f0f0f;
   }
   .ai-suggestions button{
-    border:1px solid var(--line);
-    background: var(--card);
-    color:#111;
+    border:1px solid rgba(255,255,255,.18);
+    background:#1a1a1a;
+    color:#fff;
     padding:7px 10px;
     border-radius:999px;
     font-size:11px;
@@ -348,28 +328,33 @@
     cursor:pointer;
     transition:.15s ease;
   }
-  .ai-suggestions button:hover{ background:#f0f0f0; }
+  .ai-suggestions button:hover{
+    background:#232323;
+  }
 
   .ai-inputRow{
     display:flex;
     gap:8px;
     padding:12px;
-    border-top:1px solid var(--line);
-    background:#fff;
+    border-top:1px solid rgba(255,255,255,.12);
+    background:#0f0f0f;
   }
   .ai-input{
     flex:1;
-    border:1px solid var(--line);
+    border:1px solid rgba(255,255,255,.16);
     border-radius:12px;
     padding:10px 10px;
     font-size:12px;
     outline:none;
-    background:#fff;
+    background:#141414;
+    color:#fff;
   }
+  .ai-input::placeholder{ color:rgba(255,255,255,.6); }
+
   .ai-send{
     border:none;
-    background:#111;
-    color:#fff;
+    background:#ffffff;
+    color:#111;
     font-weight:900;
     padding:10px 12px;
     border-radius:12px;
@@ -377,10 +362,9 @@
     font-size:12px;
   }
 
-  @media (max-width: 880px){
-    .top{ grid-template-columns: 72px 1fr; }
-    .right{ grid-column: 1 / -1; align-items:flex-start; }
-    .name,.title{ text-align:left; }
+  @media (max-width: 900px){
+    .top{ grid-template-columns:84px 1fr; }
+    .who{ text-align:left; }
     .metaPills{ justify-content:flex-start; }
     .grid{ grid-template-columns:1fr; }
   }
@@ -392,276 +376,316 @@
     <div class="board">
 
       <!-- Top header -->
-
-<div class="top">
-  <div class="photo">
-    <img src="profile.jpg" alt="Jessima Lynton" />
-  </div>
-
-  <div class="summaryWrap">
-    <p class="summary">
-      Product Owner with experience leading cross-functional delivery from requirements through release.
-      Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving
-      execution in Agile environments while partnering closely with UX and engineering to deliver clean,
-      user-friendly solutions.
-    </p>
-  </div>
-
-  <div class="who">
-    <h1 class="name">Jessima Lynton</h1>
-    <div class="title">Product Manager / Analyst</div>
-  </div>
-</div>
-
-     <div class="grid">
-
-  <!-- EXPERIENCE (2 recent + other companies) -->
-  <section class="card">
-    <div class="cardHead">
-      <span class="cardIcon">💼</span>
-      Experience
-    </div>
-
-    <div class="cardBody">
-
-      <div class="miniRow">
-        <div class="miniIcon">🏢</div>
-        <div class="miniText">
-          <div class="miniTitle">Product Manager — Verisk</div>
-          <div class="miniMeta">Most recent</div>
-          <div class="miniOne">Led cross-functional delivery from requirements through release, partnering with UX and engineering.</div>
-        </div>
-      </div>
-
-      <div class="miniRow">
-        <div class="miniIcon">🏦</div>
-        <div class="miniText">
-          <div class="miniTitle">Product Analyst II — LPL Financial</div>
-          <div class="miniMeta">Previous</div>
-          <div class="miniOne">Drove Agile execution, story clarity, testing/UAT coordination, and release readiness.</div>
-        </div>
-      </div>
-
-      <div class="miniFooter">
-        <span class="miniMeta">Other:</span> Truist • SunTrust • Capital One
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="card">
-    <div class="cardHead">
-      <span class="cardIcon">🛠️</span>
-      Skills
-    </div>
-
-    <div class="cardBody">
-
-      <div class="skillGroup">
-        <div class="skillHead"><span class="sIcon">⌨️</span> Technical Languages</div>
-        <div class="skillLine">HTML, XML, SQL, JSON</div>
-      </div>
-
-      <div class="skillGroup">
-        <div class="skillHead"><span class="sIcon">🧾</span> Microsoft Suite</div>
-        <div class="skillLine">Visio, Project, Word, PowerPoint, Excel, Outlook, SharePoint</div>
-      </div>
-
-      <div class="skillGroup">
-        <div class="skillHead"><span class="sIcon">🧩</span> Tools & Software</div>
-        <div class="skillLine">VersionOne, JIRA, Confluence, Postman</div>
-      </div>
-
-      <div class="skillGroup">
-        <div class="skillHead"><span class="sIcon">🗄️</span> Databases</div>
-        <div class="skillLine">Oracle, SQL Server, MySQL, MongoDB</div>
-      </div>
-
-      <div class="skillGroup" style="margin-bottom:0;">
-        <div class="skillHead"><span class="sIcon">🧱</span> Content Management System</div>
-        <div class="skillLine">Sitecore</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- AWARDS -->
-  <section class="card">
-    <div class="cardHead">
-      <span class="cardIcon">🏆</span>
-      Awards
-    </div>
-
-    <div class="cardBody">
-      <div class="awardRow">
-        <div class="miniIcon">⭐</div>
-        <div class="miniText">
-          <div class="miniTitle">Performance Recognition & Monetary Award</div>
-          <div class="miniOne">Recognized for stabilizing production issues through root-cause analysis and fast, practical fixes.</div>
-        </div>
-      </div>
-
-      <div class="awardRow">
-        <div class="miniIcon">⚡</div>
-        <div class="miniText">
-          <div class="miniTitle">Operational Excellence Recognition</div>
-          <div class="miniOne">Recognized for proactive coordination to resolve critical issues before customer impact.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="card">
-    <div class="cardHead">
-      <span class="cardIcon">📬</span>
-      Contact
-    </div>
-
-    <div class="cardBody">
-      <div class="contactMini">
-        <div class="miniRow" style="margin-bottom:10px;">
-          <div class="miniIcon">✉️</div>
-          <div class="miniText">
-            <div class="miniTitle">Email</div>
-            <div class="miniOne"><a class="link" href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></div>
-          </div>
+      <div class="top">
+        <div class="photo">
+          <img src="profile.jpg" alt="Jessima Lynton" />
         </div>
 
-        <div class="miniRow" style="margin-bottom:10px;">
-          <div class="miniIcon">📞</div>
-          <div class="miniText">
-            <div class="miniTitle">Mobile</div>
-            <div class="miniOne"><a class="link" href="tel:+12406186352">240-618-6352</a></div>
-          </div>
-        </div>
+        <p class="summary">
+          Product Owner with experience leading cross-functional delivery from requirements through release. Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving execution in Agile environments while partnering closely with UX and engineering to deliver clean, user-friendly solutions.
+        </p>
 
-        <div class="miniRow" style="margin-bottom:0;">
-          <div class="miniIcon">📍</div>
-          <div class="miniText">
-            <div class="miniTitle">Location</div>
-            <div class="miniOne">Haymarket, VA</div>
+        <div class="who">
+          <h1 class="name">Jessima Lynton</h1>
+          <div class="title">Product Manager / Analyst</div>
+
+          <div class="metaPills">
+            <span class="pill">Currently employed</span>
+            <span class="pill">Remote / Hybrid preferred</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-</div>
+      <!-- Content (4 boxes) -->
+      <div class="grid">
+
+        <!-- Experience -->
+        <section class="card">
+          <div class="cardHead"><span class="headIcon">💼</span>Experience</div>
+          <div class="cardBody tight" id="experience">
+
+            <div class="itemRow">
+              <div class="iIcon">💼</div>
+              <div>
+                <p class="itemTitle">Product Manager — Verisk</p>
+                <p class="itemMeta">2023–Present • Most recent</p>
+                <p class="itemDesc">Led cross-functional delivery from requirements through release, partnering with UX and engineering.</p>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">📊</div>
+              <div>
+                <p class="itemTitle">Product Analyst II — LPL Financial</p>
+                <p class="itemMeta">2022–2023 • Previous</p>
+                <p class="itemDesc">Drove Agile execution, story clarity, testing/UAT coordination, and release readiness.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:10px; font-size:12px; color:#333;">
+              <strong>Other:</strong> Truist • SunTrust • Capital One
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="card">
+          <div class="cardHead"><span class="headIcon">🛠</span>Skills</div>
+          <div class="cardBody tight">
+
+            <div class="itemRow">
+              <div class="iIcon">💻</div>
+              <div>
+                <p class="itemTitle">Technical Languages + Databases</p>
+                <div class="pills">
+                  <span class="pillTag">HTML</span>
+                  <span class="pillTag">XML</span>
+                  <span class="pillTag">SQL</span>
+                  <span class="pillTag">JSON</span>
+                  <span class="pillTag">Oracle</span>
+                  <span class="pillTag">SQL Server</span>
+                  <span class="pillTag">MySQL</span>
+                  <span class="pillTag">MongoDB</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">🧰</div>
+              <div>
+                <p class="itemTitle">Tools & Software</p>
+                <div class="pills">
+                  <span class="pillTag">VersionOne</span>
+                  <span class="pillTag">JIRA</span>
+                  <span class="pillTag">Confluence</span>
+                  <span class="pillTag">Postman</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">📎</div>
+              <div>
+                <p class="itemTitle">Microsoft Suite</p>
+                <div class="pills">
+                  <span class="pillTag">Visio</span>
+                  <span class="pillTag">Project</span>
+                  <span class="pillTag">Word</span>
+                  <span class="pillTag">PowerPoint</span>
+                  <span class="pillTag">Excel</span>
+                  <span class="pillTag">Outlook</span>
+                  <span class="pillTag">SharePoint</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">🧩</div>
+              <div>
+                <p class="itemTitle">Content Management System</p>
+                <div class="pills">
+                  <span class="pillTag">Sitecore</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Awards -->
+        <section class="card">
+          <div class="cardHead"><span class="headIcon">🏆</span>Awards</div>
+          <div class="cardBody tight">
+
+            <div class="itemRow">
+              <div class="iIcon">🏆</div>
+              <div>
+                <p class="itemTitle">Performance Recognition & Monetary Award</p>
+                <p class="itemDesc">Recognized for stabilizing production issues through root-cause analysis and fast, practical fixes.</p>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">⭐</div>
+              <div>
+                <p class="itemTitle">Operational Excellence Recognition</p>
+                <p class="itemDesc">Recognized for proactive coordination to resolve critical issues before customer impact.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="card">
+          <div class="cardHead"><span class="headIcon">📬</span>Contact</div>
+          <div class="cardBody tight">
+
+            <div class="itemRow">
+              <div class="iIcon">✉️</div>
+              <div>
+                <p class="itemTitle">Email</p>
+                <p class="itemMeta"><a class="contactLink" href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></p>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">📞</div>
+              <div>
+                <p class="itemTitle">Mobile</p>
+                <p class="itemMeta"><a class="contactLink" href="tel:+12406186352">240-618-6352</a></p>
+              </div>
+            </div>
+
+            <div class="itemRow">
+              <div class="iIcon">📍</div>
+              <div>
+                <p class="itemTitle">Location</p>
+                <p class="itemMeta">Haymarket, VA</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Ask Button -->
-  <button class="askBtn" id="askBtn" type="button" title="Ask About Jessima">
-    <span class="askIcon">?</span>
+  <button class="askBtn" type="button" onclick="toggleAI()" title="Ask About Jessima">
+    <span class="askIcon">🤖</span>
     <span class="askText">Ask about Jessima</span>
   </button>
 
   <!-- AI Popup -->
   <div class="ai-popup" id="aiBox" aria-hidden="true">
     <div class="ai-header">
-      Ask about Jessima
-      <span class="ai-close" id="aiClose">×</span>
+      Jessima AI
+      <span class="ai-close" onclick="toggleAI()" title="Close">×</span>
     </div>
 
     <div class="ai-chat" id="chatArea">
       <div class="ai-msg">
-        Hi 👋 Ask a quick question (ex: “experience”, “skills”, “UAT”, “CMS”) or tap a button below.
+        Hi 👋 Ask a quick question using keywords like <b>Product</b>, <b>Agile</b>, <b>Skills</b>, <b>Work years</b>, <b>Awards</b>, <b>Domains</b>, <b>CMS</b>, <b>UAT</b>, <b>Requirement gathering</b>, <b>Status</b>, or <b>Availability</b>.
       </div>
     </div>
 
     <div class="ai-suggestions">
-      <button type="button" onclick="askAI('Experience')">Experience</button>
+      <button type="button" onclick="askAI('Product')">Product</button>
+      <button type="button" onclick="askAI('Agile')">Agile</button>
       <button type="button" onclick="askAI('Skills')">Skills</button>
-      <button type="button" onclick="askAI('UAT')">UAT / Testing</button>
+      <button type="button" onclick="askAI('UAT')">UAT</button>
       <button type="button" onclick="askAI('CMS')">CMS</button>
-      <button type="button" onclick="askAI('Contact')">Contact</button>
+      <button type="button" onclick="askAI('Awards')">Awards</button>
+      <button type="button" onclick="askAI('Domains')">Domains</button>
+      <button type="button" onclick="askAI('Work years')">Work years</button>
+      <button type="button" onclick="askAI('Requirement gathering')">Requirement gathering</button>
+      <button type="button" onclick="askAI('Status')">US work status?</button>
       <button type="button" onclick="askAI('Availability')">Availability</button>
+      <button type="button" onclick="askAI('Contact')">Contact</button>
     </div>
 
     <div class="ai-inputRow">
-      <input id="aiInput" class="ai-input" placeholder="Type a question…" />
-      <button class="ai-send" id="aiSend" type="button">Send</button>
+      <input id="aiInput" class="ai-input" placeholder="Type a keyword… (ex: UAT, CMS, Agile)" />
+      <button class="ai-send" type="button" onclick="sendTyped()">Send</button>
     </div>
   </div>
 
 <script>
-  // Toggle chat safely (no inline onclick dependency)
-  const aiBox = document.getElementById("aiBox");
-  const askBtn = document.getElementById("askBtn");
-  const aiClose = document.getElementById("aiClose");
-  const aiInput = document.getElementById("aiInput");
-  const aiSend = document.getElementById("aiSend");
-
+  // ===== AI + chat logic (fully working) =====
   function toggleAI(){
-    const isOpen = aiBox.style.display === "block";
-    aiBox.style.display = isOpen ? "none" : "block";
-    aiBox.setAttribute("aria-hidden", isOpen ? "true" : "false");
-    if (!isOpen) setTimeout(() => aiInput && aiInput.focus(), 80);
+    const box = document.getElementById("aiBox");
+    const isOpen = box.style.display === "block";
+    box.style.display = isOpen ? "none" : "block";
+    box.setAttribute("aria-hidden", isOpen ? "true" : "false");
+    if (!isOpen) setTimeout(() => document.getElementById("aiInput")?.focus(), 80);
   }
-
-  askBtn.addEventListener("click", toggleAI);
-  aiClose.addEventListener("click", toggleAI);
 
   function appendMsg(type, text){
     const chat = document.getElementById("chatArea");
     const div = document.createElement("div");
-    div.className = type; // ai-user or ai-msg
-    div.textContent = text;
+    div.className = type; // "ai-user" or "ai-msg"
+    div.textContent = text; // safe text (no HTML injection)
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
   }
 
   function normalize(s){ return (s || "").toLowerCase().trim(); }
-  function has(q, word){ return q.includes(word); }
 
   function getAnswer(raw){
     const q = normalize(raw);
+    const has = (w) => q.includes(w);
 
-    if (has(q,"experience") || has(q,"work") || has(q,"roles")) {
-      return "Jessima has experience as a Product Manager at Verisk and as a Product Analyst II at LPL Financial, with additional experience across Truist, SunTrust, and Capital One.";
+    // Keyword routes
+    if (has("product")) {
+      return "Jessima delivers products end-to-end — aligning stakeholders, translating needs into clear scope, and driving execution through release and stabilization.";
     }
-    if (has(q,"skills") || has(q,"tools")) {
-      return "Core strengths: stakeholder alignment, requirements clarity, Agile delivery, UAT/testing coordination, and partnering with UX/engineering. Tools: Jira, Confluence, APIs, and CMS workflows.";
+    if (has("agile") || has("safe") || has("scrum")) {
+      return "Strong in Agile/SAFe: backlog grooming, sprint planning, PI prep, story clarity, demos, and UAT coordination with cross-functional teams.";
     }
-    if (has(q,"uat") || has(q,"testing") || has(q,"qa")) {
-      return "Jessima supports UAT/testing by defining acceptance criteria, coordinating validation, and ensuring releases are ready and stable.";
+    if (has("skills") || has("tools")) {
+      return "Strengths include stakeholder alignment, requirements clarity, Agile delivery, UAT/testing oversight, and technical collaboration. Tools: JIRA, Confluence, Postman, Sitecore, Microsoft Suite.";
     }
-    if (has(q,"cms")) {
-      return "Hands-on CMS experience supporting content workflows and helping drive fixes/mitigations when issues occur.";
+    if (has("year") || has("years") || has("experience") || (has("work") && !has("work status"))) {
+      return "6+ years of experience across insurance and financial services, currently employed, open to remote/hybrid roles.";
     }
-    if (has(q,"availability") || has(q,"available") || has(q,"interview")) {
-      return "Currently employed and open to the right opportunity. Remote/hybrid preferred. Available for interviews on weekdays with at least 3 business days’ notice.";
+    if (has("award")) {
+      return "Received performance recognition with a monetary award for stabilizing production issues via root-cause analysis and practical fixes, plus recognition for proactive coordination before customer impact.";
     }
-    if (has(q,"contact") || has(q,"email") || has(q,"phone")) {
-      return "Email: jessiyoung321@gmail.com • Mobile: 240-618-6352";
+    if (has("domain") || has("domains") || has("industry") || has("industries")) {
+      return "Primary domain experience: Insurance + Financial Services. Open to Medical and other regulated industries.";
+    }
+    if (has("cms") || has("sitecore")) {
+      return "Hands-on CMS experience (Sitecore): supporting content workflows, enabling updates, and coordinating quick mitigations during production issues.";
+    }
+    if (has("uat") || has("testing") || has("test") || has("qa")) {
+      return "Strong in UAT/testing: defining acceptance criteria, coordinating test cycles, validating readiness, and ensuring releases meet expectations.";
+    }
+    if (has("requirement") || has("requirements") || has("gathering") || has("stakeholder")) {
+      return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
+    }
+    if (has("status") || has("work status") || has("authorization") || has("immigration")) {
+      return "U.S. Citizen (no sponsorship required).";
+    }
+    if (has("availability") || has("interview")) {
+      return "Available for weekday interviews with at least 3 business days’ notice.";
+    }
+    if (has("contact") || has("email") || has("phone")) {
+      return "Preferred contact: email first, then phone if needed.";
     }
 
-    return "Try: Experience, Skills, UAT, CMS, Contact, or Availability.";
+    return "Try one of these keywords: Product, Agile, Skills, Work years, Awards, Domains, CMS, UAT, Requirement gathering, Status, Availability, Contact.";
   }
 
   function askAI(raw){
     appendMsg("ai-user", raw);
     const answer = getAnswer(raw);
-    setTimeout(() => appendMsg("ai-msg", answer), 120);
+    setTimeout(() => appendMsg("ai-msg", answer), 140);
   }
 
   function sendTyped(){
-    const val = (aiInput.value || "").trim();
-    if (!val) return;
-    aiInput.value = "";
+    const input = document.getElementById("aiInput");
+    const val = input.value;
+    if (!val.trim()) return;
+    input.value = "";
     askAI(val);
   }
 
-  aiSend.addEventListener("click", sendTyped);
-  aiInput.addEventListener("keydown", function(e){
-    if (e.key === "Enter") {
-      e.preventDefault();
-      sendTyped();
+  document.addEventListener("keydown", function(e){
+    const box = document.getElementById("aiBox");
+    if (box.style.display === "block" && e.key === "Enter") {
+      const active = document.activeElement;
+      if (active && active.id === "aiInput") {
+        e.preventDefault();
+        sendTyped();
+      }
+    }
+    if (box.style.display === "block" && e.key === "Escape") {
+      toggleAI();
     }
   });
 </script>
 </body>
 </html>
-
-
-
