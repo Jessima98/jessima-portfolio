@@ -42,82 +42,92 @@
   }
 
   /* ===== TOP HEADER (fixed layout) ===== */
+  /* Header row (FIXED) */
+.top{
+  display:grid;
+  grid-template-columns: 72px 1fr 260px; /* photo | summary | who */
+  gap:18px;
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  align-items:start;
+}
+
+.photo{
+  width:72px;
+  height:72px;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#f2f2f2;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+
+.summaryWrap{ min-width:0; }
+.summary{
+  margin:0;
+  font-size:13px;
+  line-height:1.45;
+  color:#111;
+}
+
+.who{
+  text-align:right;
+  min-width:0;
+}
+
+.name{
+  margin:0;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.02em;
+}
+
+.title{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-weight:650;
+  font-size:13px;
+}
+
+.metaPills{
+  display:flex;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.pill{
+  font-size:11px;
+  font-weight:750;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: var(--card);
+  color:#111;
+  white-space:nowrap;
+}
+
+/* Mobile: stack nicely */
+@media (max-width: 820px){
   .top{
-    display:grid;
-    grid-template-columns: 80px 1fr 220px;
-    gap:18px;
-    padding:18px;
-    border-bottom:1px solid var(--line);
-    align-items:start;
+    grid-template-columns: 72px 1fr;
+    grid-template-areas:
+      "photo who"
+      "summary summary";
   }
-
-  .photo{
-    width:72px;
-    height:72px;
-    border-radius:14px;
-    overflow:hidden;
-    border:1px solid var(--line);
-    background:#f2f2f2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-
-  .center{
-    min-width:0;
-  }
-
-  .summary{
-    margin:0;
-    color:#111;
-    font-size:13px;
-    line-height:1.45;
-    max-width: 620px;
-  }
-
-  .right{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:10px;
-  }
-  .name{
-    margin:0;
-    font-size:22px;
-    font-weight:900;
-    letter-spacing:-.02em;
-    text-align:right;
-  }
-  .title{
-    margin:0;
-    color:var(--muted);
-    font-weight:700;
-    font-size:13px;
-    text-align:right;
-  }
-
-  .metaPills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    justify-content:flex-end;
-  }
-  .pill{
-    font-size:11px;
-    font-weight:750;
-    padding:6px 10px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background: var(--card);
-    color:#111;
-    white-space:nowrap;
-  }
+  .photo{ grid-area:photo; }
+  .who{ grid-area:who; text-align:left; }
+  .summaryWrap{ grid-area:summary; }
+  .metaPills{ justify-content:flex-start; }
+}
 
   /* ===== 4 BOX GRID ===== */
   .grid{
@@ -388,26 +398,26 @@
     <div class="board">
 
       <!-- Top header -->
-      <div class="top">
-        <div class="photo">
-          <img src="profile.jpg" alt="Jessima Lynton" />
-        </div>
+      <!-- Top header -->
+<div class="top">
+  <div class="photo">
+    <img src="profile.jpg" alt="Jessima Lynton" />
+  </div>
 
-        <div class="center">
-          <p class="summary">
-            Product Owner with experience leading cross-functional delivery from requirements through release. Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving execution in Agile environments while partnering closely with UX and engineering to deliver clean, user-friendly solutions.
-          </p>
-        </div>
+  <div class="summaryWrap">
+    <p class="summary">
+      Product Owner with experience leading cross-functional delivery from requirements through release.
+      Strong in stakeholder alignment, translating complex needs into clear, actionable scope, and driving
+      execution in Agile environments while partnering closely with UX and engineering to deliver clean,
+      user-friendly solutions.
+    </p>
+  </div>
 
-        <div class="right">
-          <h1 class="name">Jessima Lynton</h1>
-          <div class="title">Product Manager / Analyst</div>
-          <div class="metaPills">
-            <span class="pill">Currently employed</span>
-            <span class="pill">Remote / Hybrid preferred</span>
-          </div>
-        </div>
-      </div>
+  <div class="who">
+    <h1 class="name">Jessima Lynton</h1>
+    <div class="title">Product Manager / Analyst</div>
+  </div>
+</div>
 
       <!-- 4 boxes -->
       <div class="grid">
@@ -614,3 +624,4 @@
 </script>
 </body>
 </html>
+
