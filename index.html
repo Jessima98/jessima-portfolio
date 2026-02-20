@@ -45,14 +45,17 @@
 
   /* ===== TOP (photo + summary + name block) ===== */
   .top{
-    display:grid;
-    grid-template-columns: 84px 1fr 260px;
-    gap:18px;
-    padding:18px;
-    border-bottom:1px solid var(--line);
-    align-items:center;
-  }
+  display:flex;
+  gap:18px;
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  align-items:flex-start;
+}
 
+.topContent{
+  flex:1;
+  width:100%;
+}
   .photo{
     width:72px;
     height:72px;
@@ -72,9 +75,11 @@
   }
 
 .summary{
-  white-space: normal;
-  max-width: 720px;  /* adjust 650–800 */
-  line-height: 1.5;
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+  white-space:normal;
+  max-width:none;   /* IMPORTANT */
 }
   .who{
     text-align:right;
@@ -497,12 +502,11 @@
         <section class="card">
           <div class="cardHead"><span class="headIcon">📬</span>CONTACT</div>
           <div class="cardBody tight">
-
-            <div class="itemRow">
+ <div class="itemRow">
               <div class="iIcon">✉️</div>
               <div>
-                <p class="itemTitle"></p>
-                <p class="itemMeta">Email<a class="contactLink" href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></p>
+                <p class="itemTitle">Email</p>
+                <p class="itemMeta"><a class="contactLink" href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></p>
               </div>
             </div>
  <div class="itemRow">
@@ -663,6 +667,7 @@
 </script>
 </body>
 </html>
+
 
 
 
