@@ -3,668 +3,587 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Jessima Lynton | Product Manager / Product Owner</title>
+<title>Jessima Lynton | Product Manager / Analyst</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#1e1b2e;
-  --card:#2a2540;
-  --border:#443c6b;
-  --accent1:#7c3aed;
-  --accent2:#9333ea;
-  --text:#f3f4f6;
-  --muted:#cbd5e1;
-  --muted2:#aab6cf;
-  --shadow:0 18px 45px rgba(0,0,0,.45);
-  --radius:14px;
-}
+  :root{
+    --bg:#ffffff;
+    --text:#0b0b0b;
+    --muted:#555;
+    --line:#e6e6e6;
+    --card:#fafafa;
+    --shadow: 0 16px 40px rgba(0,0,0,.08);
+    --radius: 18px;
+  }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
 
-body{
-  margin:0;
-  font-family:Inter, sans-serif;
-  background:
-    radial-gradient(900px 600px at 10% 0%, rgba(139,92,246,.50), transparent 65%),
-    radial-gradient(900px 600px at 95% 10%, rgba(168,85,247,.40), transparent 65%),
-    radial-gradient(900px 600px at 60% 110%, rgba(79,70,229,.30), transparent 60%),
-    var(--bg);
-  color:var(--text);
-}
+  /* Page shell */
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 22px 16px 90px;
+  }
 
-/* Single-view layout helpers */
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:14px 14px 0;
-  min-height:100vh;
-  display:flex;
-  align-items:stretch;
-}
-.board{
-  width:100%;
-  border:2px solid var(--border);
-  background:rgba(30,27,46,.88);
-  box-shadow:var(--shadow);
-  border-radius:var(--radius);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-}
+  .board{
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
 
-/* Top strip */
-.topbar{
-  padding:10px 14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.brand .name{
-  font-weight:900;
-  letter-spacing:-0.02em;
-  font-size:16px;
-}
-.brand .headline{
-  color:var(--muted);
-  font-weight:650;
-  font-size:12px;
-  margin-top:2px;
-}
-.pref{
-  color:var(--muted);
-  font-weight:700;
-  font-size:12px;
-  white-space:nowrap;
-}
+  /* Header row */
+  .top{
+    display:flex;
+    gap:18px;
+    padding:18px;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
 
-/* Grid (tight) */
-.grid{
-  display:grid;
-  grid-template-columns:1.35fr .95fr;
-  gap:12px;
-  padding:12px;
-  flex:1;
-}
+  .photo{
+    width:72px;
+    height:72px;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#f2f2f2;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
 
-.block{
-  background:rgba(42,37,64,.95);
-  border:2px solid var(--border);
-  border-radius:12px;
-  overflow:hidden;
-}
-.header{
-  padding:8px 12px;
-  border-bottom:2px solid var(--border);
-  font-weight:800;
-  text-transform:uppercase;
-  font-size:10.5px;
-  letter-spacing:.08em;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  color:white;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.body{padding:10px 12px;}
+  .who{
+    min-width:0;
+    flex:1 1 auto;
+  }
+  .name{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:-.02em;
+    margin:0;
+  }
+  .title{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-weight:650;
+    font-size:13px;
+  }
 
-/* Experience */
-.expItem{padding:6px 0 8px;border-bottom:1px solid rgba(255,255,255,.10);}
-.expItem:last-child{border-bottom:none;padding-bottom:0;}
-.expTitle{font-weight:800;font-size:13px;}
-.expMeta{color:var(--muted2);font-weight:600;font-size:11.5px;margin-top:2px;}
-.expList{
-  margin:6px 0 0 16px;
-  padding:0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.4;
-}
-.expList li{margin:4px 0;}
+  .metaPills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+  .pill{
+    font-size:11px;
+    font-weight:750;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background: var(--card);
+    color:#111;
+    white-space:nowrap;
+  }
 
-/* ✅ PROFILE CARD FIX (smaller, no huge empty space) */
-.profileCard .body{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:12px;
-}
-.photoFrame{
-  width:170px;
-  height:170px;
-  border-radius:18px;
-  border:2px solid var(--border);
-  background:#241f3a;
-  box-shadow:0 10px 20px rgba(0,0,0,.4);
-  overflow:hidden;               /* IMPORTANT */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.photoFrame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;              /* IMPORTANT */
-  display:block;
-}
+  /* Two-column content */
+  .grid{
+    display:grid;
+    grid-template-columns: 1.3fr .9fr;
+    gap:14px;
+    padding:16px;
+  }
 
-/* About */
-.aboutName{font-size:18px;font-weight:900;margin:0;}
-.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-.badge{
-  padding:5px 8px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background:#3b345f;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:750;
-}
-.aboutLine{
-  margin-top:8px;
-  color:var(--muted);
-  font-weight:650;
-  font-size:12px;
-  line-height:1.35;
-}
+  .card{
+    border:1px solid var(--line);
+    border-radius:16px;
+    background: #fff;
+    overflow:hidden;
+  }
+  .cardHead{
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    font-weight:900;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background: #fff;
+  }
+  .cardBody{ padding:12px 14px; }
 
-/*  */
-.tags{display:flex;flex-wrap:wrap;gap:8px;}
-.tag{
-  border:1px solid var(--border);
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:700;
-  color:var(--muted);
-  background:#3b345f;
-}
+  /* Experience list */
+  .expItem{
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .expItem:last-child{ border-bottom:none; padding-bottom:2px; }
+  .expRole{
+    font-weight:850;
+    font-size:13px;
+    margin:0;
+  }
+  .expCompany{
+    color:var(--muted);
+    font-weight:650;
+    font-size:12px;
+    margin:4px 0 0;
+  }
+  .expOneLiner{
+    margin:6px 0 0;
+    color:#222;
+    font-size:12px;
+    line-height:1.35;
+  }
 
-/* Contact */
-.contactList{display:grid;gap:8px;}
-.contactRow{
-  display:flex;gap:8px;align-items:center;
-  color:var(--muted);
-  font-weight:650;
-  font-size:12px;
-}
-.contactIcon{
-  width:24px;height:24px;
-  display:inline-flex;align-items:center;justify-content:center;
-  border-radius:8px;
-  background:#3b345f;
-  border:1px solid rgba(255,255,255,.10);
-  font-size:12px;
-}
+  .viewAll{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+    font-size:12px;
+    font-weight:800;
+    color:#111;
+    text-decoration:none;
+  }
+  .viewAll:hover{ text-decoration:underline; }
 
-/* Looking For */
-.lookGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:10px;
-}
-.lookPill{
-  border:1px solid rgba(255,255,255,.12);
-  background:#3b345f;
-  border-radius:12px;
-  padding:10px;
-}
-.lookLabel{
-  font-size:11px;
-  color:#d5dbea;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.lookValue{
-  margin-top:6px;
-  color:var(--muted);
-  font-weight:600;
-  font-size:12px;
-  line-height:1.3;
-}
+  /* Awards */
+  .award{
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .award:last-child{border-bottom:none; padding-bottom:2px;}
+  .awardTitle{
+    margin:0;
+    font-weight:850;
+    font-size:13px;
+  }
+  .awardNote{
+    margin:6px 0 0;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.35;
+  }
 
-/* Footer */
-.footer{
-  padding:10px 14px;
-  text-align:right;
-  font-size:11px;
-  color:#9ca3af;
-  border-top:1px solid rgba(255,255,255,.08);
-}
+  /* Contact */
+  .contactRow{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:12px;
+  }
+  .contactRow:last-child{border-bottom:none; padding-bottom:2px;}
+  .icon{
+    width:26px; height:26px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background: var(--card);
+    display:flex; align-items:center; justify-content:center;
+    flex:0 0 auto;
+    font-size:13px;
+  }
+  .contactText{
+    color:#111;
+    font-weight:650;
+    line-height:1.35;
+  }
+  .contactText a{
+    color:#111;
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,.15);
+  }
+  .contactText a:hover{ border-bottom-color:#000; }
 
-/* Ask button */
-.askBtn{
-  position:fixed;
-  bottom:16px;
-  right:16px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-  color:white;
-  border:none;
-  cursor:pointer;
-  font-weight:850;
-  box-shadow:0 14px 34px rgba(0,0,0,.45);
-  transition:.25s ease;
-  z-index:99;
-}
-.askBtn:hover{transform:translateY(-2px);}
-.askIcon{
-  width:30px;height:30px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.20);
-  border:1px solid rgba(255,255,255,.20);
-  font-size:16px;
-}
-.askText{font-size:13px;}
+  /* Footer */
+  .footer{
+    padding:14px 16px;
+    border-top:1px solid var(--line);
+    color:#777;
+    font-size:11px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+  }
 
-/* ======= AI POPUP (CHAT + INPUT) ======= */
-.ai-popup{
-  position:fixed;
-  bottom:80px;
-  right:16px;
-  width:380px;
-  background:#15122a; /* darker than cards */
-  border:2px solid #6d4cff; 
-  border-radius:20px;
-  box-shadow:
-    0 25px 60px rgba(0,0,0,.65),
-    0 0 0 1px rgba(124,58,237,.4),
-    0 0 25px rgba(124,58,237,.35); /* glow */
-  display:none;
-  overflow:hidden;
-  animation:fadeIn .25s ease;
-  z-index:100;
-}
+  /* Ask button */
+  .askBtn{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    border:none;
+    cursor:pointer;
+    padding:12px 14px;
+    border-radius:999px;
+    background:#111;
+    color:#fff;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.18);
+    transition:.2s ease;
+    z-index:99;
+  }
+  .askBtn:hover{ transform: translateY(-2px); }
+  .askIcon{
+    width:32px; height:32px;
+    border-radius:999px;
+    background:#fff;
+    color:#111;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+  }
+  .askText{ font-size:13px; letter-spacing:.01em; }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(10px);}
-  to{opacity:1; transform:translateY(0);}
-}
-.ai-header{
-  background:linear-gradient(90deg,#6d4cff,#a855f7);
-  padding:14px 16px;
-  font-weight:900;
-  font-size:14px;
-  letter-spacing:.02em;
-}
+  /* AI popup */
+  .ai-popup{
+    position:fixed;
+    right:16px;
+    bottom:74px;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow: 0 26px 70px rgba(0,0,0,.18);
+    display:none;
+    overflow:hidden;
+    z-index:100;
+  }
+  .ai-header{
+    padding:12px 14px;
+    border-bottom:1px solid var(--line);
+    background:#111;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-weight:900;
+    font-size:13px;
+  }
+  .ai-close{
+    cursor:pointer;
+    font-size:18px;
+    line-height:1;
+    opacity:.9;
+  }
+  .ai-chat{
+    padding:12px;
+    max-height: 250px;
+    overflow:auto;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-size:12px;
+  }
+  .ai-msg, .ai-user{
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    max-width: 88%;
+    line-height:1.35;
+  }
+  .ai-msg{
+    background: var(--card);
+    color:#111;
+    align-self:flex-start;
+  }
+  .ai-user{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+    align-self:flex-end;
+  }
 
-.ai-close{
-  cursor:pointer;
-  font-size:18px;
-  line-height:1;
-  opacity:.95;
-}
+  .ai-suggestions{
+    padding:10px 12px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    background:#fff;
+  }
+  .ai-suggestions button{
+    border:1px solid var(--line);
+    background: var(--card);
+    color:#111;
+    padding:7px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s ease;
+  }
+  .ai-suggestions button:hover{
+    background:#f0f0f0;
+  }
 
-.ai-chat{
-  padding:14px;
-  max-height:250px;
-  overflow-y:auto;
-  font-size:12px;
-  background:#1b1733; /* subtle contrast */
-}
+  .ai-inputRow{
+    display:flex;
+    gap:8px;
+    padding:12px;
+    border-top:1px solid var(--line);
+    background:#fff;
+  }
+  .ai-input{
+    flex:1;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px 10px;
+    font-size:12px;
+    outline:none;
+    background:#fff;
+  }
+  .ai-send{
+    border:none;
+    background:#111;
+    color:#fff;
+    font-weight:900;
+    padding:10px 12px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:12px;
+  }
 
-.ai-msg{
-  background:#2d2750;
-  padding:10px 12px;
-  border-radius:16px;
-  color:#e5e7ff;
-  max-width:85%;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.ai-user{
-  background:linear-gradient(135deg,#7c3aed,#9333ea);
-  padding:10px 12px;
-  border-radius:16px;
-  color:white;
-  align-self:flex-end;
-  max-width:85%;
-  box-shadow:0 4px 15px rgba(124,58,237,.4);
-}
-
-.ai-suggestions{
-  padding:10px;
-  border-top:1px solid rgba(255,255,255,.08);
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-.ai-suggestions button{
-  background:#352e5e;
-  border:1px solid rgba(255,255,255,.10);
-  color:white;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:11px;
-  cursor:pointer;
-  transition:.2s;
-}
-.ai-suggestions button:hover{
-  background:#4b3f86;
-}
-
-/* Input row */
-.ai-inputRow{
-  background:#18142e;
-  padding:12px;
-}
-
-.ai-input{
-  flex:1;
-  background:#231f3b;
-  border:1px solid rgba(255,255,255,.12);
-  color:var(--text);
-  border-radius:12px;
-  padding:10px 10px;
-  font-size:12px;
-  outline:none;
-}
-.ai-send{
-  background:linear-gradient(135deg,var(--accent1),var(--accent2));
-  border:none;
-  color:white;
-  font-weight:900;
-  border-radius:12px;
-  padding:10px 12px;
-  cursor:pointer;
-  font-size:12px;
-}
-
-/* Responsive */
-@media(max-width:950px){
-  .wrap{padding:12px}
-  .grid{grid-template-columns:1fr;}
-  .lookGrid{grid-template-columns:1fr;}
-  .ai-popup{width:min(360px, calc(100vw - 32px));}
-}
+  @media (max-width: 880px){
+    .grid{ grid-template-columns:1fr; }
+  }
 </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div class="board">
 
-<div class="wrap">
-  <div class="board">
+      <!-- Top header -->
+      <div class="top">
+        <div class="photo">
+          <!-- Put your photo as profile.jpg in the same folder -->
+          <img src="profile.jpg" alt="Jessima Lynton" />
+        </div>
 
-    <div class="topbar">
-      <div class="brand">
-        <div class="name">Jessima Lynton</div>
-        <div class="headline">Product Manager / Product Owner • 6+ Years Experience • Currently Employed</div>
+        <div class="who">
+          <h1 class="name">Jessima Lynton</h1>
+          <div class="title">Product Manager / Analyst</div>
+
+          <div class="metaPills">
+            <span class="pill">Currently employed</span>
+            <span class="pill">Remote / Hybrid preferred</span>
+          </div>
+        </div>
       </div>
-      <div class="pref">Remote / Hybrid Preferred</div>
-    </div>
 
-    <div class="grid">
-
-      <!-- EXPERIENCE -->
-      <section class="block">
-        <div class="header">💼 Experience</div>
-        <div class="body">
-          <div class="expItem">
-            <div class="expTitle">Verisk Analytics — Product Manager</div>
-            <ul class="expList">
-              <li>Led end-to-end product strategy and delivery for internal platforms from discovery through release.</li>
-              <li>Partnered with UX, engineering, and stakeholders to translate complex concepts into scalable solutions.</li>
-              <li>Resolved production issues via root-cause analysis and CMS-driven mitigations; coordinated permanent fixes with engineering.</li>
-            </ul>
-          </div>
-
-          <div class="expItem">
-            <div class="expTitle">LPL Financial — Product Analyst II</div>
-            <ul class="expList">
-              <li>Drove Agile execution through backlog refinement, sprint planning, and PI preparation with clear acceptance criteria.</li>
-              <li>Conducted API testing and Product Owner reviews to validate readiness.</li>
-              <li>Delivered leadership sprint demos and coordinated UAT prior to releases.</li>
-            </ul>
-          </div>
-
-          <div class="expMeta">Other: Truist • SunTrust • Capital One</div>
-        </div>
-      </section>
-
-      <!-- PROFILE PHOTO (fixed) -->
-      <section class="block profileCard">
-        <div class="header">🖼 Profile</div>
-        <div class="body">
-          <div class="photoFrame">
-            <!-- Rename your uploaded photo to profile.jpg -->
-            <img src="profile.jpg" alt="Jessima Lynton">
-          </div>
-        </div>
-      </section>
-
-      <!-- AWARDS -->
-      <section class="block">
-        <div class="header">🏆 Awards</div>
-        <div class="body">
-          <div style="font-weight:850;font-size:12.5px;margin-bottom:6px;">
-            Performance Recognition & Monetary Award
-          </div>
-          <ul class="expList" style="margin-top:0;">
-            <li>Rewarded for identifying root causes and stabilizing production issues through backend CMS fixes.</li>
-            <li>Rewarded for proactively coordinating with admin/platform teams to resolve critical website link issues before weekday user impact.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section class="block">
-        <div class="header">👤 About Me</div>
-        <div class="body">
-          <h2 class="aboutName">Jessima Lynton</h2>
-          <div class="badges">
-            <span class="badge">Strategic Thinker</span>
-            <span class="badge">Problem Solver</span>
-            <span class="badge">Delivery-Focused</span>
-            <span class="badge">Execution-Driven</span>
-          </div>
-          <div class="aboutLine">
-            Product-focused professional with experience across discovery, delivery, and post-launch support, strong in stakeholder alignment, clear documentation, and execution in Agile/SAFe environments.
-          </div>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section class="block">
-        <div class="header">🛠 Skills & Tools</div>
-        <div class="body">
-          <div class="tags">
-            <span class="tag">CMS</span>
-            <span class="tag">Databases</span>
-            <span class="tag">JIRA</span>
-            <span class="tag">Postman</span>
-            <span class="tag">Microsoft Suite</span>
-            <span class="tag">JSON</span>
-            <span class="tag">HTML</span>
-            <span class="tag">SQL</span>
-            <span class="tag">API</span>
-            <span class="tag">Confluence</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="block">
-        <div class="header">📬 Contact</div>
-        <div class="body">
-          <div class="contactList">
-            <div class="contactRow"><span class="contactIcon">📞</span>240-618-6352</div>
-            <div class="contactRow"><span class="contactIcon">✉️</span>jessiyoung321@gmail.com</div>
-            <div class="contactRow"><span class="contactIcon">📍</span>Haymarket, VA</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- LOOKING FOR -->
-      <section class="block" style="grid-column:1 / -1;">
-        <div class="header">🎯 Looking For</div>
-        <div class="body">
-          <div class="lookGrid">
-            <div class="lookPill">
-              <div class="lookLabel">Roles</div>
-              <div class="lookValue">Product Manager • Product Owner • Analyst</div>
+      <!-- Content -->
+      <div class="grid">
+        <!-- Experience -->
+        <section class="card">
+          <div class="cardHead">Experience</div>
+          <div class="cardBody" id="experience">
+            <div class="expItem">
+              <p class="expRole">Product Manager</p>
+              <p class="expCompany">Verisk</p>
+              <p class="expOneLiner">Leads cross-functional delivery and stakeholder alignment from requirements through release.</p>
             </div>
-            <div class="lookPill">
-              <div class="lookLabel">Domains</div>
-              <div class="lookValue">Insurance • Finance • Medical</div>
+
+            <div class="expItem">
+              <p class="expRole">Product Analyst II</p>
+              <p class="expCompany">LPL Financial</p>
+              <p class="expOneLiner">Supports Agile execution with clear stories, testing/UAT coordination, and release readiness.</p>
             </div>
-            <div class="lookPill">
-              <div class="lookLabel">Start</div>
-              <div class="lookValue">Available in 2 weeks</div>
+
+            <div class="expItem">
+              <p class="expRole">Additional experience</p>
+              <p class="expCompany">Truist • SunTrust • Capital One</p>
+              <p class="expOneLiner">Product and business analysis experience across regulated, customer-facing platforms.</p>
+            </div>
+
+            <a class="viewAll" href="#experience" onclick="alert('Replace this with your resume/LinkedIn link if you want.')">
+              View all →
+            </a>
+          </div>
+        </section>
+
+        <!-- Awards -->
+        <section class="card">
+          <div class="cardHead">Awards</div>
+          <div class="cardBody">
+            <div class="award">
+              <p class="awardTitle">Performance Recognition & Monetary Award</p>
+              <p class="awardNote">Recognized for root-cause analysis and stabilizing production issues with fast, practical fixes.</p>
+            </div>
+            <div class="award">
+              <p class="awardTitle">Operational Excellence Recognition</p>
+              <p class="awardNote">Recognized for proactive coordination to resolve critical issues before customer impact.</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-    </div>
+        <!-- Contact -->
+        <section class="card" style="grid-column: 1 / -1;">
+          <div class="cardHead">Contact</div>
+          <div class="cardBody">
+            <div class="contactRow">
+              <div class="icon">✉️</div>
+              <div class="contactText">
+                <div><strong>Email</strong></div>
+                <div><a href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></div>
+              </div>
+            </div>
 
-    <div class="footer">© <span id="y"></span> Jessima Lynton</div>
-  </div>
-</div>
+            <div class="contactRow">
+              <div class="icon">📞</div>
+              <div class="contactText">
+                <div><strong>Mobile</strong></div>
+                <div><a href="tel:+12406186352">240-618-6352</a></div>
+              </div>
+            </div>
 
-<!-- Ask Button -->
-<button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
-  <span class="askIcon">🤖</span>
-  <span class="askText">Ask About Jessima</span>
-</button>
+            <div class="contactRow">
+              <div class="icon">📍</div>
+              <div class="contactText">
+                <div><strong>Location</strong></div>
+                <div>Haymarket, VA</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-<!-- AI Popup -->
-<div class="ai-popup" id="aiBox">
-  <div class="ai-header">
-    🤖 Jessima AI
-    <span class="ai-close" onclick="toggleAI()">×</span>
-  </div>
-
-  <div class="ai-chat" id="chatArea">
-    <div class="ai-msg">
-      Hi 👋 I’m Jessima’s portfolio assistant.<br>
-      Type a keyword (like “UAT” or “CMS”) or tap a pill below.
+      <!-- Footer -->
+      <div class="footer">
+        <div>© <span id="y"></span> Jessima Lynton</div>
+        <div>Black &amp; white theme • Simple profile</div>
+      </div>
     </div>
   </div>
 
-  <!-- pills -->
-  <div class="ai-suggestions">
-    <button onclick="askAI('Contact')">Contact Method</button>
-    <button onclick="askAI('Availability')">Availability</button>
-    <button onclick="askAI('Status')">US work Status?</button>
-  </div>
+  <!-- Ask Button -->
+  <button class="askBtn" onclick="toggleAI()" title="Ask About Jessima">
+    <span class="askIcon">?</span>
+    <span class="askText">Ask about Jessima</span>
+  </button>
 
-  <!-- input -->
-  <div class="ai-inputRow">
-    <input id="aiInput" class="ai-input" placeholder="Type a keyword… (ex: UAT, CMS, Agile)" />
-    <button class="ai-send" onclick="sendTyped()">Send</button>
+  <!-- AI Popup -->
+  <div class="ai-popup" id="aiBox">
+    <div class="ai-header">
+      Ask about Jessima
+      <span class="ai-close" onclick="toggleAI()">×</span>
+    </div>
+
+    <div class="ai-chat" id="chatArea">
+      <div class="ai-msg">
+        Hi 👋 Ask a quick question (ex: “experience”, “skills”, “UAT”, “CMS”) or tap a button below.
+      </div>
+    </div>
+
+    <div class="ai-suggestions">
+      <button onclick="askAI('Experience')">Experience</button>
+      <button onclick="askAI('Skills')">Skills</button>
+      <button onclick="askAI('UAT')">UAT / Testing</button>
+      <button onclick="askAI('Contact')">Contact</button>
+      <button onclick="askAI('Availability')">Availability</button>
+    </div>
+
+    <div class="ai-inputRow">
+      <input id="aiInput" class="ai-input" placeholder="Type a question…" />
+      <button class="ai-send" onclick="sendTyped()">Send</button>
+    </div>
   </div>
-</div>
 
 <script>
-document.getElementById("y").textContent = new Date().getFullYear();
+  document.getElementById("y").textContent = new Date().getFullYear();
 
-function toggleAI(){
-  const box = document.getElementById("aiBox");
-  box.style.display = (box.style.display === "block") ? "none" : "block";
-  if (box.style.display === "block") {
-    setTimeout(() => document.getElementById("aiInput")?.focus(), 100);
-  }
-}
-
-function appendMsg(type, text){
-  const chat = document.getElementById("chatArea");
-  const div = document.createElement("div");
-  div.className = type;   // "ai-user" or "ai-msg"
-  div.innerHTML = text;
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function normalize(s){
-  return (s || "").toLowerCase().trim();
-}
-
-function getAnswer(raw){
-  const q = normalize(raw);
-
-  // keyword matching
-  const has = (word) => q.includes(word);
-
-  if (has("product")) {
-    return "Jessima delivers products end-to-end — aligning stakeholders, translating needs into clear scope, and driving execution through release and stabilization.";
-  } else if (has("agile") || has("safe") || has("scrum")) {
-    return "Strong in Agile/SAFe: backlog grooming, sprint planning, PI prep, story clarity, demos, and UAT coordination with cross-functional teams.";
-  } else if (has("skills") || has("tools")) {
-    return "Core strengths: product delivery, stakeholder alignment, story/epic writing, documentation, UAT/testing oversight, and technical collaboration (APIs, CMS, data).";
-  } else if (has("year") || has("years") || has("experience") || has("work")) {
-    return "6+ years of experience across insurance and financial services, currently employed, open to remote/hybrid roles.";
-  } else if (has("award") || has("awards")) {
-    return "Received performance recognition with a monetary award for (1) stabilizing production via root-cause analysis and CMS fixes, and (2) coordinating urgent link issue resolution with platform/admin teams before user impact.";
-  } else if (has("domain") || has("domains") || has("industry") || has("industries")) {
-    return "Primary domain experience: Insurance + Financial Services. Open to Medical and other regulated industries.";
-  } else if (has("cms")) {
-    return "Hands-on CMS experience (Sitecore): content enablement, post-launch ownership workflows, and rapid mitigations during production issues.";
-  } else if (has("uat") || has("testing") || has("test")) {
-    return "Strong in UAT/testing: defining acceptance criteria, coordinating UAT, validating readiness, and ensuring releases meet expectations.";
-  } else if (has("requirement") || has("requirements") || has("gathering")) {
-    return "Requirements strength: runs workshops, clarifies scope/dependencies, documents decisions, and converts needs into actionable epics/stories for delivery teams.";
-  }
-  else if (has("status")) {
-    return "U.S Citizen with full work authorization";
-  }
-
-else if (has("availability")) {
-    return "Available for interviews on weekdays with a minimum of 3 days’ notice.";
-  }
-
-  else if (has("contact")) {
-    return "Available via email or phone. Open to connecting for role discussions.";
-  }
-
-
-  return "Curious about Jessima?Try asking about: Product, Agile, Skills, Work years, Awards, Domains, CMS, UAT, Requirement gathering.";
-}
-
-function askAI(raw){
-  // user message
-  appendMsg("ai-user", raw);
-
-  // bot answer
-  const answer = getAnswer(raw);
-  setTimeout(() => appendMsg("ai-msg", answer), 200);
-}
-
-function sendTyped(){
-  const input = document.getElementById("aiInput");
-  const val = input.value;
-  if (!val.trim()) return;
-  input.value = "";
-  askAI(val);
-}
-
-// Enter key to send
-document.addEventListener("keydown", function(e){
-  const box = document.getElementById("aiBox");
-  if (box.style.display === "block" && e.key === "Enter") {
-    const active = document.activeElement;
-    if (active && active.id === "aiInput") {
-      e.preventDefault();
-      sendTyped();
+  function toggleAI(){
+    const box = document.getElementById("aiBox");
+    box.style.display = (box.style.display === "block") ? "none" : "block";
+    if (box.style.display === "block") {
+      setTimeout(() => document.getElementById("aiInput")?.focus(), 80);
     }
   }
-});
-</script>
 
+  function appendMsg(type, text){
+    const chat = document.getElementById("chatArea");
+    const div = document.createElement("div");
+    div.className = type; // ai-user or ai-msg
+    div.innerHTML = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function normalize(s){ return (s || "").toLowerCase().trim(); }
+  function has(q, word){ return q.includes(word); }
+
+  function getAnswer(raw){
+    const q = normalize(raw);
+
+    if (has(q,"experience") || has(q,"work") || has(q,"roles")) {
+      return "Jessima has experience as a Product Manager at Verisk and as a Product Analyst II at LPL Financial, with additional experience across Truist, SunTrust, and Capital One.";
+    }
+    if (has(q,"skills") || has(q,"tools")) {
+      return "Core strengths: stakeholder alignment, requirements clarity, Agile delivery, UAT/testing coordination, and working with UX/engineering. Tools often used: Jira, Confluence, APIs, and CMS workflows.";
+    }
+    if (has(q,"uat") || has(q,"testing") || has(q,"qa")) {
+      return "Jessima supports UAT/testing by defining acceptance criteria, coordinating validation, and ensuring releases are ready and stable.";
+    }
+    if (has(q,"cms")) {
+      return "Hands-on CMS experience supporting content workflows and helping drive fixes/mitigations when issues occur.";
+    }
+    if (has(q,"availability") || has(q,"available")) {
+      return "Currently employed and open to the right opportunity. Remote/hybrid preferred.";
+    }
+    if (has(q,"contact") || has(q,"email") || has(q,"phone")) {
+      return "Email: jessiyoung321@gmail.com • Mobile: 240-618-6352";
+    }
+
+    return "Try: Experience, Skills, UAT, CMS, Contact, or Availability.";
+  }
+
+  function askAI(raw){
+    appendMsg("ai-user", raw);
+    const answer = getAnswer(raw);
+    setTimeout(() => appendMsg("ai-msg", answer), 150);
+  }
+
+  function sendTyped(){
+    const input = document.getElementById("aiInput");
+    const val = input.value;
+    if (!val.trim()) return;
+    input.value = "";
+    askAI(val);
+  }
+
+  document.addEventListener("keydown", function(e){
+    const box = document.getElementById("aiBox");
+    if (box.style.display === "block" && e.key === "Enter") {
+      const active = document.activeElement;
+      if (active && active.id === "aiInput") {
+        e.preventDefault();
+        sendTyped();
+      }
+    }
+  });
+</script>
 </body>
 </html>
-
-
-
-
-
-
