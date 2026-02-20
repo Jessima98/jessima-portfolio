@@ -128,121 +128,143 @@
   .summaryWrap{ grid-area:summary; }
   .metaPills{ justify-content:flex-start; }
 }
+/* 2x2 card grid like screenshot */
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  padding:16px;
+}
 
-  /* ===== 4 BOX GRID ===== */
-  .grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:14px;
-    padding:16px;
-  }
+.card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  overflow:hidden;
+}
 
-  .card{
-    border:1px solid var(--line);
-    border-radius:16px;
-    background: #fff;
-    overflow:hidden;
-  }
-  .cardHead{
-    padding:12px 14px;
-    border-bottom:1px solid var(--line);
-    font-weight:900;
-    font-size:12px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    background:#fff;
-  }
-  .cardBody{ padding:12px 14px; }
+.cardHead{
+  padding:12px 14px;
+  border-bottom:1px solid var(--line);
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 
-  /* Experience list */
-  .expItem{
-    padding:10px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .expItem:last-child{ border-bottom:none; padding-bottom:2px; }
-  .expRole{
-    font-weight:850;
-    font-size:13px;
-    margin:0;
-  }
-  .expCompany{
-    color:var(--muted);
-    font-weight:650;
-    font-size:12px;
-    margin:4px 0 0;
-  }
-  .expOneLiner{
-    margin:6px 0 0;
-    color:#222;
-    font-size:12px;
-    line-height:1.35;
-  }
+.cardIcon{
+  width:26px;
+  height:26px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--card);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+}
 
-  /* Skills */
-  .skills{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .skill{
-    font-size:11px;
-    font-weight:800;
-    padding:7px 10px;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:var(--card);
-    color:#111;
-    white-space:nowrap;
-  }
+.cardBody{ padding:12px 14px; }
 
-  /* Awards */
-  .award{
-    padding:10px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .award:last-child{border-bottom:none; padding-bottom:2px;}
-  .awardTitle{
-    margin:0;
-    font-weight:850;
-    font-size:13px;
-  }
-  .awardNote{
-    margin:6px 0 0;
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.35;
-  }
+/* Experience mini rows */
+.miniRow, .awardRow{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+}
+.miniRow:last-child, .awardRow:last-child{ border-bottom:none; padding-bottom:2px; }
 
-  /* Contact */
-  .contactRow{
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-    padding:10px 0;
-    border-bottom:1px solid var(--line);
-    font-size:12px;
-  }
-  .contactRow:last-child{border-bottom:none; padding-bottom:2px;}
-  .icon{
-    width:26px; height:26px;
-    border-radius:10px;
-    border:1px solid var(--line);
-    background: var(--card);
-    display:flex; align-items:center; justify-content:center;
-    flex:0 0 auto;
-    font-size:13px;
-  }
-  .contactText{
-    color:#111;
-    font-weight:650;
-    line-height:1.35;
-  }
-  .contactText a{
-    color:#111;
-    text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,.15);
-  }
-  .contactText a:hover{ border-bottom-color:#000; }
+.miniIcon{
+  width:28px;
+  height:28px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--card);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  font-size:14px;
+}
+
+.miniText{ min-width:0; }
+.miniTitle{
+  font-weight:900;
+  font-size:13px;
+  margin:0;
+}
+.miniMeta{
+  color:var(--muted);
+  font-weight:650;
+  font-size:11.5px;
+  margin-top:3px;
+}
+.miniOne{
+  margin-top:6px;
+  color:#111;
+  font-size:12px;
+  line-height:1.35;
+}
+
+/* Other companies line */
+.miniFooter{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  font-size:12px;
+  color:#111;
+}
+
+/* Skills blocks */
+.skillGroup{
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+}
+.skillGroup:last-child{ border-bottom:none; padding-bottom:2px; }
+
+.skillHead{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:12.5px;
+}
+.sIcon{
+  width:22px;
+  height:22px;
+  border-radius:9px;
+  border:1px solid var(--line);
+  background:var(--card);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+}
+.skillLine{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+
+/* Links in contact */
+.link{
+  color:#111;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,0,0,.18);
+}
+.link:hover{ border-bottom-color:#000; }
+
+/* Responsive */
+@media (max-width: 880px){
+  .grid{ grid-template-columns:1fr; }
+}
+
 
   /* Ask button */
   .askBtn{
@@ -398,7 +420,7 @@
     <div class="board">
 
       <!-- Top header -->
-      <!-- Top header -->
+
 <div class="top">
   <div class="photo">
     <img src="profile.jpg" alt="Jessima Lynton" />
@@ -419,98 +441,142 @@
   </div>
 </div>
 
-      <!-- 4 boxes -->
-      <div class="grid">
-        <!-- Experience -->
-        <section class="card">
-          <div class="cardHead">Experience</div>
-          <div class="cardBody">
-            <div class="expItem">
-              <p class="expRole">Product Manager</p>
-              <p class="expCompany">Verisk</p>
-              <p class="expOneLiner">Leads cross-functional delivery and stakeholder alignment from requirements through release.</p>
-            </div>
+     <div class="grid">
 
-            <div class="expItem">
-              <p class="expRole">Product Analyst II</p>
-              <p class="expCompany">LPL Financial</p>
-              <p class="expOneLiner">Supports Agile execution with clear stories, testing/UAT coordination, and release readiness.</p>
-            </div>
+  <!-- EXPERIENCE (2 recent + other companies) -->
+  <section class="card">
+    <div class="cardHead">
+      <span class="cardIcon">💼</span>
+      Experience
+    </div>
 
-            <div class="expItem">
-              <p class="expRole">Additional experience</p>
-              <p class="expCompany">Truist • SunTrust • Capital One</p>
-              <p class="expOneLiner">Product and business analysis experience across regulated, customer-facing platforms.</p>
-            </div>
-          </div>
-        </section>
+    <div class="cardBody">
 
-        <!-- Skills -->
-        <section class="card">
-          <div class="cardHead">Skills</div>
-          <div class="cardBody">
-            <div class="skills">
-              <span class="skill">Agile / SAFe</span>
-              <span class="skill">Requirements</span>
-              <span class="skill">Stakeholders</span>
-              <span class="skill">UX/Eng partnership</span>
-              <span class="skill">Jira</span>
-              <span class="skill">Confluence</span>
-              <span class="skill">UAT</span>
-              <span class="skill">CMS</span>
-              <span class="skill">APIs</span>
-            </div>
-          </div>
-        </section>
+      <div class="miniRow">
+        <div class="miniIcon">🏢</div>
+        <div class="miniText">
+          <div class="miniTitle">Product Manager — Verisk</div>
+          <div class="miniMeta">Most recent</div>
+          <div class="miniOne">Led cross-functional delivery from requirements through release, partnering with UX and engineering.</div>
+        </div>
+      </div>
 
-        <!-- Awards -->
-        <section class="card">
-          <div class="cardHead">Awards</div>
-          <div class="cardBody">
-            <div class="award">
-              <p class="awardTitle">Performance Recognition & Monetary Award</p>
-              <p class="awardNote">Recognized for root-cause analysis and stabilizing production issues with fast, practical fixes.</p>
-            </div>
-            <div class="award">
-              <p class="awardTitle">Operational Excellence Recognition</p>
-              <p class="awardNote">Recognized for proactive coordination to resolve critical issues before customer impact.</p>
-            </div>
-          </div>
-        </section>
+      <div class="miniRow">
+        <div class="miniIcon">🏦</div>
+        <div class="miniText">
+          <div class="miniTitle">Product Analyst II — LPL Financial</div>
+          <div class="miniMeta">Previous</div>
+          <div class="miniOne">Drove Agile execution, story clarity, testing/UAT coordination, and release readiness.</div>
+        </div>
+      </div>
 
-        <!-- Contact -->
-        <section class="card">
-          <div class="cardHead">Contact</div>
-          <div class="cardBody">
-            <div class="contactRow">
-              <div class="icon">✉️</div>
-              <div class="contactText">
-                <div><strong>Email</strong></div>
-                <div><a href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></div>
-              </div>
-            </div>
-
-            <div class="contactRow">
-              <div class="icon">📞</div>
-              <div class="contactText">
-                <div><strong>Mobile</strong></div>
-                <div><a href="tel:+12406186352">240-618-6352</a></div>
-              </div>
-            </div>
-
-            <div class="contactRow">
-              <div class="icon">📍</div>
-              <div class="contactText">
-                <div><strong>Location</strong></div>
-                <div>Haymarket, VA</div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div class="miniFooter">
+        <span class="miniMeta">Other:</span> Truist • SunTrust • Capital One
       </div>
 
     </div>
-  </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="card">
+    <div class="cardHead">
+      <span class="cardIcon">🛠️</span>
+      Skills
+    </div>
+
+    <div class="cardBody">
+
+      <div class="skillGroup">
+        <div class="skillHead"><span class="sIcon">⌨️</span> Technical Languages</div>
+        <div class="skillLine">HTML, XML, SQL, JSON</div>
+      </div>
+
+      <div class="skillGroup">
+        <div class="skillHead"><span class="sIcon">🧾</span> Microsoft Suite</div>
+        <div class="skillLine">Visio, Project, Word, PowerPoint, Excel, Outlook, SharePoint</div>
+      </div>
+
+      <div class="skillGroup">
+        <div class="skillHead"><span class="sIcon">🧩</span> Tools & Software</div>
+        <div class="skillLine">VersionOne, JIRA, Confluence, Postman</div>
+      </div>
+
+      <div class="skillGroup">
+        <div class="skillHead"><span class="sIcon">🗄️</span> Databases</div>
+        <div class="skillLine">Oracle, SQL Server, MySQL, MongoDB</div>
+      </div>
+
+      <div class="skillGroup" style="margin-bottom:0;">
+        <div class="skillHead"><span class="sIcon">🧱</span> Content Management System</div>
+        <div class="skillLine">Sitecore</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="card">
+    <div class="cardHead">
+      <span class="cardIcon">🏆</span>
+      Awards
+    </div>
+
+    <div class="cardBody">
+      <div class="awardRow">
+        <div class="miniIcon">⭐</div>
+        <div class="miniText">
+          <div class="miniTitle">Performance Recognition & Monetary Award</div>
+          <div class="miniOne">Recognized for stabilizing production issues through root-cause analysis and fast, practical fixes.</div>
+        </div>
+      </div>
+
+      <div class="awardRow">
+        <div class="miniIcon">⚡</div>
+        <div class="miniText">
+          <div class="miniTitle">Operational Excellence Recognition</div>
+          <div class="miniOne">Recognized for proactive coordination to resolve critical issues before customer impact.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="card">
+    <div class="cardHead">
+      <span class="cardIcon">📬</span>
+      Contact
+    </div>
+
+    <div class="cardBody">
+      <div class="contactMini">
+        <div class="miniRow" style="margin-bottom:10px;">
+          <div class="miniIcon">✉️</div>
+          <div class="miniText">
+            <div class="miniTitle">Email</div>
+            <div class="miniOne"><a class="link" href="mailto:jessiyoung321@gmail.com">jessiyoung321@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="miniRow" style="margin-bottom:10px;">
+          <div class="miniIcon">📞</div>
+          <div class="miniText">
+            <div class="miniTitle">Mobile</div>
+            <div class="miniOne"><a class="link" href="tel:+12406186352">240-618-6352</a></div>
+          </div>
+        </div>
+
+        <div class="miniRow" style="margin-bottom:0;">
+          <div class="miniIcon">📍</div>
+          <div class="miniText">
+            <div class="miniTitle">Location</div>
+            <div class="miniOne">Haymarket, VA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
 
   <!-- Ask Button -->
   <button class="askBtn" id="askBtn" type="button" title="Ask About Jessima">
@@ -624,4 +690,5 @@
 </script>
 </body>
 </html>
+
 
