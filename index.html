@@ -564,7 +564,7 @@
 </div>
 
     <div class="ai-inputRow">
-      <input id="aiInput" class="ai-input" placeholder="Type a keyword… (ex: UAT, CMS, Agile)" />
+      <input id="aiInput" class="ai-input" placeholder="Ask a question… ("ex:experience, fit, or roles…")" />
       <button class="ai-send" type="button" onclick="sendTyped()">Send</button>
     </div>
   </div>
@@ -638,7 +638,13 @@ function getAnswer(raw){
     return "Preferred contact: Email first. Phone available upon request.";
   }
 
-  if (has("availability")) {
+  if (has("strategic")) {
+    return "Jessima balances both strategy and execution. She contributes to roadmap discussions and prioritization while also driving hands-on delivery — refining backlog, clarifying requirements, coordinating with UX and engineering, and ensuring smooth UAT and releases. She is execution-strong with strategic awareness.";
+  }
+   if (has("user stories")) {
+    return "She not only writes user stories but ensures they are actionable, testable, and aligned with business value — reducing ambiguity and minimizing rework during development.";
+  }
+   if (has("availability")) {
     return "Available for weekday interviews with at least 3 business days’ notice.";
   }
 
@@ -679,6 +685,7 @@ function getAnswer(raw){
 </script>
 </body>
 </html>
+
 
 
 
